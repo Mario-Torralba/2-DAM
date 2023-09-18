@@ -7,21 +7,21 @@ public class ProductAction {
     public void altaProducto(String nombreProducto,int precioProducto){
 
         ProductDAO producto = new ProductDAO();
-        producto.altaProducto();
+        producto.altaProductoDAO();
 
     }
     public void bajaProducto(int idBaja){
         ProductDAO producto = new ProductDAO();
-        producto.bajaProducto();
+        producto.bajaProductoDAO();
     }
 
     public void listarProductos() {
         ProductDAO producto = new ProductDAO();
-        producto.listarProductos();
+        producto.listarProductosDAO();
     }
     public void modificarProducto(int idModificacion,String nombreModificar,int precioModificar){
         ProductDAO producto = new ProductDAO();
-        producto.modificarProductos();
+        producto.modificarProductosDAO();
     }
 
 }
