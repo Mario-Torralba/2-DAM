@@ -1,18 +1,18 @@
 package api.controller;
 
-import api.model.ProductAction;
-
 import java.util.Scanner;
+
+import api.controller.action.ProductAction;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
 
-        System.out.printf("1 - Dar de alta producto");
-        System.out.printf("2 - Dar de baja producto");
-        System.out.printf("3 - Listar productos");
-        System.out.printf("4 - Modificar productos");
+        System.out.println("1 - Dar de alta producto");
+        System.out.println("2 - Dar de baja producto");
+        System.out.println("3 - Listar productos");
+        System.out.println("4 - Modificar productos");
 
         Scanner sc = new Scanner(System.in);
         int respuesta = sc.nextInt();
@@ -21,9 +21,11 @@ public class Main {
 
             case 1:
                 System.out.println("\nHas introducido dar de alta el producto\n");
+
                 System.out.println("Introduce el nombre del producto\n");
-                String nombreProducto = sc.nextLine();
+                String nombreProducto = sc.next();
                 System.out.println("Introduce el precio del producto.\n");
+
                 int precioProducto = sc.nextInt();
                 new ProductAction().altaProducto(nombreProducto,precioProducto);
                 break;

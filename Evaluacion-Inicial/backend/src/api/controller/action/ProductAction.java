@@ -1,18 +1,18 @@
-package api.model;
+package api.controller.action;
 
-import api.dao.ProductDAO;
+import api.model.dao.ProductDAO;
 
-public class ProductAction {
+public class ProductAction { 
 
     public void altaProducto(String nombreProducto,int precioProducto){
 
         ProductDAO producto = new ProductDAO();
-        producto.altaProductoDAO();
+        producto.altaProductoDAO(nombreProducto, precioProducto);
 
     }
     public void bajaProducto(int idBaja){
         ProductDAO producto = new ProductDAO();
-        producto.bajaProductoDAO();
+        producto.bajaProductoDAO(idBaja);
     }
 
     public void listarProductos() {
@@ -21,7 +21,7 @@ public class ProductAction {
     }
     public void modificarProducto(int idModificacion,String nombreModificar,int precioModificar){
         ProductDAO producto = new ProductDAO();
-        producto.modificarProductosDAO();
+        producto.modificarProductosDAO(idModificacion,nombreModificar,precioModificar);
     }
 
 }

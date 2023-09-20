@@ -1,4 +1,4 @@
-package api;
+package api.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,28 +12,27 @@ public class MotorSQL {
     private Statement st;
     private ResultSet rs;
 
-    //private static final String URL = "jdbc:mysql://localhost/rakutentv";
-    private static final String URL = "jdbc:derby://localhost:1527/cafeteria";
-    //jdbc:derby://localhost:1527/netflix
-    private static String driver = "mysql";
-    private static String hostname = "database-2.ccmhlh5el4hp.us-east-1.rds.amazonaws.com";
-    private static String port = "3306";
-    private static String dbName = "MainDB";
-    private static String userName = "admin";
-    private static String password = "admin123";
 
-    //private static final String URL = "jdbc:mysql://database-2.ccmhlh5el4hp.us-east-1.rds.amazonaws.com:3306/MainDB?user=admin&password=admin123";
-    //private static final String URL = "jdbc:" + driver + "://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
-    // CONTROLADOR AWS = com.mysql.cj.jdbc.Driver
-    private static final String CONTROLADOR = "org.apache.derby.jdbc.ClientDriver";
+    // private static final String URL = "jdbc:derby://localhost:1527/cafeteria";
+    // private static String driver = "mysql";
+    // private static String hostname = "database-2.ccmhlh5el4hp.us-east-1.rds.amazonaws.com";
+    // private static String port = "3306";
+    // private static String dbName = "MainDB";
+    // private static String userName = "admin";
+    // private static String password = "admin123";
+    // private static final String CONTROLADOR = "org.apache.derby.jdbc.ClientDriver";
+    private static final String DB_NAME = ":orcl";
+   
+    private static final String DB_HOSTNAME = "orcl.c1kmifussq1f.us-east-1.rds.amazonaws.com";
+    private static final String DB_PORT = ":1521";
+
+    private static final String JDBC_URL = "jdbc:oracle:thin:@" + DB_HOSTNAME + DB_PORT + DB_NAME;
+
     public void connect() {
         System.out.println(DriverManager.getDrivers().toString());
         try {
-
-            Class.forName(CONTROLADOR);
-
             //conn = DriverManager.getConnection(URL);
-            conn = DriverManager.getConnection(URL, "Mario","123");
+            conn = DriverManager.getConnection(JDBC_URL,"admin","12341234");
 
 
             st = conn.createStatement();
