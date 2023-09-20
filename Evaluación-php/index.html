@@ -10,20 +10,31 @@
 </head>
 <body>
     <header></header>
-    <main>
+    <main class="centrado">
         <div id="formulario">
             <form action="">
                 <div class="centrado" id="tituloFormulario">
-                    <p>TITULO FORMULARIO</p>
+                    <p>Regístrate</p>
                 </div>
-                <div class="centrado" id="nombreUsuario">
-                    <p>Nombre de usuario</p>
-                    <label for=""><input type="text" placeholder="Nombre"></label>
+                <div class="centrado" >
+                    <label for=""><input id="nickUsuario" class="input centrado" type="" placeholder="Usuario">
+                    <div id="mensajeUsuario" class="centrado rojo">-</div>
                 </div>
-                <div id="apellidosUsuario"></div>
-                <div id="correoUsuario"></div>
-                <div id="tlfUsuario"></div>
-                <div id="Usuario"></div>
+                <div class="centrado" >
+                    <label for=""><input id="contraseñaUsuario" class="input centrado" type="password" placeholder="Contraseña">
+                    <div id="mensajeContraseña" class="centrado rojo">-</div>
+                </div>
+                <div class="centrado" >
+                    <label for=""><input id="correoUsuario" class="input centrado" type="email" placeholder="E-Mail">
+                    <div id="mensajeEmail" class="centrado rojo">-</div>
+                </div>
+                <div class="centrado" >
+                    <label for=""><input id="tlfUsuario" class="input centrado" type="number" placeholder="Teléfono">
+                    <div id="mensajeTelefono" class="centrado rojo">-</div>
+                </div>
+                <div class="centrado">
+                    <button id="botonFormulario" type="button">Enviar</button>
+                </div>
             </form>
 
         </div>
