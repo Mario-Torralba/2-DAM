@@ -20,14 +20,17 @@ public class Main {
         switch (respuesta){
 
             case 1:
-                System.out.println("\nHas introducido dar de alta el producto\n");
+                System.out.println("\nHas introducido dar de alta el producto");
 
-                System.out.println("Introduce el nombre del producto\n");
+                System.out.println("Introduce el id del proveedor (1 al 6):\n");
+                String idProveedor = sc.next();
+                sc.next();
+                System.out.println("Introduce el nombre del producto:\n");
                 String nombreProducto = sc.next();
-                System.out.println("Introduce el precio del producto.\n");
-
+                System.out.println("Introduce el precio del producto:\n");
                 int precioProducto = sc.nextInt();
-                new ProductAction().altaProducto(nombreProducto,precioProducto);
+
+                new ProductAction().altaProducto(idProveedor,nombreProducto,precioProducto);
                 break;
             case 2:
                 System.out.println("\nHas introducido dar de baja el producto\nIntroduce el ID de producto");
@@ -36,6 +39,7 @@ public class Main {
                 break;
             case 3:
                 new ProductAction().listarProductos();
+                break;
             case 4:
                 System.out.println("\nHas introducido modificar el producto\nIntroduce el ID de producto");
                 int idModificacion = sc.nextInt();
