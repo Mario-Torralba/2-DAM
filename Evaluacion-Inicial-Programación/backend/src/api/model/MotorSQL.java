@@ -21,18 +21,18 @@ public class MotorSQL {
     // private static String userName = "admin";
     // private static String password = "admin123";
     // private static final String CONTROLADOR = "org.apache.derby.jdbc.ClientDriver";
-    private static final String DB_NAME = ":orcl";
-   
-    private static final String DB_HOSTNAME = "orcl.c1kmifussq1f.us-east-1.rds.amazonaws.com";
-    private static final String DB_PORT = ":1521";
+    //localhost:3306/DB
+    private static final String DB_HOSTNAME = "postgre-1.c1kmifussq1f.us-east-1.rds.amazonaws.com";
+    private static final String DB_PORT = ":5432";
+    private static final String DB_NAME = "/postgres";
 
-    private static final String JDBC_URL = "jdbc:oracle:thin:@" + DB_HOSTNAME + DB_PORT + DB_NAME;
+    private static final String JDBC_URL = "jdbc:postgresql://" + DB_HOSTNAME + DB_PORT + DB_NAME;
 
     public void connect() {
         System.out.println(DriverManager.getDrivers().toString());
         try {
             //conn = DriverManager.getConnection(URL);
-            conn = DriverManager.getConnection(JDBC_URL,"admin","12341234");
+            conn = DriverManager.getConnection(JDBC_URL,"postgre","12341234");
 
 
             st = conn.createStatement();

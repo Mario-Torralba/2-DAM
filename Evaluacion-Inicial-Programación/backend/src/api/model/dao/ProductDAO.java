@@ -14,8 +14,9 @@ public class ProductDAO {
     String sql;
 
     public static final String SQL_INSERT = "INSERT INTO PRODUCTO (idProveedor,nombreProducto,precioProducto) VALUES (";
-    public static final String SQL_DELETE = "DELETE FROM PRODUCTO WHERE idProducto LIKE ";
+    public static final String SQL_DELETE = "DELETE FROM PRODUCTO WHERE idProducto = ";
     public static final String SQL_FIND = "SELECT * FROM PRODUCTO WHERE 1=1 ";
+    public static final String SQL_UPDATE = "UPDATE PRODUCTO SET ";
 
     public ProductDAO(){
         motorsql= new MotorSQL();
@@ -61,7 +62,7 @@ public class ProductDAO {
             sql = SQL_DELETE;
             sql += idBaja;
             int resp = motorsql.execute(sql);
-            System.out.println("Producto eliminado");
+            System.out.println("\n PRODUCTO ELIMINADO CON ÉXITO");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
@@ -97,6 +98,20 @@ public class ProductDAO {
         
     }
     public void modificarProductosDAO(int idModificacion,String nombreModificar,int precioModificar){
-        
+        try{
+            sql = SQL_UPDATE;
+            sql += "nombreProducto = '" + nombreModificar + "'";
+            sql += " WHERE idProducto = " + idModificacion + " ";
+            int respuesta = motorsql.execute(sql);
+            sql = SQL_UPDATE;
+            sql += "precioProducto = " + precioModificar;
+            sql += " WHERE idProducto = " + idModificacion + " ";
+            respuesta = motorsql.execute(sql);
+            System.out.println("\n PRODUCTO MODIFICADO CON ÉXITO");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
     }
 }
