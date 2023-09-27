@@ -4,6 +4,7 @@ const sol = 1000; // El número de sol que deseas consultar
 // URL del API de la NASA
 
 const apiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&api_key=${apiKey}`;
+// const apiUrl = `js\data.json`;
 
 
 // Realizar una solicitud GET utilizando Fetch API
