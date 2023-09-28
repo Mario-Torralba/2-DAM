@@ -19,7 +19,14 @@ fetch(apiUrl)
     // Los datos de las fotos se encuentran en el objeto 'data'
     console.log(data);
     // Aquí puedes procesar los datos o mostrar las imágenes en tu aplicación
-    data.photos[0].img_src;
+    data.photos.forEach(element => {
+      
+      let imagen = document.createElement("div")
+      imagen.style.backgroundImage = "URL(" + element.img_src + ")"
+      imagen.id = "imagen"
+      let galeria = document.getElementById("galeriaImagenes")
+      galeria.appendChild(imagen)
+    });
   })
   .catch((error) => {
     console.error('Ocurrió un error:', error);

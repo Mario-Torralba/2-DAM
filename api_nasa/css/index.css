@@ -7,6 +7,7 @@ body{
 }
 
 header{
+    color: white;
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -15,12 +16,19 @@ header{
 
 #galeriaImagenes{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 #imagen{
     height: 200px;
-    width: 200px;
-    background-color: aqua;
+    width: 250px;
     border-radius: 10px;
-
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#imagen:hover{
+    scale: 1.05;
+    transition: 300ms;
 }
 
