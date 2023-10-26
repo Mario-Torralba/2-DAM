@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    background-color: rgb(229, 215, 241);
+}
+
+header{
+    height: 10vh;
+    width: 100vw;
+}
+
+main{
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centrado{
+    display: flex;
+    justify-content: center;
+}
+.centrado-centrado>label{
+    margin-top:;
+}
+
+    #formulario{
+    height: 100%;
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #acacac;
+    }
+        
+
+
+footer{
+    height: 10vh;
+    width: 100vw;
+}
