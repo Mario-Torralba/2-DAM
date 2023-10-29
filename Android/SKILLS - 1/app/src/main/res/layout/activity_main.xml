@@ -4,36 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B7D67E1E"
-    tools:context=".MainActivity" >
+    android:background="#F39B43"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="412dp"
         android:layout_height="735dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Fondo" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="464dp"
-        android:layout_marginEnd="170dp"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textColor="#625193"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="158dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="483dp"
-        android:layout_marginEnd="177dp"
-        android:background="#625193"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/fondofigma" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -45,11 +26,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/users" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-480dp"
+        android:layout_marginEnd="322dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/user" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-500dp"
+        android:layout_marginEnd="-310dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:textColorHint="#625193"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="-90dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/candado" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-440dp"
+        android:layout_marginEnd="-310dp"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="text"
+        android:textColorHint="#625193"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-315dp"
+        android:layout_marginTop="-360dp"
         android:layout_marginEnd="137dp"
         android:backgroundTint="#FFFFFF"
         android:buttonTint="#F39B49"
@@ -61,16 +90,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="-135dp"
-        android:layout_marginEnd="131dp"
-        android:background="#F39B49"
-        android:backgroundTint="#F39B49"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:layout_marginEnd="180dp"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="#625193"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="LOGIN" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="-290dp"
+        android:backgroundTint="#F39B43"
+        android:text="LOGIN"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
