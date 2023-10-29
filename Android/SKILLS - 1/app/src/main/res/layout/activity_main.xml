@@ -4,32 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#B7D67E1E"
+    tools:context=".MainActivity" >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="16dp">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="412dp"
+        android:layout_height="735dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/Fondo" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/fondo" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="464dp"
+        android:layout_marginEnd="170dp"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="#625193"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="390dp"
-            android:layout_height="200dp"
-            android:orientation="horizontal">
+    <View
+        android:layout_width="158dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="483dp"
+        android:layout_marginEnd="177dp"
+        android:background="#625193"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/asdf" />
-        </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="-260dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/users" />
 
-    </FrameLayout>
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-315dp"
+        android:layout_marginEnd="137dp"
+        android:backgroundTint="#FFFFFF"
+        android:buttonTint="#F39B49"
+        android:drawableTint="#FFFFFF"
+        android:foregroundTint="#B83B3B"
+        android:shadowColor="#0C0A0E"
+        android:text="Recordarme"
+        android:textColor="#625193"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-135dp"
+        android:layout_marginEnd="131dp"
+        android:background="#F39B49"
+        android:backgroundTint="#F39B49"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="LOGIN" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
