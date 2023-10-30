@@ -2,7 +2,7 @@ package model.DAO;
 
 import java.sql.ResultSet;
 
-import main.java.model.beans.Cliente;
+import model.beans.Cliente;
 import model.MotorOracle;
 
 public class ClienteDAO {

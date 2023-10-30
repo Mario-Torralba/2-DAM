@@ -30,7 +30,7 @@ public class MotorOracle {
             Class.forName(CONTROLADOR);
 
             // conn = DriverManager.getConnection(URL);
-            conn = DriverManager.getConnection(URL, "Mario", "123");
+            conn = DriverManager.getConnection(URL, "mario", "12345678");
 
             st = conn.createStatement();
             // } catch (ClassNotFoundException ex) {
@@ -75,6 +75,10 @@ public class MotorOracle {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    public static void main(String[] args) {
+        MotorOracle motorOracle = new MotorOracle();
+        motorOracle.connect();
     }
 
 }

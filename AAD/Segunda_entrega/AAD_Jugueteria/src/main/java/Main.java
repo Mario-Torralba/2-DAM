@@ -1,9 +1,8 @@
-package main.java;
 
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-import main.java.model.beans.Cliente;
+import model.beans.Cliente;
 import model.MotorOracle;
 import model.DAO.ClienteDAO;
 
