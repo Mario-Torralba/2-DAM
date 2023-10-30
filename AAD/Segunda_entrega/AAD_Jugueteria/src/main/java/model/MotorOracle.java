@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 public class MotorOracle {
 
     private Connection conn;
@@ -20,21 +21,21 @@ public class MotorOracle {
     private static String password = "";
 
     private static final String CONTROLADOR = "";
+
+
     public void connect() {
         System.out.println(DriverManager.getDrivers().toString());
         try {
 
             Class.forName(CONTROLADOR);
 
-            //conn = DriverManager.getConnection(URL);
-            conn = DriverManager.getConnection(URL, "Mario","123");
-
+            // conn = DriverManager.getConnection(URL);
+            conn = DriverManager.getConnection(URL, "Mario", "123");
 
             st = conn.createStatement();
-            //} catch (ClassNotFoundException ex) {
+            // } catch (ClassNotFoundException ex) {
             // System.out.println(ex.getMessage());
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
