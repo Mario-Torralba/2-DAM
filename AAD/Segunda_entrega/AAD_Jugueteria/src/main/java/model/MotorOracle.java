@@ -12,7 +12,7 @@ public class MotorOracle {
     private Statement st;
     private ResultSet rs;
 
-    private static final String URL = "";
+    private static final String URL = "jdbc:postgresql://aad.c1kmifussq1f.us-east-1.rds.amazonaws.com:5432/aad";
     private static String driver = "";
     private static String hostname = "";
     private static String port = "";
@@ -27,7 +27,7 @@ public class MotorOracle {
         System.out.println(DriverManager.getDrivers().toString());
         try {
 
-            Class.forName(CONTROLADOR);
+            // Class.forName(CONTROLADOR);
 
             // conn = DriverManager.getConnection(URL);
             conn = DriverManager.getConnection(URL, "mario", "12345678");

@@ -1,4 +1,6 @@
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
@@ -51,17 +53,43 @@ class Main {
                 System.out.println(i + 1 + " - " + tablas[i]);
             }
             decision = sc.nextInt();
-            if (decision == 1) {
+            if (decision == 1) { // ES UNA CHAPUZA, PERO ES LO QUE HAY
                 ClienteDAO cliente = new ClienteDAO();
                 String XML = cliente.exportarXMLCliente();
-                System.out.println(XML);
+                // ESCRIBIR ARCHIVO
+                escribirArchivoXML(XML);
+
+                
             }
         }
     }
 
     
 
-    public static void importarXMLCliente() {
+    public static void escribirArchivoXML(String XML) {
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("./cli","cliente.xml");
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 10; i++)
+                pw.println("Linea " + i);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
 
     }
 }
