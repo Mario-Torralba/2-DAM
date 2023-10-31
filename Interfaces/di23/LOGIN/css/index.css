@@ -1,0 +1,49 @@
+.divLogotipo{
+    text-align: left;
+}
+
+.divLogotipo img{
+    height: 3em;
+}
+.divLog{
+    text-align: right;
+}
+.divLog img{
+    height: 2em;
+}
+.divTituloApp{
+    text-align: center;
+    font-size: 1.5em;
+}
+.center{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.celdaPrincipal>td{
+    background-color: rgb(31, 170, 170);
+    height: 30px;
+    width: 130px;
+    border: 2px solid rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center; 
+}
+.celdaSecundaria>td{
+    background-color: rgb(145, 223, 223);
+    height: 30px;
+    width: 130px;
+    border: 2px solid rgb(0, 0, 0);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center; 
+}
+.imagenTabla{
+    height: 30px;
+    width: 50px;
+}
+.prueba{
+    height: 20px;
+    width: 20px;
+}
