@@ -32,7 +32,7 @@
             <td>'.$fila['login'].'</td>
             <td>'.$fila['pass'].'</td>
             <td>'.$fila['activo'].'</td>
-            <td class="imagenTabla"><img class="prueba" src="img/delete.png" value="'.$contador.'" onclick="peticion('.'Usuarios'.', '.'borrarEntrada'.')"></td>
+            <td class="imagenTabla"><img class="prueba" src="img/delete.png" value="'.$contador.'" onclick="peticion('.'Usuarios'.', '.'borrarEntrada'.', '.'id'.')"></td>
             <td class="imagenTabla"><img class="prueba" src="img/editar.png" value="'.$contador.'"></td>
         </tr>';
         $contador++;

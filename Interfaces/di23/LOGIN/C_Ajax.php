@@ -22,3 +22,5 @@
     }else{
         echo 'Error AX-01';
     }
+
+?>

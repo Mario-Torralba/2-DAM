@@ -23,3 +23,5 @@ function peticion(controlador, metodo) {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
+
+
