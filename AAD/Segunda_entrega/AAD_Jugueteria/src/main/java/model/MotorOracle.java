@@ -12,7 +12,7 @@ public class MotorOracle {
     private Statement st;
     private ResultSet rs;
 
-    private static final String URL = "jdbc:postgresql://aad.c1kmifussq1f.us-east-1.rds.amazonaws.com:5432/aad";
+    private static final String URL = "jdbc:postgresql://aad.c1kmifussq1f.us-east-1.rds.amazonaws.com:5432/postgres";
     private static String driver = "";
     private static String hostname = "";
     private static String port = "";

@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Cliente {
 
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", usuario=" + usuario + ", pass=" + pass + ", tlf=" + tlf + ", nombre=" + nombre
+                + ", apellido_1=" + apellido_1 + ", apellido_2=" + apellido_2 + ", email=" + email + "]";
+    }
+
     private int id;
     private String usuario;
     private String pass;

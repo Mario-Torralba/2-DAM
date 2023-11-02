@@ -1,5 +1,7 @@
 package model.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.beans.Cliente;
@@ -8,6 +10,7 @@ import model.MotorOracle;
 public class ClienteDAO {
 
     MotorOracle motorOracle;
+    // Connection conn;
 
     public ClienteDAO() {
         motorOracle = new MotorOracle();
@@ -33,8 +36,8 @@ public class ClienteDAO {
                 cliente.setEmail(rs.getString(8));
                 Cliente.getLstClientes().add(cliente);
             }
-
-            XML = "<CLIENTE>\n";
+            XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+            XML += "<CLIENTE>\n";
 
             for (Cliente e : Cliente.getLstClientes()) {
                 XML += "    <Cliente>\n";
@@ -79,6 +82,30 @@ public class ClienteDAO {
         // Cliente.getLstClientes().add(cliente2);
 
         return XML;
+    }
+
+    public void XMLquery() {
+        String SQL = "INSERT INTO CLIENTE(USUARIO,PASS,TLF,NOMBRE,APELLIDO_1,APELLIDO_2,EMAIL)VALUES(?,?,?,?,?,?,?) ";
+        int salida = 0;
+        try {
+            motorOracle.connect();
+            PreparedStatement statement = conn.prepareStatement(SQL);
+            for (Cliente e : Cliente.getLstClientes()) {
+                statement.setString(1, e.getUsuario());
+                statement.setString(2, e.getPass());
+                statement.setString(3, e.getTlf());
+                statement.setString(4, e.getNombre());
+                statement.setString(5, e.getApellido_1());
+                statement.setString(6, e.getApellido_2());
+                statement.setString(7, e.getEmail());
+                System.out.println(SQL);
+                salida = motorOracle.execute(SQL);
+            }
+        } catch (Exception ex) {
+            ex.getMessage();
+        } finally {
+            motorOracle.disconnect();
+        }
     }
 
 }

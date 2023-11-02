@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CLIENTE>
+    <Cliente>
+        <ID_CLIENTE>11</ID_CLIENTE>
+        <USUARIO>usuario11</USUARIO>
+        <PASS>pass11</PASS>
+        <TLF>852852852</TLF>
+        <NOMBRE>Pablo2</NOMBRE>
+        <APELLIDO_1>Navarro2</APELLIDO_1>
+        <APELLIDO_2>V�zquez2</APELLIDO_2>
+        <EMAIL>pablo.navarro@example.com2</EMAIL>
+    </Cliente>
+</CLIENTE>
