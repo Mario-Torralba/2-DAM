@@ -9,10 +9,13 @@ import java.sql.Statement;
 public class MotorOracle {
 
     private Connection conn;
+    public Connection getConn() {
+        return conn;
+    }
     private Statement st;
     private ResultSet rs;
 
-    private static final String URL = "jdbc:postgresql://aad.c1kmifussq1f.us-east-1.rds.amazonaws.com:5432/postgres";
+    private static final String URL = "jdbc:postgresql://aad.c1kmifussq1f.us-east-1.rds.amazonaws.com:5432/aad";
     private static String driver = "";
     private static String hostname = "";
     private static String port = "";

@@ -6,8 +6,8 @@
         <PASS>pass1</PASS>
         <TLF>123456789</TLF>
         <NOMBRE>Ana</NOMBRE>
-        <APELLIDO_1>Garc�a</APELLIDO_1>
-        <APELLIDO_2>L�pez</APELLIDO_2>
+        <APELLIDO_1>Garcia</APELLIDO_1>
+        <APELLIDO_2>Lopez</APELLIDO_2>
         <EMAIL>ana.garcia@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -16,8 +16,8 @@
         <PASS>pass2</PASS>
         <TLF>987654321</TLF>
         <NOMBRE>Carlos</NOMBRE>
-        <APELLIDO_1>Fern�ndez</APELLIDO_1>
-        <APELLIDO_2>Mart�n</APELLIDO_2>
+        <APELLIDO_1>Fernandez</APELLIDO_1>
+        <APELLIDO_2>Martin</APELLIDO_2>
         <EMAIL>carlos.fernandez@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -25,9 +25,9 @@
         <USUARIO>usuario3</USUARIO>
         <PASS>pass3</PASS>
         <TLF>123123123</TLF>
-        <NOMBRE>Luc�a</NOMBRE>
-        <APELLIDO_1>P�rez</APELLIDO_1>
-        <APELLIDO_2>G�mez</APELLIDO_2>
+        <NOMBRE>Lucia</NOMBRE>
+        <APELLIDO_1>Perez</APELLIDO_1>
+        <APELLIDO_2>Gomez</APELLIDO_2>
         <EMAIL>lucia.perez@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -36,8 +36,8 @@
         <PASS>pass4</PASS>
         <TLF>321321321</TLF>
         <NOMBRE>David</NOMBRE>
-        <APELLIDO_1>L�pez</APELLIDO_1>
-        <APELLIDO_2>D�az</APELLIDO_2>
+        <APELLIDO_1>Lopez</APELLIDO_1>
+        <APELLIDO_2>Diaz</APELLIDO_2>
         <EMAIL>david.lopez@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -45,8 +45,8 @@
         <USUARIO>usuario5</USUARIO>
         <PASS>pass5</PASS>
         <TLF>456456456</TLF>
-        <NOMBRE>Sof�a</NOMBRE>
-        <APELLIDO_1>Gonz�lez</APELLIDO_1>
+        <NOMBRE>Sofia</NOMBRE>
+        <APELLIDO_1>Gonzalez</APELLIDO_1>
         <APELLIDO_2>Ruiz</APELLIDO_2>
         <EMAIL>sofia.gonzalez@example.com</EMAIL>
     </Cliente>
@@ -56,7 +56,7 @@
         <PASS>pass6</PASS>
         <TLF>654654654</TLF>
         <NOMBRE>Miguel</NOMBRE>
-        <APELLIDO_1>Rodr�guez</APELLIDO_1>
+        <APELLIDO_1>Rodriguez</APELLIDO_1>
         <APELLIDO_2>Moreno</APELLIDO_2>
         <EMAIL>miguel.rodriguez@example.com</EMAIL>
     </Cliente>
@@ -66,8 +66,8 @@
         <PASS>pass7</PASS>
         <TLF>789789789</TLF>
         <NOMBRE>Laura</NOMBRE>
-        <APELLIDO_1>S�nchez</APELLIDO_1>
-        <APELLIDO_2>Jim�nez</APELLIDO_2>
+        <APELLIDO_1>Sanchez</APELLIDO_1>
+        <APELLIDO_2>Jimenez</APELLIDO_2>
         <EMAIL>laura.sanchez@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -76,8 +76,8 @@
         <PASS>pass8</PASS>
         <TLF>987987987</TLF>
         <NOMBRE>Jorge</NOMBRE>
-        <APELLIDO_1>Mart�nez</APELLIDO_1>
-        <APELLIDO_2>Hern�ndez</APELLIDO_2>
+        <APELLIDO_1>Martinez</APELLIDO_1>
+        <APELLIDO_2>Hernandez</APELLIDO_2>
         <EMAIL>jorge.martinez@example.com</EMAIL>
     </Cliente>
     <Cliente>
@@ -86,7 +86,7 @@
         <PASS>pass9</PASS>
         <TLF>258258258</TLF>
         <NOMBRE>Elena</NOMBRE>
-        <APELLIDO_1>G�mez</APELLIDO_1>
+        <APELLIDO_1>Gomez</APELLIDO_1>
         <APELLIDO_2>Alvarez</APELLIDO_2>
         <EMAIL>elena.gomez@example.com</EMAIL>
     </Cliente>
@@ -97,7 +97,107 @@
         <TLF>852852852</TLF>
         <NOMBRE>Pablo</NOMBRE>
         <APELLIDO_1>Navarro</APELLIDO_1>
-        <APELLIDO_2>V�zquez</APELLIDO_2>
+        <APELLIDO_2>Vazquez</APELLIDO_2>
+        <EMAIL>pablo.navarro@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>11</ID_CLIENTE>
+        <USUARIO>usuario1</USUARIO>
+        <PASS>pass1</PASS>
+        <TLF>123456789</TLF>
+        <NOMBRE>Ana</NOMBRE>
+        <APELLIDO_1>Garcia</APELLIDO_1>
+        <APELLIDO_2>Lopez</APELLIDO_2>
+        <EMAIL>ana.garcia@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>12</ID_CLIENTE>
+        <USUARIO>usuario2</USUARIO>
+        <PASS>pass2</PASS>
+        <TLF>987654321</TLF>
+        <NOMBRE>Carlos</NOMBRE>
+        <APELLIDO_1>Fernandez</APELLIDO_1>
+        <APELLIDO_2>Martin</APELLIDO_2>
+        <EMAIL>carlos.fernandez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>13</ID_CLIENTE>
+        <USUARIO>usuario3</USUARIO>
+        <PASS>pass3</PASS>
+        <TLF>123123123</TLF>
+        <NOMBRE>Lucia</NOMBRE>
+        <APELLIDO_1>Perez</APELLIDO_1>
+        <APELLIDO_2>Gomez</APELLIDO_2>
+        <EMAIL>lucia.perez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>14</ID_CLIENTE>
+        <USUARIO>usuario4</USUARIO>
+        <PASS>pass4</PASS>
+        <TLF>321321321</TLF>
+        <NOMBRE>David</NOMBRE>
+        <APELLIDO_1>Lopez</APELLIDO_1>
+        <APELLIDO_2>Diaz</APELLIDO_2>
+        <EMAIL>david.lopez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>15</ID_CLIENTE>
+        <USUARIO>usuario5</USUARIO>
+        <PASS>pass5</PASS>
+        <TLF>456456456</TLF>
+        <NOMBRE>Sofia</NOMBRE>
+        <APELLIDO_1>Gonzalez</APELLIDO_1>
+        <APELLIDO_2>Ruiz</APELLIDO_2>
+        <EMAIL>sofia.gonzalez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>16</ID_CLIENTE>
+        <USUARIO>usuario6</USUARIO>
+        <PASS>pass6</PASS>
+        <TLF>654654654</TLF>
+        <NOMBRE>Miguel</NOMBRE>
+        <APELLIDO_1>Rodriguez</APELLIDO_1>
+        <APELLIDO_2>Moreno</APELLIDO_2>
+        <EMAIL>miguel.rodriguez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>17</ID_CLIENTE>
+        <USUARIO>usuario7</USUARIO>
+        <PASS>pass7</PASS>
+        <TLF>789789789</TLF>
+        <NOMBRE>Laura</NOMBRE>
+        <APELLIDO_1>Sanchez</APELLIDO_1>
+        <APELLIDO_2>Jimenez</APELLIDO_2>
+        <EMAIL>laura.sanchez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>18</ID_CLIENTE>
+        <USUARIO>usuario8</USUARIO>
+        <PASS>pass8</PASS>
+        <TLF>987987987</TLF>
+        <NOMBRE>Jorge</NOMBRE>
+        <APELLIDO_1>Martinez</APELLIDO_1>
+        <APELLIDO_2>Hernandez</APELLIDO_2>
+        <EMAIL>jorge.martinez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>19</ID_CLIENTE>
+        <USUARIO>usuario9</USUARIO>
+        <PASS>pass9</PASS>
+        <TLF>258258258</TLF>
+        <NOMBRE>Elena</NOMBRE>
+        <APELLIDO_1>Gomez</APELLIDO_1>
+        <APELLIDO_2>Alvarez</APELLIDO_2>
+        <EMAIL>elena.gomez@example.com</EMAIL>
+    </Cliente>
+    <Cliente>
+        <ID_CLIENTE>20</ID_CLIENTE>
+        <USUARIO>usuario10</USUARIO>
+        <PASS>pass10</PASS>
+        <TLF>852852852</TLF>
+        <NOMBRE>Pablo</NOMBRE>
+        <APELLIDO_1>Navarro</APELLIDO_1>
+        <APELLIDO_2>Vazquez</APELLIDO_2>
         <EMAIL>pablo.navarro@example.com</EMAIL>
     </Cliente>
 </CLIENTE>

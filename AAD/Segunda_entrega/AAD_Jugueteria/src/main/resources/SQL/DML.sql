@@ -87,13 +87,13 @@ INSERT INTO DETALLE_ALBARAN VALUES(5, 5, 5, 14);
 
 
 --CLIENTE
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario1', 'pass1', '123456789', 'Ana', 'García', 'López', 'ana.garcia@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario2', 'pass2', '987654321', 'Carlos', 'Fernández', 'Martín', 'carlos.fernandez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario3', 'pass3', '123123123', 'Lucía', 'Pérez', 'Gómez', 'lucia.perez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario4', 'pass4', '321321321', 'David', 'López', 'Díaz', 'david.lopez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario5', 'pass5', '456456456', 'Sofía', 'González', 'Ruiz', 'sofia.gonzalez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario6', 'pass6', '654654654', 'Miguel', 'Rodríguez', 'Moreno', 'miguel.rodriguez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario7', 'pass7', '789789789', 'Laura', 'Sánchez', 'Jiménez', 'laura.sanchez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario8', 'pass8', '987987987', 'Jorge', 'Martínez', 'Hernández', 'jorge.martinez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario9', 'pass9', '258258258', 'Elena', 'Gómez', 'Alvarez', 'elena.gomez@example.com');
-INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario10', 'pass10', '852852852', 'Pablo', 'Navarro', 'Vázquez', 'pablo.navarro@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario1', 'pass1', '123456789', 'Ana', 'Garcia', 'Lopez', 'ana.garcia@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario2', 'pass2', '987654321', 'Carlos', 'Fernandez', 'Martin', 'carlos.fernandez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario3', 'pass3', '123123123', 'Lucia', 'Perez', 'Gomez', 'lucia.perez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario4', 'pass4', '321321321', 'David', 'Lopez', 'Diaz', 'david.lopez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario5', 'pass5', '456456456', 'Sofia', 'Gonzalez', 'Ruiz', 'sofia.gonzalez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario6', 'pass6', '654654654', 'Miguel', 'Rodriguez', 'Moreno', 'miguel.rodriguez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario7', 'pass7', '789789789', 'Laura', 'Sanchez', 'Jimenez', 'laura.sanchez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario8', 'pass8', '987987987', 'Jorge', 'Martinez', 'Hernandez', 'jorge.martinez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario9', 'pass9', '258258258', 'Elena', 'Gomez', 'Alvarez', 'elena.gomez@example.com');
+INSERT INTO CLIENTE (USUARIO, PASS, TLF, NOMBRE, APELLIDO_1, APELLIDO_2, EMAIL) VALUES ('usuario10', 'pass10', '852852852', 'Pablo', 'Navarro', 'Vazquez', 'pablo.navarro@example.com');

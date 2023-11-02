@@ -89,7 +89,7 @@ public class ClienteDAO {
         int salida = 0;
         try {
             motorOracle.connect();
-            PreparedStatement statement = conn.prepareStatement(SQL);
+            PreparedStatement statement = motorOracle.getConn().prepareStatement(SQL);
             for (Cliente e : Cliente.getLstClientes()) {
                 statement.setString(1, e.getUsuario());
                 statement.setString(2, e.getPass());
@@ -98,8 +98,8 @@ public class ClienteDAO {
                 statement.setString(5, e.getApellido_1());
                 statement.setString(6, e.getApellido_2());
                 statement.setString(7, e.getEmail());
-                System.out.println(SQL);
-                salida = motorOracle.execute(SQL);
+                System.out.println(statement);
+                salida = statement.executeUpdate();
             }
         } catch (Exception ex) {
             ex.getMessage();

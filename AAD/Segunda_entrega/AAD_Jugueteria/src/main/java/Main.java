@@ -56,7 +56,7 @@ class Main {
             // IMPORTAR
             // RECUPERAR LOS ARCHIVOS DE LA CARPETA DE XMLS
             String[] archivos = getFileNames(
-                    "C:\\Users\\torra\\Documents\\GitHub\\2-DAM\\AAD\\Segunda_entrega\\AAD_Jugueteria\\xmls");
+                    ".\\xmls");
             System.out.println("Elige el archivo a importar:(Escribir el número) ");
             int contador = 1;
             for (String e : archivos) {
@@ -83,7 +83,7 @@ class Main {
 
     public static void transformarXML(String nombreArchivo) {
 
-        String filePath = "C:\\Users\\torra\\Documents\\GitHub\\2-DAM\\AAD\\Segunda_entrega\\AAD_Jugueteria\\xmls\\"
+        String filePath = ".\\xmls\\"
                 + nombreArchivo; // Reemplaza con la ruta de tu archivo XML
 
         try {
@@ -161,7 +161,7 @@ class Main {
         PrintWriter pw = null;
         try {
             fichero = new File(
-                    "C:\\Users\\torra\\Documents\\GitHub\\2-DAM\\AAD\\Segunda_entrega\\AAD_Jugueteria\\xmls");
+                    ".\\xmls");
             writer = new FileWriter(fichero + "\\cliente.xml");
             pw = new PrintWriter(writer);
             pw.println(XML);
