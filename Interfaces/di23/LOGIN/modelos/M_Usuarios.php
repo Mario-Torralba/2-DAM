@@ -11,18 +11,36 @@
 
         public function buscarUsuarios($filtros=array()){
             $b_texto='';
+            $nombre_texto='';
             extract($filtros);
             
             $SQL="SELECT * FROM usuarios WHERE 1=1 ";
             
-            if($b_texto!=''){
-                $aTexto=explode(' ', $b_texto);
+            if($nombre_texto!=''){
+                $aTexto=explode(' ', $nombre_texto);
+                $SQL.=" AND (1=2 ";
+                foreach ($aTexto as $palabra){
+                    $SQL.=" OR nombre LIKE '%$palabra%' ";
+                }
+                $SQL.=" ) ";
+            }
+
+            if($apellido_texto!=''){
+                $aTexto=explode(' ', $apellido_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
                     $SQL.=" OR apellido_1 LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
-                //$SQL.=" AND apellido_1='".$b_texto."' ";
+            }
+
+            if($a_texto!=''){
+                $aTexto=explode(' ', $a_texto);
+                $SQL.=" AND (1=2 ";
+                foreach ($aTexto as $palabra){
+                    $SQL.=" OR activo LIKE '%$palabra%' ";
+                }
+                $SQL.=" ) ";
             }
             
             $usuarios=$this->DAO->consultar($SQL);

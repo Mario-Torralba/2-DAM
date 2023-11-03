@@ -4,13 +4,19 @@
     
 ?>
 <form id="formularioBuscar" name="formularioBuscar" onkeydown="return event.key != 'Enter';">
-<label for="b_texto">
-    <input placeholder="Nombre/apellido" type="text" id="b_texto" name="b_texto">
+<label for="nombre_texto">
+    <input placeholder="Nombre" type="text" id="nombre_texto" name="nombre_texto">
+</label>
+<label for="apellido_texto">
+    <input placeholder="Apellido" type="text" id="apellido_texto" name="apellido_texto">
 </label>
 <label for="a_texto">
-    <input placeholder="Activo(S,N)" type="text" id="a_texto" name="a_texto">
+    <select name="a_texto" id="a_texto">
+        <option value="S">S</option>
+        <option value="N">N</option>
+    </select>
 </label>
-<button type="button" onclick="buscarUsuarios()">Buscar</button>
+<button id="botonBusquedaUsuarios" type="button" onclick="buscarUsuarios()">Buscar</button>
 </form>
 <div id="capaResultadosBusqueda">
     

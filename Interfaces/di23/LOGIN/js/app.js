@@ -2,6 +2,8 @@ function cargarUnScript(url){
     let script = document.createElement('script');
     script.src = url;
     document.head.appendChild(script);
+    script.defer = true;
+    script.type = "module";
 }
 
 function peticion(controlador, metodo) {
@@ -23,5 +25,6 @@ function peticion(controlador, metodo) {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
+
 
 

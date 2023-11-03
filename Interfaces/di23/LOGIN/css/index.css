@@ -22,7 +22,7 @@
     align-items: center;
 }
 .celdaPrincipal>td{
-    background-color: rgb(31, 170, 170);
+    background-color: #67c8f5;
     height: 30px;
     width: 130px;
     border: 2px solid rgb(0, 0, 0);
@@ -32,7 +32,7 @@
 }
 .celdaSecundaria>td{
     margin-left: 5px;
-    background-color: rgb(145, 223, 223);
+    background-color: #b4e4fa;
     height: 30px;
     width: 130px;
     border: 2px solid rgb(0, 0, 0);
@@ -47,4 +47,10 @@
 .prueba{
     height: 20px;
     width: 20px;
+}
+#botonBusquedaUsuarios{
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    background-color: #67c8f5;
 }
