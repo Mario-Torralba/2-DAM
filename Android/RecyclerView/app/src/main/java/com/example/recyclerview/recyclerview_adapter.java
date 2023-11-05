@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,11 @@ public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adap
     private ArrayList<recyclerview_list> recyclerview_list;
     private Context context;
 
+    public recyclerview_adapter(ArrayList<com.example.recyclerview.recyclerview_list> recyclerview_list, Context context) {
+        this.recyclerview_list = recyclerview_list;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,7 +32,8 @@ public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.imageView.setImageResource(recyclerview_list.get(position).getImage());
+        holder.textView.setText(recyclerview_list.get(position).getText());
     }
 
     @Override
@@ -34,8 +42,14 @@ public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        ImageView imageView;
+        TextView textView;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
+            textView = itemView.findViewById(R.id.textView);
         }
+
     }
 }
+
