@@ -27,6 +27,8 @@ public class MyThread extends Thread {
         }
     }
 
+    
+
     public String getLetra() {
         return letra;
     }
