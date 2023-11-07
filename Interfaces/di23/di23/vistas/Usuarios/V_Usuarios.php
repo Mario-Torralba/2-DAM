@@ -1,9 +1,30 @@
+<div id='contenedores'>
+        <div class="cont" id="desplegarFormularioBuscar" onclick="funcionDisplay1()">BUSCAR</div>
+        <div class="cont" id="desplegarFormularioCrear" onclick="funcionDisplay2()">CREAR</div>
+    </div>
 
-<?php
-    if(isset($_SESSION["usuario"])){
-        if($_SESSION["usuario"]=='mario'){
-            echo "Crear Usuario<br>";
-            echo "<form id='formularioCrear' name='formularioCrear' >
+    <div id="formularioBusqueda">
+
+        <form id="formularioBuscar" name="formularioBuscar">
+            <label for="nombre_texto">
+                <input placeholder="Nombre" type="text" id="nombre_texto" name="nombre_texto">
+            </label>
+            <label for="apellido_texto">
+                <input placeholder="Apellido" type="text" id="apellido_texto" name="apellido_texto">
+            </label>
+            <label for="a_texto">
+                <select name="a_texto" id="a_texto">
+                    <option value=" "></option>
+                    <option value="S">S</option>
+                    <option value="N">N</option>
+                </select>
+            </label>
+            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">GO!!</button>
+            </form>
+    </div>
+
+    <div id="formularioCrear">
+        <form id='formularioCrear2' name='formularioCrear2' >
     
             <label for='nombre_crear'>
                 <input placeholder='Nombre' type='text' id='nombre_crear' name='nombre_crear'>
@@ -16,7 +37,7 @@
             <label for='apellido_2_crear'>
                 <input placeholder='Segundo apellido' type='text' id='apellido_2_crear' name='apellido_2_crear'>
             </label>
-        
+        <br><br>
             <label for='login_crear'>
                 <input placeholder='Usuario' type='text' id='login_crear' name='login_crear'>
             </label>
@@ -24,38 +45,10 @@
             <label for='pass_crear'>
                 <input placeholder='Contraseña' type='password' id='pass_crear' name='pass_crear'>
             </label>
-            <br><br>
-            <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='crearUsuarios()'>Crear</button>
+            <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='crearUsuarios()'>GO!!</button>
             </form>
-            <br><br>";
-            echo 'Busqueda de usuarios: ';
-    }else{
-        echo "Debes logearte para eso";
-    }   
+    </div>
+    <br><br>
+    <div id="capaResultadosBusqueda">
 
-    }
-?>
-
-<br>
-</form>
-<form id="formularioBuscar" name="formularioBuscar">
-<label for="nombre_texto">
-    <input placeholder="Nombre" type="text" id="nombre_texto" name="nombre_texto">
-</label>
-<label for="apellido_texto">
-    <input placeholder="Apellido" type="text" id="apellido_texto" name="apellido_texto">
-</label>
-<label for="a_texto">
-    <select name="a_texto" id="a_texto">
-        <option value=" "></option>
-        <option value="S">S</option>
-        <option value="N">N</option>
-    </select>
-</label>
-<br><br>
-<button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">Buscar</button>
-</form>
-<br><br>
-<div id="capaResultadosBusqueda">
-    
-</div>
+    </div>

@@ -55,8 +55,50 @@
     background-color: rgb(50, 151, 233);
 }
 #formularioBusqueda{
+    
     display: none;
+    justify-content: center;
+    align-items: center;
 }
+    #formularioBusqueda>form>label>input{
+        margin-left: 2vw;
+    }
+    #formularioBusqueda>form>label>select{
+        margin-left: 2vw;
+    }
+    #botonBusquedaUsuarios{
+        background-color: rgb(15, 95, 160);
+        color: white;
+        margin-left: 2vw;
+        height: 3vh;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #c0c0c0;cursor: pointer;
+    }
+    #botonBusquedaUsuarios:hover{
+        background-color: rgb(50, 151, 233);
+
+    }
 #formularioCrear{
     display: none;
+    justify-content: center;
+    align-items: center;
 }
+    #formularioCrear>form>label>input{
+        margin-left: 2vw;
+    }
+    #botonCrearUsuarios{
+        background-color: rgb(15, 95, 160);
+        color: white;
+        margin-left: 2vw;
+        height: 3vh;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #c0c0c0;cursor: pointer;
+    }
+    #botonCrearUsuarios:hover{
+        background-color: rgb(50, 151, 233);
+
+    }

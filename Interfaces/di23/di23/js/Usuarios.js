@@ -1,7 +1,35 @@
+let botonBuscar = document.getElementById("desplegarFormularioBuscar") 
+let botonCrear = document.getElementById("desplegarFormularioCrear") 
+let formBuscar = document.getElementById("formularioBusqueda") 
+let formCrear = document.getElementById("formularioCrear") 
+
+function funcionDisplay1(){
+    if(formBuscar.style.display == "flex"){
+        formBuscar.style.display = "none"
+    }else{
+        formBuscar.style.display = "flex"
+    }
+    if(formCrear.style.display == "flex"){
+        formCrear.style.display = "none"
+    }
+}
+
+function funcionDisplay2(){
+    if(formBuscar.style.display == "flex"){
+        formBuscar.style.display = "none"
+    }
+    if(formCrear.style.display == "flex"){
+        formCrear.style.display = "none"
+    }else{
+        formCrear.style.display = "flex"
+    }
+}
+
 function buscarUsuarios(){
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=buscarUsuarios";
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+    console.log(parametros)
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
@@ -44,7 +72,7 @@ function crearUsuarios(){
 
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=crearUsuarios";
-    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear2"))).toString();
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {

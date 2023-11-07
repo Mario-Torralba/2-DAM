@@ -10,11 +10,12 @@
 </head>
 <body>
     <div id='contenedores'>
-        <div class="cont" id="desplegarFormularioBuscar">BUSCAR</div>
-        <div class="cont" id="desplegarFormularioCrear">CREAR</div>
+        <div class="cont" id="desplegarFormularioBuscar" onclick="funcionDisplay1()">BUSCAR</div>
+        <div class="cont" id="desplegarFormularioCrear" onclick="funcionDisplay2()">CREAR</div>
     </div>
 
     <div id="formularioBusqueda">
+
         <form id="formularioBuscar" name="formularioBuscar">
             <label for="nombre_texto">
                 <input placeholder="Nombre" type="text" id="nombre_texto" name="nombre_texto">
@@ -29,12 +30,34 @@
                     <option value="N">N</option>
                 </select>
             </label>
-            <br><br>
-            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">Buscar</button>
+            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">GO!!</button>
             </form>
     </div>
+
     <div id="formularioCrear">
-        este es el formulario de creacion
+        <form id='formularioCrear2' name='formularioCrear2' >
+    
+            <label for='nombre_crear'>
+                <input placeholder='Nombre' type='text' id='nombre_crear' name='nombre_crear'>
+            </label>
+            
+            <label for='apellido_1_crear'>
+                <input placeholder='Primer apellido' type='text' id='apellido_1_crear' name='apellido_1_crear'>
+            </label>
+        
+            <label for='apellido_2_crear'>
+                <input placeholder='Segundo apellido' type='text' id='apellido_2_crear' name='apellido_2_crear'>
+            </label>
+        <br><br>
+            <label for='login_crear'>
+                <input placeholder='Usuario' type='text' id='login_crear' name='login_crear'>
+            </label>
+        
+            <label for='pass_crear'>
+                <input placeholder='Contraseña' type='password' id='pass_crear' name='pass_crear'>
+            </label>
+            <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='crearUsuarios()'>GO!!</button>
+            </form>
     </div>
 </body>
 </html>
