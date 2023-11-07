@@ -13,5 +13,28 @@
         <div class="cont" id="desplegarFormularioBuscar">BUSCAR</div>
         <div class="cont" id="desplegarFormularioCrear">CREAR</div>
     </div>
+
+    <div id="formularioBusqueda">
+        <form id="formularioBuscar" name="formularioBuscar">
+            <label for="nombre_texto">
+                <input placeholder="Nombre" type="text" id="nombre_texto" name="nombre_texto">
+            </label>
+            <label for="apellido_texto">
+                <input placeholder="Apellido" type="text" id="apellido_texto" name="apellido_texto">
+            </label>
+            <label for="a_texto">
+                <select name="a_texto" id="a_texto">
+                    <option value=" "></option>
+                    <option value="S">S</option>
+                    <option value="N">N</option>
+                </select>
+            </label>
+            <br><br>
+            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">Buscar</button>
+            </form>
+    </div>
+    <div id="formularioCrear">
+        este es el formulario de creacion
+    </div>
 </body>
 </html>
