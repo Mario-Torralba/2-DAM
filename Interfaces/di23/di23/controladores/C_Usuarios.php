@@ -37,6 +37,12 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
         }
+        public function crearUsuarios($usuario){
+            
+            $salida = $this->modelo->crear($usuario);
+            return $salida;
+
+        }
         public function borrarEntrada(){
             header('Location: index.php');
         }

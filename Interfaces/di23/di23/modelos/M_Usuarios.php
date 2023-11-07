@@ -55,5 +55,24 @@
             return $usuarios;
         }
 
+        public function crear($usuario){
+
+            $nombre_crear='';
+            $apellido_1_crear='';
+            $apellido_2_crear='';
+            $login_crear='';
+            $pass_crear='';
+
+            extract($usuario);
+
+            $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, login, pass) VALUES ('$nombre_crear', '$apellido_1_crear', '$apellido_2_crear', '$login_crear', '$pass_crear')";
+
+            $this->DAO->insertar($SQL);
+            
+            echo $SQL;
+
+            return;
+        }
+
     }
 ?>
