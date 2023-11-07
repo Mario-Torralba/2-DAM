@@ -65,13 +65,27 @@
 
             extract($usuario);
 
-            $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, login, pass) VALUES ('$nombre_crear', '$apellido_1_crear', '$apellido_2_crear', '$login_crear', '$pass_crear')";
+            $passw = md5($pass_crear);
+
+            $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, login, pass) VALUES ('$nombre_crear', '$apellido_1_crear', '$apellido_2_crear', '$login_crear', '$passw')";
 
             $this->DAO->insertar($SQL);
             
             echo $SQL;
 
             return;
+        }
+
+        public function borrar($data){
+
+            $id = 9999;
+            extract($data);
+
+            $SQL = "DELETE FROM usuarios WHERE id_Usuario = $id;";
+            
+            $filas = $this->DAO->borrar($SQL);
+
+            return $filas;
         }
 
     }

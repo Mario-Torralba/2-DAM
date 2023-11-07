@@ -1,3 +1,8 @@
+document.body.addEventListener("load",()=>{
+    alert("a")
+});
+    
+
 function cargarUnScript(url){
     let script = document.createElement('script');
     script.src = url;

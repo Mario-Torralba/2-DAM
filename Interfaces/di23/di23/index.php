@@ -18,7 +18,8 @@
         <link rel="icon" type="image/x-icon" href="img/favicon.png">
         <script defer src="js/app.js"></script>
         <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/lista.css">
+        
     </head>
     <body>
         <section id="secEncabezadoPagina" class="container-fluid">

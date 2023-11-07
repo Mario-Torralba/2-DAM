@@ -32,7 +32,7 @@
         }
         public function buscarUsuarios($filtros=array()){
             $usuarios=$this->modelo->buscarUsuarios($filtros);
-            $_SESSION["arrayUsuarios"] = $usuarios;
+            
             //echo json_encode($usuarios);
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
@@ -43,8 +43,9 @@
             return $salida;
 
         }
-        public function borrarEntrada(){
-            header('Location: index.php');
+        public function borrarUsuarios($data){
+            $salida = $this->modelo->borrar($data);
+            return $salida;
         }
     }
 ?>

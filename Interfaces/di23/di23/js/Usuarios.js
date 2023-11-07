@@ -6,7 +6,7 @@ function buscarUsuarios(){
         .then(res => {
             if (res.ok) {
                 console.log('Respuesta ok');
-                console.log(res.text());
+                return res.text();
             }
         })
         .then(vista => {
@@ -18,25 +18,26 @@ function buscarUsuarios(){
         });
 }
 
-function borrarUsuarios(){
-    alert("hola")
-    // let opciones = { method: "GET" };
-    // let parametros = "controlador=Usuarios&metodo=borrarUsuarios";
-    // parametros += "&" + id;
-    // fetch("C_Ajax.php?" + parametros, opciones)
-    //     .then(res => {
-    //         if (res.ok) {
-    //             console.log('Respuesta ok');
-    //             return res.text();
-    //         }
-    //     })
-    //     .then(vista => {
+function borrarUsuarios(id){
 
-    //         document.getElementById("capaResultadosBusqueda").innerHTML = vista;
-    //     })
-    //     .catch(err => {
-    //         console.log("Error al realizar la peticion.", err.message);
-    //     });
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Usuarios&metodo=borrarUsuarios";
+    parametros += "&id=" + id;
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                // return res.text();
+                console.log(res.text());
+            }
+        })
+        .then(vista => {
+
+            document.getElementById("capaResultadosBusqueda").innerHTML = "EL USUARIO HA SIDO BORRADO";
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
 }
 
 function crearUsuarios(){
@@ -48,7 +49,7 @@ function crearUsuarios(){
         .then(res => {
             if (res.ok) {
                 console.log('Respuesta ok');
-                console.log(res.text());
+                res.text();
             }
         })
         .then(vista => {
