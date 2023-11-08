@@ -88,5 +88,23 @@
             return $filas;
         }
 
+        public function editar($data){
+
+            $id = 9999;
+            $nombre_editar='';
+            $apellido_1_editar='';
+            $apellido_2_editar='';
+            $email_editar = '';
+            $activo_editar = '';
+
+            extract($data);
+
+            $SQL = "UPDATE usuarios SET nombre = '$nombre_editar', apellido_1 = '$apellido_1_editar', apellido_2 = '$apellido_2_editar', mail = '$email_editar', activo = '$activo_editar' WHERE id_Usuario = $id;";
+            
+            $filas = $this->DAO->actualizar($SQL);
+
+            return $filas;
+        }
+
     }
 ?>

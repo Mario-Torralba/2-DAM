@@ -50,5 +50,4 @@
     </div>
     <br><br>
     <div id="capaResultadosBusqueda">
-
     </div>

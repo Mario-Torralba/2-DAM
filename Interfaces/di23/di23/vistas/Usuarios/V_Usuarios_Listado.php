@@ -29,7 +29,7 @@
                     echo '<div class="celda rojo">No Activo</div>';
                 }
                 echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['id_Usuario'].')"></div>
-                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="borrarUsuarios()"></div>
+                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['id_Usuario'].')"></div>
             </div>
             ';
         }else{
@@ -46,7 +46,7 @@
                     echo '<div class="celda rojo">No Activo</div>';
                 }
                 echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['id_Usuario'].')"></div>
-                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="borrarUsuarios()"></div>
+                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['id_Usuario'].')"></div>
             </div>
             ';
         }
@@ -64,7 +64,7 @@
         //     <td>'.$fila['pass'].'</td>
         //     <td>'.$fila['activo'].'</td>
         //     <td class="imagenTabla"><img class="prueba" src="img/delete.png" value="'.$contador.'" onclick="borrarUsuarios()"></td>
-        //     <td class="imagenTabla"><img class="prueba" src="img/editar.png" value="'.$contador.'"></td>
+        //     <td class="imagenTabla"><img class="prueba" src="img/editar.png" value="'.$contador.'" ></td>
         // </tr>';
         $contador++;
     }

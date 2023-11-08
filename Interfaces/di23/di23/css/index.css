@@ -53,6 +53,7 @@
 }
 .cont:hover{
     background-color: rgb(50, 151, 233);
+    transition: 0.3s;
 }
 #formularioBusqueda{
     
@@ -78,7 +79,7 @@
     }
     #botonBusquedaUsuarios:hover{
         background-color: rgb(50, 151, 233);
-
+        transition: 0.3s;
     }
 #formularioCrear{
     display: none;
@@ -100,5 +101,5 @@
     }
     #botonCrearUsuarios:hover{
         background-color: rgb(50, 151, 233);
-
+        transition: 0.3s;
     }

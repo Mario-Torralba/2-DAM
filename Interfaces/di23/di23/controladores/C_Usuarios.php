@@ -45,7 +45,29 @@
         }
         public function borrarUsuarios($data){
             $salida = $this->modelo->borrar($data);
-            return $salida;
+            $usuarios=$this->modelo->buscarUsuarios($data);
+            Vista::render('vistas/Usuarios/V_Usuarios_Listado.php',
+                            array('usuarios'=>$usuarios));
         }
+
+        public function editarUsuarios($filtros=array()){
+            $id=9999;
+            extract($filtros);
+            $_SESSION['idEditar'] = $id;
+            $usuarios=$this->modelo->buscarUsuarios($filtros);
+            Vista::render('vistas/Usuarios/V_Usuarios_Editar.php',
+                            array('usuarios'=>$usuarios));
+        }
+
+        public function confirmarEditarUsuarios($data){
+
+            $this->modelo->editar($data);
+            $usuarios=$this->modelo->buscarUsuarios($data);
+            Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
+                            array('usuarios'=>$usuarios));
+
+        }
+
     }
+
 ?>

@@ -6,6 +6,7 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/index.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/lista.css'>
     <script src='js/app.js'></script>
 </head>
 <body>
@@ -57,6 +58,30 @@
                 <input placeholder='Contraseña' type='password' id='pass_crear' name='pass_crear'>
             </label>
             <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='crearUsuarios()'>GO!!</button>
+            </form>
+    </div>
+    <div id="lista">
+        <div class="filaSuperior"></div>
+            <form id="formularioEditar" name="formularioEditar">
+                <div class="filaInferior2">
+                    <div class="celda"><label for="nombre_editar"><input type="text" placeholder="Nombre" id="nombre_editar" name="nombre_editar"></label></div>
+                    <div class="celda"><label for="apellido_1_editar"><input type="text" value="" placeholder="hola" id="apellido_1_editar" name="apellido_1_editar"></label></div>
+                    <div class="celda"><label for="apellido_2_editar"><input type="text" placeholder="Segundo apellido" id="apellido_2_editar" name="apellido_2_editar"></label></div>
+                    <div class="celda"><label for="email_editar"><input type="text" placeholder="Email" id="email_editar" name="email_editar"></label></div>
+                    <div class="celda"><label for="activo_editar">
+                        <select name="activo_editar" id="activo_editar">
+                            <option value="S">S</option>
+                            <option value="N">N</option>
+                        </select>
+                    </label></div>
+                    <div class="celda">
+                        <img class="prueba" src="img/delete2.png" value="" onclick="buscarUsuarios()">
+                    </div>
+                    <div class="celda">
+                        <img class="prueba" src="img/confirmar.png" value="" onclick="confirmarEditarUsuarios()">
+                    </div>
+                </div>
+                <button id="pruebaBoton" type="button">hola</button>
             </form>
     </div>
 </body>
