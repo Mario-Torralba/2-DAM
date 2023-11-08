@@ -73,6 +73,7 @@ function crearUsuarios(){
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=crearUsuarios";
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear2"))).toString();
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
@@ -82,7 +83,7 @@ function crearUsuarios(){
         })
         .then(vista => {
 
-            document.getElementById("capaResultadosBusqueda").innerHTML = "<div style=" + "color: green;display: flex;justify-content: center;" + ">SE HA AÑADIDO EL USUARIO</div>";
+            document.getElementById("capaResultadosBusqueda").innerHTML = vista;
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
