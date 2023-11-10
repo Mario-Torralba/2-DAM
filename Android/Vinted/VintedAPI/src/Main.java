@@ -15,6 +15,7 @@ public class Main {
         String estado;
 
         Scanner sc = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
         System.out.println("Introduce el usuario");
         usuario = sc.nextInt();
         System.out.println("Introduce el nombre");
@@ -28,7 +29,7 @@ public class Main {
         System.out.println("Introduce el imagen");
         imagen = sc.next();
         System.out.println("Introduce el estado");
-        estado = sc.nextLine();
+        estado = sc2.nextLine();
 
         VendedorDAO vendedor = new VendedorDAO();
         System.out.println(vendedor.crearProducto(usuario,nombre,descripcion,marca,precio,imagen,estado));

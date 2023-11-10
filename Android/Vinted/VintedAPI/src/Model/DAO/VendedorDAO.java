@@ -29,7 +29,7 @@ public class VendedorDAO {
             sentencia.setString(6,imagen);
             sentencia.setString(7,estado);
             System.out.println(sentencia);
-            salida = motorsql.execute(sentencia);
+            int numero = sentencia.executeUpdate();
             salida = "El producto se ha creado con exito";
         }catch(Exception ex) {
             salida = "Algo ha salido mal";
