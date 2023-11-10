@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class MotorSQL {
 
-    private Connection conn;
+    public Connection conn;
     private Statement st;
     private ResultSet rs;
 

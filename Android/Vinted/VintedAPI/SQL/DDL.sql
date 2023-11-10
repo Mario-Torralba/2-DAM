@@ -37,7 +37,7 @@ CREATE TABLE DIRECCION_CLIENTE(
     CP NUMERIC(6,0) NOT NULL,
     DIRECCION VARCHAR(255) NOT NULL
 );
-
+DROP TYPE hola;
 CREATE TYPE hola AS ENUM ('Nuevo con etiquetas','Nuevo sin etiquetas','Muy bueno','Bueno','Satisfactorio');
 
 CREATE TABLE PRODUCTO(
