@@ -29,7 +29,6 @@ public class Controller extends HttpServlet {
             case "VENDEDOR":
                 out.print(new VendedorAction().
                         execute(request, response));
-
                 break;
         }
     }
