@@ -1,5 +1,6 @@
 import Model.Beans.Producto;
 import Model.Beans.Usuario;
+import Model.DAO.UsuarioDAO;
 import Model.DAO.VendedorDAO;
 import com.google.gson.Gson;
 
@@ -11,15 +12,24 @@ public class Main {
     public static void main(String[] args) {
 
         ////////////////////////////////////////////////////////////////////////
+        // PRUEBA PARA LOGIN
+        ////////////////////////////////////////////////////////////////////////
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        System.out.println(usuarioDAO.userLogin("Pinchauvas","1234"));
+
+
+
+        ////////////////////////////////////////////////////////////////////////
         // PRUEBA PARA VER LOS 10 CON MAS VENTAS
         ////////////////////////////////////////////////////////////////////////
 
-        VendedorDAO vendedor = new VendedorDAO();
+        /*VendedorDAO vendedor = new VendedorDAO();
         ArrayList<Usuario> lstUsuarios = vendedor.verTOP10Vendedores();
 
         Gson gson = new Gson();
         String json = gson.toJson(lstUsuarios);
-        System.out.println(json);
+        System.out.println(json);*/
 
         ////////////////////////////////////////////////////////////////////////
         // PRUEBA PARA VER TODOS LOS PRODUCTOS DEL VENDEDOR

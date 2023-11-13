@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.Action.CompradorAction;
+import Controller.Action.UsuarioAction;
 import Controller.Action.VendedorAction;
 
 import java.io.IOException;
@@ -28,6 +29,10 @@ public class Controller extends HttpServlet {
                 break;
             case "VENDEDOR":
                 out.print(new VendedorAction().
+                        execute(request, response));
+                break;
+            case "USUARIO":
+                out.print(new UsuarioAction().
                         execute(request, response));
                 break;
         }
