@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.vinted.Busqueda.view.BusquedaView;
 import com.example.vinted.Login.view.LoginView;
+import com.example.vinted.Mensajes.view.MensajesView;
+import com.example.vinted.Perfil.view.PerfilView;
 import com.example.vinted.nuevoProducto.view.NuevoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(this, )
+                Intent intent = new Intent(MainActivity.this, BusquedaView.class);
+                startActivity(intent);
             }
         });
 
@@ -58,14 +62,16 @@ public class MainActivity extends AppCompatActivity {
         mensajes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, MensajesView.class);
+                startActivity(intent);
             }
         });
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, PerfilView.class);
+                startActivity(intent);
             }
         });
     }

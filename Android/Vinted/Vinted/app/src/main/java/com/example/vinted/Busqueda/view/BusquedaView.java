@@ -1,22 +1,22 @@
-package com.example.vinted.nuevoProducto.view;
+package com.example.vinted.Busqueda.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vinted.Busqueda.view.BusquedaView;
+import com.example.vinted.Busqueda.ContractBusqueda;
 import com.example.vinted.MainActivity;
 import com.example.vinted.Mensajes.view.MensajesView;
 import com.example.vinted.Perfil.view.PerfilView;
 import com.example.vinted.R;
-import com.example.vinted.nuevoProducto.ContractNuevoProducto;
+import com.example.vinted.nuevoProducto.view.NuevoView;
 
 
-public class NuevoView extends AppCompatActivity implements ContractNuevoProducto.View {
+public class BusquedaView extends AppCompatActivity implements ContractBusqueda.View {
 
     Context contexto;
     LinearLayout home;
@@ -29,7 +29,7 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
     protected void onCreate(Bundle savedInstanceState){
         this.contexto = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo);
+        setContentView(R.layout.activity_busqueda);
         initComponents();
     }
     private void initComponents(){
@@ -39,18 +39,18 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
         this.mensajes = findViewById(R.id.mensajes);
         this.perfil = findViewById(R.id.perfil);
 
-        buscar.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NuevoView.this, BusquedaView.class);
+                Intent intent = new Intent(BusquedaView.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+        crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NuevoView.this, MainActivity.class);
+                Intent intent = new Intent(BusquedaView.this, NuevoView.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +58,7 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
         mensajes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NuevoView.this, MensajesView.class);
+                Intent intent = new Intent(BusquedaView.this, MensajesView.class);
                 startActivity(intent);
             }
         });
@@ -66,17 +66,19 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NuevoView.this, PerfilView.class);
+                Intent intent = new Intent(BusquedaView.this, PerfilView.class);
                 startActivity(intent);
             }
         });
     }
+
     @Override
-    public void successCrear(String resp) {
+    public void successBusqueda(String String) {
+
     }
 
     @Override
-    public void failureCrear(String err) {
+    public void failureBusqueda(String err) {
 
     }
 }
