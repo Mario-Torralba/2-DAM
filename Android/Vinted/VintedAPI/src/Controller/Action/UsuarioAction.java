@@ -26,17 +26,9 @@ public class UsuarioAction implements IAction{
     }
 
     public String userLogin(HttpServletRequest request, HttpServletResponse response){
-
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-
         Mensaje mensaje = usuarioDAO.userLogin(request.getParameter("USER"), request.getParameter("PASS"));
-
-        System.out.println(mensaje.getMensaje());
-
         String salida = gson.toJson(mensaje);
-
-        System.out.println(salida);
-
         return salida;
     }
 }

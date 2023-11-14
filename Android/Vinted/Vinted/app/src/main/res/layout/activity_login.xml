@@ -37,6 +37,7 @@
             android:orientation="vertical"
         >
             <TextView
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Login"
@@ -48,37 +49,35 @@
 
             </TextView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:gravity="center"
+            <EditText
+                android:layout_marginTop="30dp"
+                android:id="@+id/user"
                 android:layout_width="300dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-            >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Usuario"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="Usuario" />
 
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:gravity="center"
+            <EditText
+                android:layout_marginTop="30dp"
+                android:id="@+id/pass"
+                android:layout_gravity="center"
                 android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pass"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Contraseña"
-                    android:inputType="textPassword"/>
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Contraseña" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:textColor="#54acb4"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/olvidasteContraseña"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="¿Olvidaste tu contraseña?" />
+
             <Button
                 android:layout_marginTop="100dp"
                 android:id="@+id/botonLogin"
@@ -88,7 +87,7 @@
                 android:gravity="center"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Enviar" />
         </LinearLayout>
 
     </LinearLayout>
