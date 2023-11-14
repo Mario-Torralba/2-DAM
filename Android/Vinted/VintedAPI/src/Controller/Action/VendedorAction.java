@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 public class VendedorAction implements IAction{
-    Gson gson;
+    Gson gson = new Gson();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String cadDestino = "";

@@ -17,6 +17,7 @@ public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String action = request.getParameter("ACTION");
@@ -33,6 +34,8 @@ public class Controller extends HttpServlet {
                 break;
             case "USUARIO":
                 out.print(new UsuarioAction().
+                        execute(request, response));
+                System.out.println(new UsuarioAction().
                         execute(request, response));
                 break;
         }

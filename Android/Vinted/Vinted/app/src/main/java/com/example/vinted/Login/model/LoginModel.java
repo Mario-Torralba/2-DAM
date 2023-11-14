@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class LoginModel implements ContractLogin.Model{
 
-    private static final String IP_BASE = "localhost:8080";
+    private static final String IP_BASE = "192.168.104.61:8099";
     private ContractLogin.Presenter presenter;
 
     public LoginModel(ContractLogin.Presenter presenter){
@@ -27,16 +27,19 @@ public class LoginModel implements ContractLogin.Model{
 
     @Override
     public void loginAPI(User user, OnLoginUserListener onLoginUserListener) {
-        ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "/untitled3/").
+        ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "/").
                 create(ApiService.class);
 
-        Call<MyData> call = apiService.getDataUser ("USUARIO.LOGIN");
+        Call<MyData> call = apiService.getDataUser ("USUARIO.LOGIN",user.getUsername(), user.getPassword());
         call.enqueue(new Callback<MyData>() {
+
             @Override
             public void onResponse(Call<MyData> call, Response<MyData> response) {
                 if (response.isSuccessful()) {
 
                     MyData myData = response.body();
+                    System.out.println(myData.getMessage());
+                    Log.e("adfasdfasd","123123");
                     String message = myData.getMessage();
                     onLoginUserListener.onFinished(message);
                     // Actualizar la interfaz de usuario con el mensaje recibido

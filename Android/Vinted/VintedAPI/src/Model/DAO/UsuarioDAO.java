@@ -1,5 +1,6 @@
 package Model.DAO;
 
+import Model.Beans.Mensaje;
 import Model.MotorSQL.MotorSQL;
 
 import java.sql.ResultSet;
@@ -14,23 +15,25 @@ public class UsuarioDAO {
         motorsql = new MotorSQL();
     }
 
-    public String userLogin(String nick, String pass){
-        String salida = "LOGIN INCORRECTO";
+    public Mensaje userLogin(String nick, String pass){
+        Mensaje mensaje = new Mensaje();
+        mensaje.setMensaje("LOGIN INCORRECTO");
         try{
             motorsql.connect();
             SQL = "SELECT * FROM USUARIO WHERE nick LIKE '" + nick + "' AND pass LIKE '" + pass + "'; ";
             System.out.println(SQL);
             ResultSet rs = motorsql.executeQuery(SQL);
             while(rs.next()){
-                salida = "LOGIN CORRECTO";
+                mensaje.setMensaje("LOGIN CORRECTO");
+
             }
         }catch(Exception ex){
             System.out.println(ex.getMessage());
-            salida = "LOGIN INCORRECTO";
+            mensaje.setMensaje("LOGIN INCORRECTO");
         }finally {
             motorsql.disconnect();
         }
-        return salida;
+        return mensaje;
     }
 
 }

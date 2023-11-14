@@ -21,6 +21,7 @@ public class LoginPresenter implements ContractLogin.Presenter, ContractLogin.Mo
 
     @Override
     public void onFinished(String resp) {
+
         view.successLogin(resp);
     }
 

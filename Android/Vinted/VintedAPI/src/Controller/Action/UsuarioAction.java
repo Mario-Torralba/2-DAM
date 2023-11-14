@@ -1,11 +1,16 @@
 package Controller.Action;
 
+import Model.Beans.Mensaje;
 import Model.DAO.UsuarioDAO;
+import com.google.gson.Gson;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UsuarioAction implements IAction{
+
+    Gson gson = new Gson();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -24,7 +29,13 @@ public class UsuarioAction implements IAction{
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        String salida = usuarioDAO.userLogin(request.getParameter("USER"), request.getParameter("PASS"));
+        Mensaje mensaje = usuarioDAO.userLogin(request.getParameter("USER"), request.getParameter("PASS"));
+
+        System.out.println(mensaje.getMensaje());
+
+        String salida = gson.toJson(mensaje);
+
+        System.out.println(salida);
 
         return salida;
     }

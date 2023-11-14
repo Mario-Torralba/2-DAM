@@ -1,5 +1,6 @@
 package com.example.vinted.Login.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +19,14 @@ public class LoginView extends AppCompatActivity implements ContractLogin.View {
     private EditText usuario;
     private EditText contrasena;
     private Button botonLogin;
+    private Context contexto;
 
     private LoginPresenter loginPresenter = new LoginPresenter(this);
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.contexto = this;
         initComponents();
     }
     private void initComponents(){
@@ -44,11 +47,13 @@ public class LoginView extends AppCompatActivity implements ContractLogin.View {
     }
     @Override
     public void successLogin(String resp) {
-        Toast.makeText(this,resp,Toast.LENGTH_SHORT).show();
+        CharSequence txt = resp;
+        Toast.makeText(contexto,txt,Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void failureLogin(String err) {
-        Toast.makeText(this,err,Toast.LENGTH_SHORT).show();
+        CharSequence txt = err;
+        Toast.makeText(contexto,txt,Toast.LENGTH_SHORT).show();
     }
 }
