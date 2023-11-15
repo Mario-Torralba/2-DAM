@@ -18,18 +18,15 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="19"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:layout_gravity="center">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="800dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="FRAME DE MAIN"/>
-                </LinearLayout>
+                    android:layout_height="800dp"
+                    android:text="FRAME DE MAIN"
+                    />
+
 
 
             </LinearLayout>

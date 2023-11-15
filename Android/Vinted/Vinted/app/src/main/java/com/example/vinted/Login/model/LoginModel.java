@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class LoginModel implements ContractLogin.Model{
 
-    private static final String IP_BASE = "192.168.192.1:8099";
+    private static final String IP_BASE = "192.168.104.61:8099";
     private ContractLogin.Presenter presenter;
 
     public LoginModel(ContractLogin.Presenter presenter){
@@ -39,7 +39,6 @@ public class LoginModel implements ContractLogin.Model{
 
                     MyData myData = response.body();
                     System.out.println(myData.getMessage());
-                    Log.e("adfasdfasd","123123");
                     String message = myData.getMessage();
                     onLoginUserListener.onFinished(message);
                     // Actualizar la interfaz de usuario con el mensaje recibido
