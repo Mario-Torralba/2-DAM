@@ -27,7 +27,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -74,27 +74,40 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="150dp"
                     android:background="@color/white"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:weightSum="100">
 
                     <LinearLayout
+                        android:layout_marginTop="-5dp"
                         android:layout_width="350dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="49"
-                        android:gravity="center">
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
 
-                        <EditText
-                            android:id="@+id/editTextText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="Titulo"
-                            android:inputType="text"
-                            android:textColorHint="#54acb4" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:textColor="@color/vinted"
+                                android:textSize="18dp"
+                                android:paddingLeft="40dp"
+                                android:id="@+id/titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:hint="Titulo"
+                                android:inputType="text"
+                                android:textColorHint="#54acb4" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -104,20 +117,33 @@
                         android:background="#d1d1d1"></LinearLayout>
 
                     <LinearLayout
+                        android:layout_marginTop="10dp"
                         android:layout_width="350dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="49"
-                        android:gravity="center">
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
 
-                        <EditText
-                            android:id="@+id/editTextText2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="Descripción"
-                            android:inputType="text"
-                            android:textColorHint="#54acb4" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:textColor="@color/vinted"
+                                android:textSize="18dp"
+                                android:paddingLeft="40dp"
+                                android:id="@+id/descripcion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:hint="Descripción"
+                                android:inputType="text"
+                                android:textColorHint="#54acb4" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -129,21 +155,37 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="130dp"
                     android:background="#ffffff"
                     android:orientation="vertical"
-                    android:weightSum="202">
+                    android:weightSum="61">
                     <LinearLayout
+                        android:id="@+id/categoria"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
-                        android:layout_weight="66"
+                        android:layout_weight="30"
                         android:gravity="center">
                         <LinearLayout
                             android:layout_width="350dp"
-                            android:layout_height="40dp">
-
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:textColor="#54acb4"
+                                android:textSize="18dp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="9"
+                                android:text="Categoría"/>
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/baseline_navigate_next_24"
+                                app:tint="@color/vinted"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -154,25 +196,35 @@
                         android:layout_weight="1">
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/estado"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
-                        android:layout_weight="66">
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:background="#d1d1d1"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:layout_weight="67">
+                        android:layout_weight="30"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="350dp"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+                            <TextView
+                                android:id="@+id/estadoTexto"
+                                android:gravity="center_vertical"
+                                android:textColor="#54acb4"
+                                android:textSize="18dp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="9"
+                                android:text="Estado"/>
+                            <ImageView
+                                android:id="@+id/estadoImagen"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/baseline_navigate_next_24"
+                                app:tint="@color/vinted"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -180,6 +232,87 @@
                     android:layout_height="10dp"
                     android:background="#d1d1d1"
                     android:orientation="vertical">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:textColor="@color/vinted"
+                            android:textSize="18dp"
+                            android:paddingLeft="40dp"
+                            android:id="@+id/marca"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="10"
+                            android:hint="Marca"
+                            android:inputType="text"
+                            android:textColorHint="#54acb4" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:textColor="@color/vinted"
+                            android:textSize="18dp"
+                            android:paddingLeft="40dp"
+                            android:id="@+id/precio"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="10"
+                            android:hint="Precio"
+                            android:inputType="numberDecimal"
+                            android:textColorHint="#54acb4" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#d1d1d1"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/crearProducto"
+                    android:layout_marginTop="70dp"
+                    android:background="#54acb4"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Crear Producto"
+                        android:textColor="@color/white"
+                        />
                 </LinearLayout>
             </LinearLayout>
 
@@ -302,4 +435,5 @@
 
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

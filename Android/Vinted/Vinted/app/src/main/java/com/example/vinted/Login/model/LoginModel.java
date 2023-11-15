@@ -18,7 +18,6 @@ import retrofit2.Response;
 
 public class LoginModel implements ContractLogin.Model{
 
-    private static final String IP_BASE = "192.168.104.61:8099";
     private ContractLogin.Presenter presenter;
 
     public LoginModel(ContractLogin.Presenter presenter){
@@ -27,7 +26,7 @@ public class LoginModel implements ContractLogin.Model{
 
     @Override
     public void loginAPI(User user, OnLoginUserListener onLoginUserListener) {
-        ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "/").
+        ApiService apiService = RetrofitCliente.getClient("http://" + RetrofitCliente.IP_BASE + "/").
                 create(ApiService.class);
 
         Call<MyData> call = apiService.getDataUser ("USUARIO.LOGIN",user.getUsername(), user.getPassword());

@@ -57,7 +57,8 @@
                 android:layout_gravity="center"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="Usuario" />
+                android:hint="Usuario"
+                android:text="Pinchauvas"/>
 
             <EditText
                 android:layout_marginTop="30dp"
@@ -67,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:hint="Contraseña" />
+                android:hint="Contraseña"
+                android:text="1234"/>
 
             <TextView
                 android:textColor="#54acb4"
