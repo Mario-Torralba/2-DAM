@@ -1,5 +1,7 @@
 package Model.DAO;
 
+import Model.Beans.IdProducto;
+import Model.Beans.Mensaje;
 import Model.Beans.Producto;
 import Model.Beans.Usuario;
 import Model.MotorSQL.MotorSQL;
@@ -80,11 +82,12 @@ public class VendedorDAO {
         return lstProducto;
     }
 
-    public String crearProducto(String id, String estado, String nombre, String descripcion, String marca, String precio, String imagen){
+    public Mensaje crearProducto(String id, String estado, String nombre, String descripcion, String marca, String precio, String imagen){
         int idNum = Integer.parseInt(id);
         int estadoNum = Integer.parseInt(estado);
         int precioNum = Integer.parseInt(precio);
-        String salida = "";
+        Mensaje mensaje = new Mensaje();
+        mensaje.setMessage("Algo ha salido mal");
         SQL = "INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES (?,?,?,?,?,?,?)";
         try{
             motorsql.connect();
@@ -99,13 +102,76 @@ public class VendedorDAO {
 
             System.out.println(sentencia);
             int numero = sentencia.executeUpdate();
-            salida = "El producto se ha creado con exito";
+            mensaje.setMessage("El producto se ha creado con exito");
+
         }catch(Exception ex) {
-            salida = "Algo ha salido mal";
+            mensaje.setMessage("Algo ha salido mal");
             System.out.println(ex.getMessage());
         }finally{
             motorsql.disconnect();
         }
-        return salida;
+        return mensaje;
     }
+
+    public IdProducto recuperarId(String nombre){
+
+        IdProducto idProducto = new IdProducto();
+        SQL = "SELECT ID_PRODUCTO FROM PRODUCTO WHERE NOMBRE_PRODUCTO LIKE '" + nombre + "' ";
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery(SQL);
+            while (rs.next()){
+                idProducto.setId(rs.getInt(1));
+            }
+        }catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return idProducto;
+    }
+
+    public Mensaje asociarCategorias(String id_producto, String id_categoria){
+
+        int idproductonum = Integer.parseInt(id_producto);
+        int idcategorianum= Integer.parseInt(id_categoria);
+
+        Mensaje mensaje = new Mensaje();
+        SQL = "INSERT INTO PRODUCTO_CATEGORIA(ID_PRODUCTO, ID_CATEGORIA) VALUES(" + id_producto +"," + id_categoria + ")";
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            int salida = motorsql.execute(SQL);
+            mensaje.setMessage("CATEGORIA ASOCIADA");
+        }catch(Exception ex) {
+            mensaje.setMessage("ALGO HA FALLADO");
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return mensaje;
+    }
+
+    public Mensaje asociarColores(String id_producto, String id_color){
+
+        int idproductonum = Integer.parseInt(id_producto);
+        int idcolornum= Integer.parseInt(id_color);
+
+        Mensaje mensaje = new Mensaje();
+        SQL = "INSERT INTO PRODUCTO_COLOR(ID_PRODUCTO, ID_COLOR) VALUES(" + id_producto +"," + id_color + ")";
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            int salida = motorsql.execute(SQL);
+            mensaje.setMessage("COLOR ASOCIADO");
+        }catch(Exception ex) {
+            mensaje.setMessage("ALGO HA FALLADO");
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return mensaje;
+    }
+
 }

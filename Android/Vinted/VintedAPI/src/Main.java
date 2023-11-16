@@ -1,3 +1,4 @@
+import Controller.Action.VendedorAction;
 import Model.Beans.Producto;
 import Model.Beans.Usuario;
 import Model.DAO.UsuarioDAO;
@@ -11,12 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         ////////////////////////////////////////////////////////////////////////
         // PRUEBA PARA LOGIN
         ////////////////////////////////////////////////////////////////////////
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        System.out.println(usuarioDAO.userLogin("Pinchauvas","1234"));
+       // UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //System.out.println(usuarioDAO.userLogin("Pinchauvas","1234"));
 
 
 

@@ -1,5 +1,7 @@
 package Controller.Action;
 
+import Model.Beans.IdProducto;
+import Model.Beans.Mensaje;
 import Model.Beans.Producto;
 import Model.Beans.Usuario;
 import Model.DAO.VendedorDAO;
@@ -26,6 +28,15 @@ public class VendedorAction implements IAction{
             case "verTOP10Vendedores":
                 cadDestino = verTOP10Vendedores(request, response);
                 break;
+            case "recuperarId":
+                cadDestino = recuperarId(request, response);
+                break;
+            case "asociarCategorias":
+                cadDestino = asociarCategorias(request, response);
+                break;
+            case "asociarColores":
+                cadDestino = asociarColores(request, response);
+                break;
         }
         return cadDestino;
     }
@@ -48,7 +59,31 @@ public class VendedorAction implements IAction{
 
     public String crearProducto(HttpServletRequest request, HttpServletResponse response){
         VendedorDAO vendedor = new VendedorDAO();
-        String salida = vendedor.crearProducto(request.getParameter("ID"),request.getParameter("ESTADO"),request.getParameter("NOMBRE"),request.getParameter("DESCRIPCION"),request.getParameter("MARCA"),request.getParameter("PRECIO"),request.getParameter("IMAGEN"));
+        Mensaje mensaje = vendedor.crearProducto(request.getParameter("ID"),request.getParameter("ESTADO"),request.getParameter("NOMBRE"),request.getParameter("DESCRIPCION"),request.getParameter("MARCA"),request.getParameter("PRECIO"),request.getParameter("IMAGEN"));
+        String salida = gson.toJson(mensaje);
         return salida;
+    }
+
+    public String recuperarId(HttpServletRequest request, HttpServletResponse response){
+        VendedorDAO vendedor = new VendedorDAO();
+        IdProducto salida = vendedor.recuperarId(request.getParameter("NOMBRE"));
+        String json = gson.toJson(salida);
+        return json;
+    }
+
+    public String asociarCategorias(HttpServletRequest request, HttpServletResponse response){
+        VendedorDAO vendedor = new VendedorDAO();
+        Mensaje mensaje = vendedor.asociarCategorias(request.getParameter("ID_PRODUCTO"), request.getParameter("ID_CATEGORIA"));
+        String json = gson.toJson(mensaje);
+        System.out.println(json);
+        return json;
+    }
+
+    public String asociarColores(HttpServletRequest request, HttpServletResponse response){
+        VendedorDAO vendedor = new VendedorDAO();
+        Mensaje mensaje = vendedor.asociarColores(request.getParameter("ID_PRODUCTO"), request.getParameter("ID_COLORES"));
+        String json = gson.toJson(mensaje);
+        System.out.println(json);
+        return json;
     }
 }

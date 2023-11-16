@@ -40,6 +40,14 @@
             android:exported="true">
         </activity>
         <activity
+            android:name=".nuevoProducto.view.CategoriaView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".nuevoProducto.view.ColorView"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".Busqueda.view.BusquedaView"
             android:exported="true">
         </activity>

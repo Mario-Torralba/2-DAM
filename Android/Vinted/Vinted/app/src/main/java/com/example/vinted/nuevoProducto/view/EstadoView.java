@@ -151,15 +151,7 @@ public class EstadoView extends AppCompatActivity implements ContractNuevoProduc
 
 
     }
-    @Override
-    public void successCrear(String String) {
 
-    }
-
-    @Override
-    public void failureCrear(String err) {
-
-    }
     public void todosCruz(){
 
         nuevoConImagen.setImageResource(R.drawable.baseline_close_24);
@@ -187,4 +179,34 @@ public class EstadoView extends AppCompatActivity implements ContractNuevoProduc
         satisfactorioTexto.setTextColor(getResources().getColor(R.color.black));
     }
 
+
+    @Override
+    public void successCrearProductoView(String String) {
+
+    }
+
+    @Override
+    public void failureCrearProductoView(String err) {
+
+    }
+
+    @Override
+    public void successAsociarCategoriasView(String String) {
+
+    }
+
+    @Override
+    public void failureAsociarCategoriasView(String err) {
+
+    }
+
+    @Override
+    public void successAsociarColoresView(String String) {
+
+    }
+
+    @Override
+    public void failureAsociarColoresView(String err) {
+
+    }
 }

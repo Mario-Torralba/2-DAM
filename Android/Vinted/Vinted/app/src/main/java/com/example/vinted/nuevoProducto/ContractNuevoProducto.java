@@ -1,29 +1,40 @@
 package com.example.vinted.nuevoProducto;
 
+import com.example.vinted.Beans.Producto;
 import com.example.vinted.Beans.User;
 
 public interface ContractNuevoProducto {
 
     public interface View{
-        public void successCrear(String String);
-        void failureCrear(String err);
-        // void failureLogin(MyException err);
+
+        void successCrearProductoView(String String);
+        void failureCrearProductoView(String err);
+
+        void successAsociarCategoriasView(String String);
+        void failureAsociarCategoriasView(String err);
+
+        void successAsociarColoresView(String String);
+        void failureAsociarColoresView(String err);
+
     }
     public interface Presenter{
-        // void login(String email, String pass);
-        void crear(User producto);
-        // void login(ViewUser viewUser);
-        // VIEW-ORM
-        // BEANS-ENTITIES
-        // MVP - MVVM
+
+        void crearProductoPresenter(Producto producto);
+        void successCrearProductoPresenter(String string);
+        void asociarCategoriasPresenter(Producto producto);
+        void successAsociarCategoriasPresenter(String string);
+        void asociarColoresPresenter(Producto producto);
+        void successAsociarColoresPresenter(String string);
+
     }
     public interface Model{
-        interface OnLoginUserListener{
+        interface UserListener{
             void onFinished(String resp);
             void onFailure(String err);
         }
-        void crear(User user,
-                      OnLoginUserListener onLoginUserListener);
+        void crearProductoModel(Producto producto, UserListener userListener);
+        void asociarCategoriasModel(Producto producto, UserListener userListener);
+        void asociarColoresModel(Producto producto, UserListener userListener);
     }
 
 }

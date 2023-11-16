@@ -2,7 +2,13 @@ package com.example.vinted.nuevoProducto.data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MyData {
+public class NuevoProductoData {
+    @Override
+    public String toString() {
+        return "NuevoProductoData{" +
+                "message='" + message + '\'' +
+                '}';
+    }
 
     @SerializedName("message")
     private String message;

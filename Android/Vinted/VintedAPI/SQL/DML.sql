@@ -5,6 +5,26 @@ INSERT INTO ESTADO (NOMBRE_ESTADO) VALUES
     ('Muy Bueno'),
     ('Satisfactorio');
 
+INSERT INTO CATEGORIA (NOMBRE_CATEGORIA) VALUES
+    ('Hombre'),
+    ('Mujer'),
+    ('Niño'),
+    ('Niña'),
+    ('Invierno'),
+    ('Verano'),
+    ('Ropa'),
+    ('Calzado');
+
+INSERT INTO COLOR (NOMBRE_COLOR) VALUES
+    ('Negro'),
+    ('Blanco'),
+    ('Azul'),
+    ('Rojo'),
+    ('Verde'),
+    ('Amarillo'),
+    ('Naranja'),
+    ('Morado');
+
 INSERT INTO USUARIO (NICK, PASS, TLF_USUARIO, NOMBRE_USUARIO, APELLIDO_1_USUARIO, APELLIDO_2_USUARIO, EMAIL_USUARIO) VALUES
     ('Pinchauvas','1234','722100138','Mario','Torralba','Pardos','a26807@svalero.com'),
     ('SolLuna', '5678', '699200247', 'Ana', 'García', 'López', 'ana.garcia@example.com'),

@@ -155,10 +155,10 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
+                    android:layout_height="195dp"
                     android:background="#ffffff"
                     android:orientation="vertical"
-                    android:weightSum="61">
+                    android:weightSum="92">
                     <LinearLayout
                         android:id="@+id/categoria"
                         android:layout_width="match_parent"
@@ -173,13 +173,14 @@
                             android:orientation="horizontal"
                             android:weightSum="10">
                             <TextView
+                                android:id="@+id/categoriaTexto"
                                 android:gravity="center_vertical"
                                 android:textColor="#54acb4"
                                 android:textSize="18dp"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="9"
-                                android:text="Categoría"/>
+                                android:text="Categoría/as"/>
                             <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -219,6 +220,44 @@
                                 android:text="Estado"/>
                             <ImageView
                                 android:id="@+id/estadoImagen"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/baseline_navigate_next_24"
+                                app:tint="@color/vinted"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="#d1d1d1"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/color"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:layout_weight="30"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="350dp"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+                            <TextView
+                                android:id="@+id/colorTexto"
+                                android:gravity="center_vertical"
+                                android:textColor="#54acb4"
+                                android:textSize="18dp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="9"
+                                android:text="Color/es"/>
+                            <ImageView
+                                android:id="@+id/colorImagen"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -299,7 +338,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/crearProducto"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="50dp"
                     android:background="#54acb4"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
