@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.vinted.Busqueda.view.BusquedaView;
 import com.example.vinted.MainActivity;
 import com.example.vinted.Mensajes.view.MensajesView;
+import com.example.vinted.MisVentas.View.MisVentasView;
 import com.example.vinted.Perfil.ContractPerfil;
 import com.example.vinted.R;
 import com.example.vinted.nuevoProducto.view.NuevoView;
@@ -24,6 +25,11 @@ public class PerfilView extends AppCompatActivity implements ContractPerfil.View
     LinearLayout crear;
     LinearLayout mensajes;
     LinearLayout perfil;
+
+    LinearLayout misCompras;
+    LinearLayout misVentas;
+
+
 //    private NuevoPresenter nuevoPresenter = new NuevoPresenter(this);
 
     protected void onCreate(Bundle savedInstanceState){
@@ -33,11 +39,15 @@ public class PerfilView extends AppCompatActivity implements ContractPerfil.View
         initComponents();
     }
     private void initComponents(){
+
         this.home = findViewById(R.id.home);
         this.buscar = findViewById(R.id.buscar);
         this.crear = findViewById(R.id.crear);
         this.mensajes = findViewById(R.id.mensajes);
         this.perfil = findViewById(R.id.perfil);
+
+        this.misCompras = findViewById(R.id.misCompras);
+        this.misVentas = findViewById(R.id.misVentas);
 
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +78,23 @@ public class PerfilView extends AppCompatActivity implements ContractPerfil.View
             public void onClick(View v) {
                 Intent intent = new Intent(PerfilView.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        misCompras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        misVentas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilView.this, MisVentasView.class);
+                startActivity(intent);
+
             }
         });
     }

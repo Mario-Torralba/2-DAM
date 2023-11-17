@@ -2,8 +2,11 @@ package com.example.vinted.Util;
 
 
 import com.example.vinted.Login.data.MyData;
+import com.example.vinted.MisVentas.Data.Producto;
 import com.example.vinted.nuevoProducto.data.IdProductoNuevo;
 import com.example.vinted.nuevoProducto.data.NuevoProductoData;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -34,6 +37,10 @@ public interface ApiService {
 
     @GET("Controller")
     Call<NuevoProductoData> asociarColores(@Query("ACTION") String action, @Query("ID_PRODUCTO") int id_producto, @Query("ID_COLORES") int id_colores);
+
+
+    @GET("Controller")
+    Call<ArrayList<Producto>> getProductos(@Query("ACTION") String action, @Query("ID_USUARIO") int id_usuario);
     //@GET("MyServlet")
     //Call<DataMovies> getDataMovies(@Query("ACTION") String action);
 

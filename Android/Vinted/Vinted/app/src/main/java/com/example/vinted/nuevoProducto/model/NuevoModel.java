@@ -64,7 +64,6 @@ public class NuevoModel implements ContractNuevoProducto.Model{
                         public void onResponse(Call<NuevoProductoData> call2, Response<NuevoProductoData> response) {
                             NuevoProductoData data = response.body();
                             System.out.println(data.getMessage());
-
                         }
 
                         @Override

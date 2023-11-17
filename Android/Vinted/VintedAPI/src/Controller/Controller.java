@@ -35,8 +35,6 @@ public class Controller extends HttpServlet {
             case "USUARIO":
                 out.print(new UsuarioAction().
                         execute(request, response));
-                System.out.println(new UsuarioAction().
-                        execute(request, response));
                 break;
         }
     }

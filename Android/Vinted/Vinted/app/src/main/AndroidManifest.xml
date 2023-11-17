@@ -59,6 +59,14 @@
             android:name=".Perfil.view.PerfilView"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".MisVentas.View.MisVentasView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".MisVentas.View.pages"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

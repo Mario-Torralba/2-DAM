@@ -52,7 +52,7 @@ public class VendedorAction implements IAction{
 
     public String buscarProductos(HttpServletRequest request, HttpServletResponse response){
         VendedorDAO vendedor = new VendedorDAO();
-        ArrayList<Producto> lstProducto = vendedor.mostrarMisProductos(request.getParameter("ID"));
+        ArrayList<Producto> lstProducto = vendedor.mostrarMisProductos(request.getParameter("ID_USUARIO"));
         String json = gson.toJson(lstProducto);
         return json;
     }

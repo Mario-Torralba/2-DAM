@@ -43,6 +43,12 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
     TextView colorTexto;
     ImageView colorImagen;
 
+    LinearLayout home;
+    LinearLayout buscar;
+    LinearLayout crear;
+    LinearLayout mensajes;
+    LinearLayout perfil;
+
 
     NuevoPresenter nuevoPresenter = new NuevoPresenter(this);
 
@@ -54,6 +60,12 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
     }
 
     private void initComponents(){
+
+        this.home = findViewById(R.id.home);
+        this.buscar = findViewById(R.id.buscar);
+        this.crear = findViewById(R.id.crear);
+        this.mensajes = findViewById(R.id.mensajes);
+        this.perfil = findViewById(R.id.perfil);
 
         this.titulo = findViewById(R.id.titulo);
         this.descripcion = findViewById(R.id.descripcion);
@@ -203,6 +215,38 @@ public class NuevoView extends AppCompatActivity implements ContractNuevoProduct
 //                    nuevoPresenter.asociarColoresPresenter(producto);
                 }
 
+            }
+        });
+
+        buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NuevoView.this, BusquedaView.class);
+                startActivity(intent);
+            }
+        });
+
+        perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NuevoView.this, PerfilView.class);
+                startActivity(intent);
+            }
+        });
+
+        mensajes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NuevoView.this, MensajesView.class);
+                startActivity(intent);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NuevoView.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
