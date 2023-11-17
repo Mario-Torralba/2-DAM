@@ -1,5 +1,7 @@
 package Model.Beans;
 
+import java.util.ArrayList;
+
 public class Producto {
 
     private int id_producto;
@@ -11,7 +13,6 @@ public class Producto {
     private int precioProducto;
     private String imagenProducto;
 
-    public Producto(){}
 
     public int getId_producto() {
         return id_producto;

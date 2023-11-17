@@ -35,29 +35,28 @@ public class MisVentasView extends AppCompatActivity implements ContractMisVenta
 
     public void initComponents(){
 
-        presenter.verMisVentasPresenter(1);
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         recyclerview_list = new ArrayList<recyclerview_list>();
 
-        for (Producto e: lstProductosBuena) {
-            recyclerview_list.add(new recyclerview_list(R.drawable.baseline_add_24,e.getNombreProducto()));
-        }
 
 
+        presenter.verMisVentasPresenter(1);
 
-        recyclerview_adapter recyclerviewAdapter = new recyclerview_adapter(recyclerview_list,this);
-        recyclerView.setAdapter(recyclerviewAdapter);
+
     }
 
     @Override
     public void successVerMisVentasView(ArrayList<com.example.vinted.MisVentas.Data.Producto> lstProductos) {
         Toast.makeText(contexto,"MOSTRADOS",Toast.LENGTH_SHORT).show();
-        lstProductosBuena = new ArrayList<>();
-        lstProductosBuena = lstProductos;
+        System.out.println(lstProductos.toString());
+        for (Producto e: lstProductos) {
+            recyclerview_list.add(new recyclerview_list(R.drawable.risitas,e.getNombreProducto()));
+        }
+        recyclerview_adapter recyclerviewAdapter = new recyclerview_adapter(recyclerview_list,this);
+        recyclerView.setAdapter(recyclerviewAdapter);
     }
 
     @Override

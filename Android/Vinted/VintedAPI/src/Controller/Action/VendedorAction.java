@@ -1,9 +1,6 @@
 package Controller.Action;
 
-import Model.Beans.IdProducto;
-import Model.Beans.Mensaje;
-import Model.Beans.Producto;
-import Model.Beans.Usuario;
+import Model.Beans.*;
 import Model.DAO.VendedorDAO;
 import com.google.gson.Gson;
 
@@ -52,8 +49,9 @@ public class VendedorAction implements IAction{
 
     public String buscarProductos(HttpServletRequest request, HttpServletResponse response){
         VendedorDAO vendedor = new VendedorDAO();
-        ArrayList<Producto> lstProducto = vendedor.mostrarMisProductos(request.getParameter("ID_USUARIO"));
-        String json = gson.toJson(lstProducto);
+        ArrayProductos arrayProductos = vendedor.mostrarMisProductos(request.getParameter("ID_USUARIO"));
+        String json = gson.toJson(arrayProductos);
+        System.out.println(json);
         return json;
     }
 

@@ -1,9 +1,6 @@
 package Model.DAO;
 
-import Model.Beans.IdProducto;
-import Model.Beans.Mensaje;
-import Model.Beans.Producto;
-import Model.Beans.Usuario;
+import Model.Beans.*;
 import Model.MotorSQL.MotorSQL;
 
 import javax.xml.transform.Result;
@@ -51,10 +48,10 @@ public class VendedorDAO {
         }
         return lstUsuarios;
     }
-    public ArrayList<Producto> mostrarMisProductos(String id){
+    public ArrayProductos mostrarMisProductos(String id){
         int idNum = Integer.parseInt(id);
         System.out.println(idNum);
-        ArrayList<Producto> lstProducto = new ArrayList<>();
+        ArrayProductos arrayProductos = new ArrayProductos();
         SQL = "SELECT * FROM PRODUCTO WHERE ID_USUARIO = ?";
         try{
             motorsql.connect();
@@ -72,14 +69,15 @@ public class VendedorDAO {
                 producto.setMarcaProducto(rs.getString(6));
                 producto.setPrecioProducto(rs.getInt(7));
                 producto.setImagenProducto(rs.getString(8));
-                lstProducto.add(producto);
+                arrayProductos.getLstProducto().add(producto);
             }
+            arrayProductos.setMessage("Recuperado con exito");
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }finally{
             motorsql.disconnect();
         }
-        return lstProducto;
+        return arrayProductos;
     }
 
     public Mensaje crearProducto(String id, String estado, String nombre, String descripcion, String marca, String precio, String imagen){

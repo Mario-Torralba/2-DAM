@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitCliente {
 
-    public static final String IP_BASE = "10.121.102.36:8099";
+    public static final String IP_BASE = "192.168.0.16:8099";
     private static Retrofit retrofit = null;
     // Crear una instancia personalizada de Gson que sea leniente
     //static Gson gson = new GsonBuilder().setLenient().create();

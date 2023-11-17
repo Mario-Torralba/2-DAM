@@ -1,6 +1,6 @@
 package com.example.vinted.MisVentas;
 
-import com.example.vinted.Beans.Producto;
+import com.example.vinted.MisVentas.Data.Producto;
 import com.example.vinted.nuevoProducto.ContractNuevoProducto;
 
 import java.util.ArrayList;
@@ -18,16 +18,14 @@ public interface ContractMisVentas {
         public interface Presenter{
 
             void verMisVentasPresenter(int id_usuario);
-            void successVerMisVentasPresenter(ArrayList<com.example.vinted.MisVentas.Data.Producto> lstProductos);
-
 
         }
         public interface Model{
             interface UserListener{
-                void onFinished(String resp);
+                void onFinished(ArrayList<Producto> lst);
                 void onFailure(String err);
             }
-            void verMisVentasModel(int id_usuario);
+            void verMisVentasModel(int id_usuario, Model.UserListener presenter);
 
         }
 

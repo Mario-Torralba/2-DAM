@@ -1,20 +1,8 @@
 package com.example.vinted.MisVentas.Data;
 
-public class Producto {
+import java.util.ArrayList;
 
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "id_producto=" + id_producto +
-                ", id_usuario=" + id_usuario +
-                ", id_estado=" + id_estado +
-                ", nombreProducto='" + nombreProducto + '\'' +
-                ", descripcionProducto='" + descripcionProducto + '\'' +
-                ", marcaProducto='" + marcaProducto + '\'' +
-                ", precioProducto=" + precioProducto +
-                ", imagenProducto='" + imagenProducto + '\'' +
-                '}';
-    }
+public class Producto {
 
     private int id_producto;
     private int id_usuario;
