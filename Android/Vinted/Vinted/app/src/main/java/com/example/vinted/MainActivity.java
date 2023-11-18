@@ -22,6 +22,22 @@ import com.example.vinted.nuevoProducto.view.NuevoView;
 
 import java.util.ArrayList;
 
+//Valorar en qué momento debemos pedir registro o login al Usuario.
+//        Usuario – Vendedor:
+//        1. Dar de alta productos, imagen, descripción, precio, etc. por
+//        usuario.
+//        2. Listado de mis productos a la venta como usuario
+//        Usuario – Cliente:
+//        3. Listado de los 10 propietarios con más ventas.
+//        4. Puntuar una prenda concreta
+//        5. Listado de los 10 productos más puntuados.
+//        6. Filtrado en función de las necesidades del usuario (Mujer,
+//        Hombre, niños, o las categorías que estiméis oportunas).
+//        7. Filtrado en función de la palabra escrita por el usuario.
+//        8. Ver ficha descriptiva de la prenda y sus características.
+//        9. Confirmar compra.
+//        10. Histórico de compras.
+
 public class MainActivity extends AppCompatActivity implements ContractMostrarTopVendedores.View {
 
     MostrarTopVendedoresPresenter presenter = new MostrarTopVendedoresPresenter(this);
@@ -105,7 +121,20 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
 
     @Override
     public void successVerMisVentasView(ArrayList<Usuario> lstUsuarios) {
-        System.out.println(lstUsuarios.toString());
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,5));
+
+        recyclerview_list = new ArrayList<>();
+
+        for (Usuario e:lstUsuarios) {
+            recyclerview_list.add(new recyclerview_list(R.drawable.goku_meme,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Ventas : " + e.getVentas()));
+        }
+
+        Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);
+        recyclerView.setAdapter(recyclerviewAdapter);
+
     }
 
     @Override

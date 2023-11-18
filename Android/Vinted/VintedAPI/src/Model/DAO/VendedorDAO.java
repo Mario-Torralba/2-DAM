@@ -21,22 +21,27 @@ public class VendedorDAO {
     }
     public DataUsuarios verTOP10Vendedores(){
         DataUsuarios dataUsuarios = new DataUsuarios();
-        SQL = "SELECT U.ID_USUARIO, U.NOMBRE_USUARIO, U.APELLIDO_1_USUARIO, U.APELLIDO_2_USUARIO, COUNT(*) AS NUMERO_DE_COMPRAS\n" +
+        SQL = "SELECT U.ID_USUARIO, U.NOMBRE_USUARIO, U.APELLIDO_1_USUARIO, U.APELLIDO_2_USUARIO,U.EMAIL_USUARIO,U.TLF_USUARIO, COUNT(*) AS NUMERO_DE_COMPRAS\n" +
                 "FROM VENTA V\n" +
-                "JOIN USUARIO U ON V.ID_USUARIO_COMPRADOR = U.ID_USUARIO\n" +
+                "         JOIN USUARIO U ON V.ID_USUARIO_COMPRADOR = U.ID_USUARIO\n" +
                 "GROUP BY U.ID_USUARIO, U.NOMBRE_USUARIO, U.APELLIDO_1_USUARIO, U.APELLIDO_2_USUARIO\n" +
                 "ORDER BY NUMERO_DE_COMPRAS DESC\n" +
-                "LIMIT 10;\n";
+                "LIMIT 10;";
         try{
             motorsql.connect();
             ResultSet rs = motorsql.executeQuery(SQL);
             while(rs.next()){
                 Usuario usuario = new Usuario();
-
+                usuario.setNombre_apellidos(rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+                usuario.setEmail(rs.getString(5));
+                usuario.setTelefono(rs.getString(6));
+                usuario.setVentas(rs.getInt(7));
                 dataUsuarios.getLstUsuarios().add(usuario);
             }
+            dataUsuarios.setMessage("Mensaje de vuelta perfectamente");
             System.out.println(SQL);
         }catch(Exception ex){
+            dataUsuarios.setMessage("Cagadón apoteósico");
             System.out.println(ex.getMessage());
         }finally {
             motorsql.disconnect();
