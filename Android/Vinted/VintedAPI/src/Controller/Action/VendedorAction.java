@@ -1,6 +1,7 @@
 package Controller.Action;
 
 import Model.Beans.*;
+import Model.Beans.TopVendedores.DataUsuarios;
 import Model.DAO.VendedorDAO;
 import com.google.gson.Gson;
 
@@ -41,8 +42,9 @@ public class VendedorAction implements IAction{
 
     public String verTOP10Vendedores(HttpServletRequest request, HttpServletResponse response){
         VendedorDAO vendedor = new VendedorDAO();
-        ArrayList<Usuario> lstUsuarios = vendedor.verTOP10Vendedores();
-        String json = gson.toJson(lstUsuarios);
+        DataUsuarios dataUsuarios = vendedor.verTOP10Vendedores();
+        String json = gson.toJson(dataUsuarios);
+        System.out.println(json);
         return json;
     }
 

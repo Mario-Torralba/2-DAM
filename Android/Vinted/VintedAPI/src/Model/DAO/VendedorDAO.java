@@ -1,6 +1,8 @@
 package Model.DAO;
 
 import Model.Beans.*;
+import Model.Beans.TopVendedores.DataUsuarios;
+import Model.Beans.TopVendedores.Usuario;
 import Model.MotorSQL.MotorSQL;
 
 import javax.xml.transform.Result;
@@ -17,36 +19,29 @@ public class VendedorDAO {
     public VendedorDAO(){
         motorsql = new MotorSQL();
     }
-    public ArrayList<Usuario> verTOP10Vendedores(){
-        ArrayList<Usuario> lstUsuarios = new ArrayList<>();
+    public DataUsuarios verTOP10Vendedores(){
+        DataUsuarios dataUsuarios = new DataUsuarios();
         SQL = "SELECT U.ID_USUARIO, U.NOMBRE_USUARIO, U.APELLIDO_1_USUARIO, U.APELLIDO_2_USUARIO, COUNT(*) AS NUMERO_DE_COMPRAS\n" +
                 "FROM VENTA V\n" +
                 "JOIN USUARIO U ON V.ID_USUARIO_COMPRADOR = U.ID_USUARIO\n" +
                 "GROUP BY U.ID_USUARIO, U.NOMBRE_USUARIO, U.APELLIDO_1_USUARIO, U.APELLIDO_2_USUARIO\n" +
                 "ORDER BY NUMERO_DE_COMPRAS DESC\n" +
-                "LIMIT 3;\n";
+                "LIMIT 10;\n";
         try{
             motorsql.connect();
             ResultSet rs = motorsql.executeQuery(SQL);
             while(rs.next()){
                 Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt(1));
-               /* usuario.setNick(rs.getString(2));
-                usuario.setPass(rs.getString(3));
-                usuario.setTlf_usuario(rs.getString(4));*/
-                usuario.setNombre_usuario(rs.getString(2));
-                usuario.setApellido_1_usuario(rs.getString(3));
-                usuario.setApellido_2_usuario(rs.getString(4));
-                usuario.setNumeroVentas(rs.getInt(5));
-                //usuario.setEmail_usuario(rs.getString(8));
-                lstUsuarios.add(usuario);
+
+                dataUsuarios.getLstUsuarios().add(usuario);
             }
+            System.out.println(SQL);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }finally {
             motorsql.disconnect();
         }
-        return lstUsuarios;
+        return dataUsuarios;
     }
     public ArrayProductos mostrarMisProductos(String id){
         int idNum = Integer.parseInt(id);

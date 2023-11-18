@@ -1,4 +1,4 @@
-package com.example.vinted.Login.view.RecyclerView;
+package com.example.vinted.mostrarTopVendedores.view.RecyclerView;
 
 public class recyclerview_list {
 

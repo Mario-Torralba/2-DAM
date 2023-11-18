@@ -1,4 +1,4 @@
-package com.example.vinted.Login.view.RecyclerView;
+package com.example.vinted.mostrarTopVendedores.view.RecyclerView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class Recyclerview_adapter extends RecyclerView.Adapter<Recyclerview_adapter.ViewHolder> {
 
-    private ArrayList<com.example.vinted.Login.view.RecyclerView.recyclerview_list> recyclerview_list;
+    private ArrayList<com.example.vinted.mostrarTopVendedores.view.RecyclerView.recyclerview_list> recyclerview_list;
     private Context context;
 
-    public Recyclerview_adapter(ArrayList<com.example.vinted.Login.view.RecyclerView.recyclerview_list> recyclerview_list, Context contexto) {
+    public Recyclerview_adapter(ArrayList<com.example.vinted.mostrarTopVendedores.view.RecyclerView.recyclerview_list> recyclerview_list, Context contexto) {
         this.recyclerview_list = recyclerview_list;
         this.context = contexto;
     }

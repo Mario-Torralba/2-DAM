@@ -2,32 +2,30 @@ package com.example.vinted;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Layout;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.vinted.Busqueda.view.BusquedaView;
-import com.example.vinted.Login.view.LoginView;
-import com.example.vinted.Login.view.RecyclerView.Recyclerview_adapter;
-import com.example.vinted.Login.view.RecyclerView.recyclerview_list;
+import com.example.vinted.mostrarTopVendedores.ContractMostrarTopVendedores;
+import com.example.vinted.mostrarTopVendedores.Data.Usuario;
+import com.example.vinted.mostrarTopVendedores.presenter.MostrarTopVendedoresPresenter;
+import com.example.vinted.mostrarTopVendedores.view.RecyclerView.Recyclerview_adapter;
+import com.example.vinted.mostrarTopVendedores.view.RecyclerView.recyclerview_list;
 import com.example.vinted.Mensajes.view.MensajesView;
-import com.example.vinted.MisVentas.View.recyclerview_adapter;
 import com.example.vinted.Perfil.view.PerfilView;
 import com.example.vinted.nuevoProducto.view.NuevoView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ContractMostrarTopVendedores.View {
 
-    ArrayList<com.example.vinted.Login.view.RecyclerView.recyclerview_list> recyclerview_list;
+    MostrarTopVendedoresPresenter presenter = new MostrarTopVendedoresPresenter(this);
+    ArrayList<com.example.vinted.mostrarTopVendedores.view.RecyclerView.recyclerview_list> recyclerview_list;
     RecyclerView recyclerView;
     private static final long SPLASH_DISPLAY_LENGTH = 3000;
     Context contexto;
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+
+        presenter.verMisVentasPresenter();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -103,4 +103,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void successVerMisVentasView(ArrayList<Usuario> lstUsuarios) {
+        System.out.println(lstUsuarios.toString());
+    }
+
+    @Override
+    public void failureVerMisVentasView(String err) {
+
+    }
 }
