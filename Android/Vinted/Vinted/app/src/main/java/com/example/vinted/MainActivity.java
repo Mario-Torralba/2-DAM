@@ -70,14 +70,8 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
 
         recyclerview_list = new ArrayList<>();
 
-        recyclerview_list.add(new recyclerview_list(R.drawable.risitas,"Mario Torralba Pardos", "a26807@svalero.com","9767214687","Ventas : 5"));
-        recyclerview_list.add(new recyclerview_list(R.drawable.risitas,"Mario Torralba Pardos", "a26807@svalero.com","9767214687","Ventas : 5"));
-        recyclerview_list.add(new recyclerview_list(R.drawable.risitas,"Mario Torralba Pardos", "a26807@svalero.com","9767214687","Ventas : 5"));
-        recyclerview_list.add(new recyclerview_list(R.drawable.risitas,"Mario Torralba Pardos", "a26807@svalero.com","9767214687","Ventas : 5"));
-        recyclerview_list.add(new recyclerview_list(R.drawable.risitas,"Mario Torralba Pardos", "a26807@svalero.com","9767214687","Ventas : 5"));
 
-        Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);
-        recyclerView.setAdapter(recyclerviewAdapter);
+
 
 
         this.home = findViewById(R.id.home);

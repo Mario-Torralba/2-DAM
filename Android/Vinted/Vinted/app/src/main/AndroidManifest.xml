@@ -67,6 +67,10 @@
             android:name=".MisVentas.View.pages"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ValorarUsuario.View.ValorarView"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

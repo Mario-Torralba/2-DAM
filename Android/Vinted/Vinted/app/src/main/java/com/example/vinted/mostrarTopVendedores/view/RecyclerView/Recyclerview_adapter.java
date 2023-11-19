@@ -1,6 +1,7 @@
 package com.example.vinted.mostrarTopVendedores.view.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vinted.R;
+import com.example.vinted.ValorarUsuario.View.ValorarView;
 
 import java.util.ArrayList;
 
@@ -35,11 +37,18 @@ public class Recyclerview_adapter extends RecyclerView.Adapter<Recyclerview_adap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+
         holder.imagen.setImageResource(recyclerview_list.get(position).getImage());
         holder.nombre_apellidos.setText(recyclerview_list.get(position).getNombre_apellidos());
         holder.email.setText(recyclerview_list.get(position).getEmail());
         holder.telefono.setText(recyclerview_list.get(position).getTelefono());
         holder.ventas.setText(recyclerview_list.get(position).getVentas());
+
+        holder.cardView.setOnClickListener(e->{
+            Intent intent = new Intent(context, ValorarView.class);
+            intent.putExtra("nombre",recyclerview_list.get(position).getNombre_apellidos());
+            context.startActivity(intent);
+        });
 
     }
 
@@ -68,6 +77,8 @@ public class Recyclerview_adapter extends RecyclerView.Adapter<Recyclerview_adap
             email = itemView.findViewById(R.id.email);
             telefono = itemView.findViewById(R.id.telefono);
             ventas = itemView.findViewById(R.id.ventas);
+
+
         }
     }
 }
