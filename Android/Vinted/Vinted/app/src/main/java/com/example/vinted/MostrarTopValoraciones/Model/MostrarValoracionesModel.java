@@ -21,12 +21,13 @@ public class MostrarValoracionesModel implements ContractMostrarTopValoraciones.
 
         ApiService apiService = RetrofitCliente.getClient("http://" + RetrofitCliente.IP_BASE + "/").
                 create(ApiService.class);
-        Call<DataUsuarioValoracion> call = apiService.getTopValoraciones("USUARIO.valorarvendedor");
+        Call<DataUsuarioValoracion> call = apiService.getTopValoraciones("USUARIO.verValoraciones");
 
         call.enqueue(new Callback<DataUsuarioValoracion>() {
             @Override
             public void onResponse(Call<DataUsuarioValoracion> call, Response<DataUsuarioValoracion> response) {
                 DataUsuarioValoracion data = response.body();
+                presenter.onFinished(data.getLstUsuarios());
             }
 
             @Override

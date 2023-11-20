@@ -1,6 +1,7 @@
 package Controller.Action;
 
 import Model.Beans.Mensaje;
+import Model.Beans.VerValoraciones.DataUsuarioValoracion;
 import Model.DAO.UsuarioDAO;
 import com.google.gson.Gson;
 
@@ -18,12 +19,19 @@ public class UsuarioAction implements IAction{
         String action = (String) request.getParameter("ACTION");
         String[] arrayAction = action.split("\\.");
         switch (arrayAction[1]) {
+
             case "LOGIN":
                 cadDestino = userLogin(request, response);
                 break;
+
             case "valorarVendedor":
                 cadDestino = valorarVendedor(request, response);
                 break;
+
+            case "verValoraciones":
+                cadDestino = verValoraciones(request, response);
+                break;
+
         }
         return cadDestino;
     }
@@ -41,4 +49,13 @@ public class UsuarioAction implements IAction{
         String salida = gson.toJson(mensaje);
         return salida;
     }
+
+    public String verValoraciones(HttpServletRequest request, HttpServletResponse response){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        DataUsuarioValoracion dataUsuarioValoracion = usuarioDAO.verValoraciones();
+        String salida = gson.toJson(dataUsuarioValoracion);
+        System.out.println(salida);
+        return salida;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.vinted.MostrarTopValoraciones.Data;
+package Model.Beans.VerValoraciones;
 
 import java.util.ArrayList;
 
@@ -23,4 +23,5 @@ public class DataUsuarioValoracion {
     public void setLstUsuarios(ArrayList<UsuarioValoraciones> lstUsuarios) {
         this.lstUsuarios = lstUsuarios;
     }
+
 }

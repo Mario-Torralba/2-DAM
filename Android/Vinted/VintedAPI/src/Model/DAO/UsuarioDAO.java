@@ -1,6 +1,8 @@
 package Model.DAO;
 
 import Model.Beans.Mensaje;
+import Model.Beans.VerValoraciones.DataUsuarioValoracion;
+import Model.Beans.VerValoraciones.UsuarioValoraciones;
 import Model.MotorSQL.MotorSQL;
 
 import java.sql.ResultSet;
@@ -65,6 +67,31 @@ public class UsuarioDAO {
             motorsql.disconnect();
         }
         return mensaje;
+    }
+
+    public DataUsuarioValoracion verValoraciones(){
+        DataUsuarioValoracion data = new DataUsuarioValoracion();
+        data.setMessage("VER VALORACIONES SUFRIO UN CAGADON APOTEÓSICO");
+        try{
+            motorsql.connect();
+            SQL = "";
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery(SQL);
+            while(rs.next()){
+                UsuarioValoraciones usuarioValoraciones = new UsuarioValoraciones();
+                usuarioValoraciones.setNombre_apellidos(rs.getString(0));
+                usuarioValoraciones.setEmail(rs.getString(0));
+                usuarioValoraciones.setTelefono(rs.getString(0));
+                usuarioValoraciones.setEstrellas(rs.getInt(0));
+                data.getLstUsuarios().add(usuarioValoraciones);
+            }
+            data.setMessage("TODO DE PERLAS");
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            motorsql.disconnect();
+        }
+        return data;
     }
 
 }
