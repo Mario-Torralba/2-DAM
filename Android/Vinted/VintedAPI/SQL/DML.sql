@@ -31,7 +31,25 @@ INSERT INTO USUARIO (NICK, PASS, TLF_USUARIO, NOMBRE_USUARIO, APELLIDO_1_USUARIO
     ('EstrellaFugaz', '9012', '655300356', 'Carlos', 'Fernández', 'Martín', 'carlos.fernandez@example.com'),
     ('ArcoIris', '3456', '611400465', 'Lucía', 'Pérez', 'Ruiz', 'lucia.perez@example.com'),
     ('RayoVeloz', '7890', '677500574', 'Jorge', 'Sánchez', 'Jiménez', 'jorge.sanchez@example.com');
-
+INSERT INTO VALORACION (ID_USUARIO, ESTRELLAS, COMENTARIO) VALUES
+    (1,5,' '),
+    (1,4,' '),
+    (1,5,' '),
+    (1,5,' '),
+    (1,5,' '),
+    (2,4,' '),
+    (2,3,' '),
+    (3,2,' '),
+    (3,1,' '),
+    (3,3,' '),
+    (4,4,' '),
+    (4,1,' '),
+    (4,2,' '),
+    (4,2,' '),
+    (5,1,' '),
+    (5,1,' '),
+    (5,5,' '),
+    (5,3,' ');
 -- ID_USUARIO 1: Rojo
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
     (1, 1, 'Camiseta roja', 'Preciosa camiseta roja', 'ADIDAS', 10, 'camisetaRoja.jpg'),

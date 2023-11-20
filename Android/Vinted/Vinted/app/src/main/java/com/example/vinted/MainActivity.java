@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
         recyclerview_list = new ArrayList<>();
 
         for (UsuarioValoraciones e:lstUsuarios) {
-            recyclerview_list.add(new recyclerview_list(R.drawable.goku_meme,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Valoracion : " + e.getEstrellas()));
+            recyclerview_list.add(new recyclerview_list(R.drawable.dejava,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Valoracion : " + e.getEstrellas()));
         }
 
         Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);

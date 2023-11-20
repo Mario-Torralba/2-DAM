@@ -74,15 +74,33 @@ public class UsuarioDAO {
         data.setMessage("VER VALORACIONES SUFRIO UN CAGADON APOTEÓSICO");
         try{
             motorsql.connect();
-            SQL = "";
+            SQL = "SELECT\n" +
+                    "    U.NOMBRE_USUARIO,\n" +
+                    "    U.APELLIDO_1_USUARIO,\n" +
+                    "    U.APELLIDO_2_USUARIO,\n" +
+                    "    U.EMAIL_USUARIO,\n" +
+                    "    U.TLF_USUARIO,\n" +
+                    "    AVG(V.ESTRELLAS) AS MEDIA_ESTRELLAS\n" +
+                    "FROM\n" +
+                    "    USUARIO U\n" +
+                    "        JOIN\n" +
+                    "    VALORACION V ON U.ID_USUARIO = V.ID_USUARIO\n" +
+                    "GROUP BY\n" +
+                    "    U.ID_USUARIO,\n" +
+                    "    U.NOMBRE_USUARIO,\n" +
+                    "    U.APELLIDO_1_USUARIO,\n" +
+                    "    U.APELLIDO_2_USUARIO,\n" +
+                    "    U.EMAIL_USUARIO,\n" +
+                    "    U.TLF_USUARIO\n" +
+                    "order by MEDIA_ESTRELLAS DESC;";
             System.out.println(SQL);
             ResultSet rs = motorsql.executeQuery(SQL);
             while(rs.next()){
                 UsuarioValoraciones usuarioValoraciones = new UsuarioValoraciones();
-                usuarioValoraciones.setNombre_apellidos(rs.getString(0));
-                usuarioValoraciones.setEmail(rs.getString(0));
-                usuarioValoraciones.setTelefono(rs.getString(0));
-                usuarioValoraciones.setEstrellas(rs.getInt(0));
+                usuarioValoraciones.setNombre_apellidos(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3));
+                usuarioValoraciones.setEmail(rs.getString(4));
+                usuarioValoraciones.setTelefono(rs.getString(5));
+                usuarioValoraciones.setEstrellas(rs.getFloat(6));
                 data.getLstUsuarios().add(usuarioValoraciones);
             }
             data.setMessage("TODO DE PERLAS");
