@@ -1,29 +1,29 @@
 package com.example.vinted.Busqueda;
 
 import com.example.vinted.Beans.User;
+import com.example.vinted.Busqueda.data.Producto;
+
+import java.util.ArrayList;
 
 public interface ContractBusqueda {
 
     public interface View{
-        public void successBusqueda(String String);
+        void successBusqueda(ArrayList<Producto> lstProducto);
         void failureBusqueda(String err);
-        // void failureLogin(MyException err);
+
     }
     public interface Presenter{
-        // void login(String email, String pass);
-        void crear(User producto);
-        // void login(ViewUser viewUser);
-        // VIEW-ORM
-        // BEANS-ENTITIES
-        // MVP - MVVM
+
+        void hacerBusquedaPresenter(String categoria, String color, String busqueda);
+
     }
     public interface Model{
-        interface OnLoginUserListener{
-            void onFinished(String resp);
+
+        interface UserListener{
+            void onFinished(ArrayList<Producto> lstProducto);
             void onFailure(String err);
         }
-        void crear(User user,
-                      OnLoginUserListener onLoginUserListener);
+        void hacerBusquedaModel(String categoria, String color, String busqueda, UserListener userListener);
     }
 
 }

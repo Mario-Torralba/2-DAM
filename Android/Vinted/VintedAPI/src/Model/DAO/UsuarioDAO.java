@@ -1,5 +1,7 @@
 package Model.DAO;
 
+import Model.Beans.Busqueda.DataProducto;
+import Model.Beans.Busqueda.Producto;
 import Model.Beans.Mensaje;
 import Model.Beans.VerValoraciones.DataUsuarioValoracion;
 import Model.Beans.VerValoraciones.UsuarioValoraciones;
@@ -110,6 +112,51 @@ public class UsuarioDAO {
             motorsql.disconnect();
         }
         return data;
+    }
+
+    public DataProducto busqueda(String categoria, String color, String busqueda){
+        DataProducto dataProducto = new DataProducto();
+        dataProducto.setMessage("CAGADON APOTEOSICO");
+        try{
+            motorsql.connect();
+            SQL = "SELECT P.ID_PRODUCTO, P.ID_USUARIO, P.id_estado, P.NOMBRE_PRODUCTO, P.descripcion_producto, P.marca_producto, P.precio_producto, COUNT(*)\n" +
+                    "FROM PRODUCTO P\n" +
+                    "         JOIN PRODUCTO_CATEGORIA PC ON P.ID_PRODUCTO = PC.ID_PRODUCTO\n" +
+                    "         JOIN CATEGORIA C ON PC.ID_CATEGORIA = C.ID_CATEGORIA\n" +
+                    "         JOIN PRODUCTO_COLOR PCO ON P.ID_PRODUCTO = PCO.ID_PRODUCTO\n" +
+                    "         JOIN COLOR CO ON PCO.ID_COLOR = CO.ID_COLOR WHERE 1 = 1 \n";
+            if(categoria.equals("CATEGORIA")){
+            }else{
+                SQL += "AND C.NOMBRE_CATEGORIA = '" + categoria + "'\n";
+            }
+            if(color.equals("COLOR")){
+            }else{
+                SQL += "  AND CO.NOMBRE_COLOR = '"+ color +"'\n";
+            }
+            SQL += "  AND P.NOMBRE_PRODUCTO LIKE '%"+ busqueda +"%'\n";
+            SQL += "GROUP BY P.ID_PRODUCTO, P.ID_USUARIO, P.id_estado, P.NOMBRE_PRODUCTO, P.descripcion_producto, P.marca_producto, P.precio_producto;";
+
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery(SQL);
+            while(rs.next()){
+                Producto producto = new Producto();
+                producto.setId_producto(rs.getInt(1));
+                producto.setId_usuario(rs.getInt(2));
+                producto.setId_estado(rs.getInt(3));
+                producto.setNombre_producto(rs.getString(4));
+                producto.setDescripcion_producto(rs.getString(5));
+                producto.setMarca_producto(rs.getString(6));
+                producto.setPrecio_producto(rs.getInt(7));
+                dataProducto.getLstProducto().add(producto);
+            }
+            dataProducto.setMessage("TODO PERLAS");
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+
+        }finally {
+            motorsql.disconnect();
+        }
+        return dataProducto;
     }
 
 }

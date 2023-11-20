@@ -1,5 +1,6 @@
 package Controller.Action;
 
+import Model.Beans.Busqueda.DataProducto;
 import Model.Beans.Mensaje;
 import Model.Beans.VerValoraciones.DataUsuarioValoracion;
 import Model.DAO.UsuarioDAO;
@@ -32,6 +33,10 @@ public class UsuarioAction implements IAction{
                 cadDestino = verValoraciones(request, response);
                 break;
 
+            case "busqueda":
+                cadDestino = busqueda(request, response);
+                break;
+
         }
         return cadDestino;
     }
@@ -54,6 +59,14 @@ public class UsuarioAction implements IAction{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         DataUsuarioValoracion dataUsuarioValoracion = usuarioDAO.verValoraciones();
         String salida = gson.toJson(dataUsuarioValoracion);
+        System.out.println(salida);
+        return salida;
+    }
+
+    public String busqueda(HttpServletRequest request, HttpServletResponse response){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        DataProducto dataProducto = usuarioDAO.busqueda(request.getParameter("CATEGORIA"), request.getParameter("COLOR"), request.getParameter("BUSQUEDA"));
+        String salida = gson.toJson(dataProducto);
         System.out.println(salida);
         return salida;
     }

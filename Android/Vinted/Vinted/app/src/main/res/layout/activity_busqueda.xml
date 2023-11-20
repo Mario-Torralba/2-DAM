@@ -24,11 +24,68 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_height="800dp">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="FRAME DE BUSQUEDA"/>
+                    android:layout_height="140dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:id="@+id/inputBusqueda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/gris"
+                            android:hint="Búsqueda.." />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+
+                        android:layout_marginTop="20dp"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+                        <Spinner
+
+                            android:id="@+id/spinnerCategoria"
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"/>
+                        <Spinner
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/spinnerColor"
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/gris"
+                    android:layout_height="10dp">
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1300dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewProductos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+
             </LinearLayout>
 
         </LinearLayout>

@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.example.vinted.Busqueda.view.BusquedaView;
 import com.example.vinted.MostrarTopValoraciones.ContractMostrarTopValoraciones;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
 
         presenter.verMisVentasPresenter();
         presenter2.verTopValoracionesPresenter();
+
 
         this.home = findViewById(R.id.home);
         this.buscar = findViewById(R.id.buscar);
