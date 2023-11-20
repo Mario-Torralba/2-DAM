@@ -4,6 +4,7 @@ package com.example.vinted.Util;
 import com.example.vinted.Login.data.MyData;
 import com.example.vinted.MisVentas.Data.ArrayProductos;
 import com.example.vinted.MisVentas.Data.Producto;
+import com.example.vinted.MostrarTopValoraciones.Data.DataUsuarioValoracion;
 import com.example.vinted.ValorarUsuario.Data.ValorarMensaje;
 import com.example.vinted.mostrarTopVendedores.Data.DataUsuarios;
 import com.example.vinted.nuevoProducto.data.IdProductoNuevo;
@@ -48,6 +49,9 @@ public interface ApiService {
 
     @GET("Controller")
     Call<DataUsuarios> getTopVendedores(@Query("ACTION") String action);
+
+    @GET("Controller")
+    Call<DataUsuarioValoracion> getTopValoraciones(@Query("ACTION") String action);
 
     @GET("Controller")
     Call<ValorarMensaje> valorarVendedor(@Query("ACTION") String action, @Query("NOMBRE") String nombre, @Query("ESTRELLAS") int estrellas, @Query("COMENTARIO") String comentario);

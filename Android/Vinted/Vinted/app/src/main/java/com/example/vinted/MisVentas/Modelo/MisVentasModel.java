@@ -33,7 +33,6 @@ public class MisVentasModel implements ContractMisVentas.Model {
 
         ApiService apiService = RetrofitCliente.getClient("http://" + RetrofitCliente.IP_BASE + "/").
                 create(ApiService.class);
-        //Call<Producto> call  = apiService.getProductos("VENDEDOR.buscarProductos",id_usuario);
         Call<ArrayProductos> call = apiService.getProductos("VENDEDOR.buscarProductos", id_usuario);
         call.enqueue(new Callback<ArrayProductos>() {
             @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ import com.example.vinted.ValorarUsuario.Presenter.ValorarUsuarioPresenter;
 
 public class ValorarView extends AppCompatActivity implements ContractValorar.View {
 
-    ValorarUsuarioPresenter presenter = new ValorarUsuarioPresenter();
+    ValorarUsuarioPresenter presenter = new ValorarUsuarioPresenter(this);
 
     int estrellas;
     TextView comentario;
@@ -113,7 +114,10 @@ public class ValorarView extends AppCompatActivity implements ContractValorar.Vi
     }
     @Override
     public void successValorarView(String respuesta) {
+
         System.out.println(respuesta);
+        Toast.makeText(contexto,"LA VALORACION HA SIDO ENVIADA", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override

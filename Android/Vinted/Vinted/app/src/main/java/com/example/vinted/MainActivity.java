@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.vinted.Busqueda.view.BusquedaView;
+import com.example.vinted.MostrarTopValoraciones.ContractMostrarTopValoraciones;
+import com.example.vinted.MostrarTopValoraciones.Data.UsuarioValoraciones;
+import com.example.vinted.MostrarTopValoraciones.Presenter.MostrarValoracionesPresenter;
 import com.example.vinted.mostrarTopVendedores.ContractMostrarTopVendedores;
 import com.example.vinted.mostrarTopVendedores.Data.Usuario;
 import com.example.vinted.mostrarTopVendedores.presenter.MostrarTopVendedoresPresenter;
@@ -38,11 +41,14 @@ import java.util.ArrayList;
 //        9. Confirmar compra.
 //        10. Histórico de compras.
 
-public class MainActivity extends AppCompatActivity implements ContractMostrarTopVendedores.View {
+public class MainActivity extends AppCompatActivity implements ContractMostrarTopVendedores.View, ContractMostrarTopValoraciones.View {
 
     MostrarTopVendedoresPresenter presenter = new MostrarTopVendedoresPresenter(this);
+    MostrarValoracionesPresenter presenter2 = new MostrarValoracionesPresenter(this);
+
     ArrayList<com.example.vinted.mostrarTopVendedores.view.RecyclerView.recyclerview_list> recyclerview_list;
     RecyclerView recyclerView;
+    RecyclerView recyclerView2;
     private static final long SPLASH_DISPLAY_LENGTH = 3000;
     Context contexto;
     LinearLayout home;
@@ -63,16 +69,7 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
     private void initComponents(){
 
         presenter.verMisVentasPresenter();
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,5));
-
-        recyclerview_list = new ArrayList<>();
-
-
-
-
+        presenter2.verTopValoracionesPresenter();
 
         this.home = findViewById(R.id.home);
         this.buscar = findViewById(R.id.buscar);
@@ -118,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,5));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,lstUsuarios.size()));
 
         recyclerview_list = new ArrayList<>();
 
@@ -133,6 +130,28 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
 
     @Override
     public void failureVerMisVentasView(String err) {
+
+    }
+
+    @Override
+    public void successVerTopValoracionesView(ArrayList<UsuarioValoraciones> lstUsuarios) {
+
+        recyclerView2 = findViewById(R.id.recyclerView2);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new GridLayoutManager(this,lstUsuarios.size()));
+
+        recyclerview_list = new ArrayList<>();
+
+        for (UsuarioValoraciones e:lstUsuarios) {
+            recyclerview_list.add(new recyclerview_list(R.drawable.goku_meme,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Valoracion : " + e.getEstrellas()));
+        }
+
+        Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);
+        recyclerView2.setAdapter(recyclerviewAdapter);
+    }
+
+    @Override
+    public void failureVerTopValoracionesView(String err) {
 
     }
 }

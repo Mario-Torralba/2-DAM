@@ -21,6 +21,9 @@ public class UsuarioAction implements IAction{
             case "LOGIN":
                 cadDestino = userLogin(request, response);
                 break;
+            case "valorarVendedor":
+                cadDestino = valorarVendedor(request, response);
+                break;
         }
         return cadDestino;
     }
@@ -28,6 +31,13 @@ public class UsuarioAction implements IAction{
     public String userLogin(HttpServletRequest request, HttpServletResponse response){
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Mensaje mensaje = usuarioDAO.userLogin(request.getParameter("USER"), request.getParameter("PASS"));
+        String salida = gson.toJson(mensaje);
+        return salida;
+    }
+
+    public String valorarVendedor(HttpServletRequest request, HttpServletResponse response){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Mensaje mensaje = usuarioDAO.valorarVendedor(request.getParameter("NOMBRE"), request.getParameter("ESTRELLAS"), request.getParameter("COMENTARIO"));
         String salida = gson.toJson(mensaje);
         return salida;
     }

@@ -8,12 +8,5 @@
       <jdbc-url>jdbc:postgresql://vinted.crrzwbe3elji.us-east-1.rds.amazonaws.com:5432/vinted</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="vinted@vinted.crrzwbe3elji.us-east-1.rds.amazonaws.com [2]" uuid="d932ae24-980e-49df-9916-f855a754c898">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://vinted.crrzwbe3elji.us-east-1.rds.amazonaws.com:5432/vinted</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>
