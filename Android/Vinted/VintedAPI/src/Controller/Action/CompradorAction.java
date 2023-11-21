@@ -1,5 +1,9 @@
 package Controller.Action;
 
+import Model.Beans.ArrayProductos;
+import Model.Beans.ProductoCaracteristicas.ProductoCaracteristicas;
+import Model.DAO.CompradorDAO;
+import Model.DAO.VendedorDAO;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +19,18 @@ public class CompradorAction implements IAction{
         String action = (String) request.getParameter("ACTION");
         String[] arrayAction = action.split("\\.");
         switch (arrayAction[1]) {
-            case "FIND_ALL":
-                // cadDestino = findAll(request, response);
-                break;
-            case "FILTER":
-                // cadDestino = findByFilter(request, response);
+            case "caracteristicasProducto":
+                cadDestino = caracteristicasProducto(request, response);
                 break;
         }
         return cadDestino;
+    }
+
+    public String caracteristicasProducto(HttpServletRequest request, HttpServletResponse response){
+        CompradorDAO comprador = new CompradorDAO();
+        ProductoCaracteristicas productoCaracteristicas = comprador.caracteristicasProducto(request.getParameter("NOMBRE"));
+        String json = gson.toJson(productoCaracteristicas);
+        System.out.println(json);
+        return json;
     }
 }

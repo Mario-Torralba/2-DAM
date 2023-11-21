@@ -2,6 +2,7 @@ package com.example.vinted.Util;
 
 
 import com.example.vinted.Busqueda.data.DataProducto;
+import com.example.vinted.CaracteristicasProducto.Data.ProductoCaracteristicas;
 import com.example.vinted.Login.data.MyData;
 import com.example.vinted.MisVentas.Data.ArrayProductos;
 import com.example.vinted.MisVentas.Data.Producto;
@@ -59,6 +60,9 @@ public interface ApiService {
 
     @GET("Controller")
     Call<DataProducto> busqueda(@Query("ACTION") String action, @Query("CATEGORIA") String categoria, @Query("COLOR") String color, @Query("BUSQUEDA") String busqueda);
+
+    @GET("Controller")
+    Call<ProductoCaracteristicas> caracteristicasProducto(@Query("ACTION") String action, @Query("NOMBRE") String nombre_usuario);
     //@GET("MyServlet")
     //Call<DataMovies> getDataMovies(@Query("ACTION") String action);
 

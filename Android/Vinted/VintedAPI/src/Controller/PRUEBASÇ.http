@@ -1,1 +1,1 @@
-http://localhost:8099/Controller?ACTION=USUARIO.busqueda&CATEGORIA=Hombre&COLOR=Rojo&BUSQUEDA=ro
+http://localhost:8099/Controller?ACTION=COMPRADOR.caracteristicasProducto&NOMBRE=Calcetines rojos

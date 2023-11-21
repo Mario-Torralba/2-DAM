@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vinted.CaracteristicasProducto.View.CaracteristicasView;
 import com.example.vinted.R;
 import com.example.vinted.ValorarUsuario.View.ValorarView;
 
@@ -41,14 +42,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.titulo.setText(recyclerviewLists.get(position).getNombreProducto());
         holder.precio.setText(recyclerviewLists.get(position).getPrecio());
 
-
-//        holder.imagen.setImageResource(recyclerview_list.get(position).getImage());
-//        holder.nombre_apellidos.setText(recyclerview_list.get(position).getNombre_apellidos());
-//        holder.email.setText(recyclerview_list.get(position).getEmail());
-//        holder.telefono.setText(recyclerview_list.get(position).getTelefono());
-//        holder.ventas.setText(recyclerview_list.get(position).getVentas());
-//
-//        holder.cardView.setOnClickListener(e->{
+        holder.cardView.setOnClickListener(e->{
+            Intent intent = new Intent(contexto, CaracteristicasView.class);
+            intent.putExtra("nombreProducto",recyclerviewLists.get(position).getNombreProducto());
+            contexto.startActivity(intent);
+        });
+//                holder.cardView.setOnClickListener(e->{
 //            Intent intent = new Intent(context, ValorarView.class);
 //            intent.putExtra("nombre",recyclerview_list.get(position).getNombre_apellidos());
 //            context.startActivity(intent);

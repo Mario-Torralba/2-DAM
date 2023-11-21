@@ -52,7 +52,11 @@ public class VendedorDAO {
         int idNum = Integer.parseInt(id);
         System.out.println(idNum);
         ArrayProductos arrayProductos = new ArrayProductos();
-        SQL = "SELECT * FROM PRODUCTO WHERE ID_USUARIO = ?";
+        SQL = "SELECT P.*\n" +
+                "FROM PRODUCTO P\n" +
+                "LEFT JOIN VENTA V ON P.ID_PRODUCTO = V.ID_PRODUCTO\n" +
+                "WHERE V.ID_PRODUCTO IS NULL\n" +
+                "AND P.ID_USUARIO = ?;";
         try{
             motorsql.connect();
             PreparedStatement sentencia = motorsql.conn.prepareStatement(SQL);
@@ -64,11 +68,11 @@ public class VendedorDAO {
                 producto.setId_producto(rs.getInt(1));
                 producto.setId_usuario(rs.getInt(2));
                 producto.setId_estado(rs.getInt(3));
-                producto.setNombreProducto(rs.getString(4));
-                producto.setDescripcionProducto(rs.getString(5));
-                producto.setMarcaProducto(rs.getString(6));
-                producto.setPrecioProducto(rs.getInt(7));
-                producto.setImagenProducto(rs.getString(8));
+                producto.setNombreProducto(rs.getString(5));
+                producto.setDescripcionProducto(rs.getString(6));
+                producto.setMarcaProducto(rs.getString(7));
+                producto.setPrecioProducto(rs.getInt(8));
+                producto.setImagenProducto(rs.getString(9));
                 arrayProductos.getLstProducto().add(producto);
             }
             arrayProductos.setMessage("Recuperado con exito");
