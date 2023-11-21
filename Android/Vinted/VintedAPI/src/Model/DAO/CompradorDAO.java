@@ -2,6 +2,8 @@ package Model.DAO;
 
 import Model.Beans.IdProducto;
 import Model.Beans.ProductoCaracteristicas.ProductoCaracteristicas;
+import Model.Beans.ProductosRelacionados.DataProductosRelacionados;
+import Model.Beans.ProductosRelacionados.ProductoRelacionado;
 import Model.MotorSQL.MotorSQL;
 
 import java.sql.ResultSet;
@@ -43,22 +45,68 @@ public class CompradorDAO {
                 productoCaracteristicas.setEstado_producto(rs.getString("nombre_estado"));
                 productoCaracteristicas.setPrecio_producto(rs.getInt("precio_producto"));
                 productoCaracteristicas.setDescripcion_producto(rs.getString("descripcion_producto"));
+
                 }
                 contador++;
                 if(colores.contains(rs.getString("nombre_color"))){
                 }else{
-                    colores += rs.getString("nombre_color");
+                    colores += " " + rs.getString("nombre_color");
                 }
             }
             productoCaracteristicas.setColores_producto(colores);
-            
+            SQL = "SELECT\n" +
+                    "    U.ID_USUARIO AS ID_USUARIO,\n" +
+                    "    U.NICK AS NICK,\n" +
+                    "    AVG(V.ESTRELLAS) AS MEDIA_ESTRELLAS,\n" +
+                    "    COUNT(*) AS CANTIDAD_VALORACIONES\n" +
+                    "FROM\n" +
+                    "    USUARIO U\n" +
+                    "        LEFT JOIN\n" +
+                    "    VALORACION V ON U.ID_USUARIO = V.ID_USUARIO\n" +
+                    "WHERE\n" +
+                    "        U.ID_USUARIO = " + productoCaracteristicas.getId_usuario_vendedor() +"\n" +
+                    "GROUP BY\n" +
+                    "    U.ID_USUARIO, U.NICK;";
+            rs = motorsql.executeQuery(SQL);
+            while(rs.next()){
+                productoCaracteristicas.setEstrellas(Math.round(rs.getInt("media_estrellas")));
+                productoCaracteristicas.setCantidad_estrellas(rs.getInt("cantidad_valoraciones"));
+            }
         }catch(Exception ex) {
             System.out.println(ex.getMessage());
         }finally{
             motorsql.disconnect();
         }
-        System.out.println(productoCaracteristicas.toString());
         return productoCaracteristicas;
+
+    }
+
+    public DataProductosRelacionados verProductosRelacionados(String id_usuario){
+        int idNum = Integer.parseInt(id_usuario);
+        DataProductosRelacionados data = new DataProductosRelacionados();
+
+        SQL = "SELECT P.nombre_producto, P.precio_producto\n" +
+                "FROM PRODUCTO P\n" +
+                "         LEFT JOIN VENTA V ON P.ID_PRODUCTO = V.ID_PRODUCTO\n" +
+                "WHERE P.ID_USUARIO = "+ idNum +" AND V.ID_PRODUCTO IS NULL;";
+        data.setMessage("Cagadón apoteósico");
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery(SQL);
+            while(rs.next()){
+                ProductoRelacionado producto = new ProductoRelacionado();
+                producto.setNombreProducto(rs.getString(1));
+                producto.setPrecio(rs.getInt(2));
+                data.getLstProductosRelacionados().add(producto);
+            }
+            data.setMessage("TODO PERLAS");
+        }catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return data;
 
     }
 }

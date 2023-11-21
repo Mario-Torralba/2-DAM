@@ -13,6 +13,13 @@ public class ProductoCaracteristicas {
     int precio_producto;
     String descripcion_producto;
 
+    public int getCantidad_estrellas() {
+        return cantidad_estrellas;
+    }
+
+    public void setCantidad_estrellas(int cantidad_estrellas) {
+        this.cantidad_estrellas = cantidad_estrellas;
+    }
 
     public int getId_usuario_comprador() {
         return id_usuario_comprador;

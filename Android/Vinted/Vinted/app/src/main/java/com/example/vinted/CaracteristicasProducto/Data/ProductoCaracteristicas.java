@@ -1,23 +1,39 @@
 package com.example.vinted.CaracteristicasProducto.Data;
 
 public class ProductoCaracteristicas {
-
-    int id_usuario;
+    int id_usuario_comprador;
+    int id_usuario_vendedor;
     String nombre_apellidos;
-    int estrellas;
+    int estrellas; // Otra consulta aparte
+    int cantidad_estrellas; // Otra consulta aparte
     String nombre_producto;
     String estado_producto;
     String colores_producto;
     int precio_producto;
     String descripcion_producto;
 
-
-    public int getId_usuario() {
-        return id_usuario;
+    public int getCantidad_estrellas() {
+        return cantidad_estrellas;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setCantidad_estrellas(int cantidad_estrellas) {
+        this.cantidad_estrellas = cantidad_estrellas;
+    }
+
+    public int getId_usuario_comprador() {
+        return id_usuario_comprador;
+    }
+
+    public void setId_usuario_comprador(int id_usuario_comprador) {
+        this.id_usuario_comprador = id_usuario_comprador;
+    }
+
+    public int getId_usuario_vendedor() {
+        return id_usuario_vendedor;
+    }
+
+    public void setId_usuario_vendedor(int id_usuario_vendedor) {
+        this.id_usuario_vendedor = id_usuario_vendedor;
     }
 
     public String getNombre_apellidos() {

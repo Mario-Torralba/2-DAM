@@ -53,25 +53,25 @@
                             android:id="@+id/estrella1"
                             android:layout_width="20dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/estrella_llena"
+                            android:src="@drawable/estrella_vacia"
                             app:tint="@color/vinted" />
                         <ImageView
                             android:id="@+id/estrella2"
                             android:layout_width="20dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/estrella_llena"
+                            android:src="@drawable/estrella_vacia"
                             app:tint="@color/vinted" />
                         <ImageView
                             android:id="@+id/estrella3"
                             android:layout_width="20dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/estrella_llena"
+                            android:src="@drawable/estrella_vacia"
                             app:tint="@color/vinted" />
                         <ImageView
                             android:id="@+id/estrella4"
                             android:layout_width="20dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/estrella_llena"
+                            android:src="@drawable/estrella_vacia"
                             app:tint="@color/vinted" />
                         <ImageView
                             android:id="@+id/estrella5"
@@ -80,11 +80,12 @@
                             android:src="@drawable/estrella_vacia"
                             app:tint="@color/vinted" />
                         <TextView
+                            android:id="@+id/cantidadValoraciones"
                             android:textSize="16dp"
                             android:gravity="center"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:text="(6)"/>
+                            android:text="(0)"/>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
