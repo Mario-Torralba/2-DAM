@@ -2,6 +2,7 @@ package com.example.vinted.CaracteristicasProducto.View;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.example.vinted.CaracteristicasProducto.Data.ProductoRelacionado;
 import com.example.vinted.CaracteristicasProducto.Presenter.CaracteristicasPresenter;
 import com.example.vinted.CaracteristicasProducto.View.RecyclerViewCaracteristicas.RecyclerViewAdapterCaracteristicas;
 import com.example.vinted.CaracteristicasProducto.View.RecyclerViewCaracteristicas.RecyclerViewListCaracteristicas;
+import com.example.vinted.CargaView;
 import com.example.vinted.MisVentas.Presenter.MisVentasPresenter;
 import com.example.vinted.R;
 
@@ -30,6 +32,7 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
     RecyclerView recyclerViewCaracteristicas;
     ArrayList<RecyclerViewListCaracteristicas> recyclerViewListCaracteristicas;
 
+    Intent intent;
     Context contexto;
     CaracteristicasPresenter presenter = new CaracteristicasPresenter(this);
 
@@ -53,10 +56,15 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         this.contexto = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caracteristicas);
+        Intent intent = new Intent(CaracteristicasView.this, CargaView.class);
+        this.intent = intent;
+        startActivity(intent);
         initComponents();
     }
 
     public void initComponents(){
+
+
 
         this.nombreUsuario = findViewById(R.id.nombreUsuario);
         this.estrella1 = findViewById(R.id.estrella1);
@@ -84,7 +92,7 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
     @SuppressLint("SetTextI18n")
     @Override
     public void successCaracteristicas(ProductoCaracteristicas producto) {
-        System.out.println(producto.toString());
+
 
         nombreUsuario.setText(producto.getNombre_apellidos());
         this.cantidadValoraciones = findViewById(R.id.cantidadValoraciones);

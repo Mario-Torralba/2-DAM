@@ -75,6 +75,10 @@
             android:name=".CaracteristicasProducto.View.CaracteristicasView"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".CargaView"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
