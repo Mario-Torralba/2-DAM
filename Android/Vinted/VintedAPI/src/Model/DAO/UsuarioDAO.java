@@ -3,10 +3,12 @@ package Model.DAO;
 import Model.Beans.Busqueda.DataProducto;
 import Model.Beans.Busqueda.Producto;
 import Model.Beans.Mensaje;
+import Model.Beans.MisCompras.MisProductosData;
 import Model.Beans.VerValoraciones.DataUsuarioValoracion;
 import Model.Beans.VerValoraciones.UsuarioValoraciones;
 import Model.MotorSQL.MotorSQL;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLOutput;
 
@@ -157,6 +159,34 @@ public class UsuarioDAO {
             motorsql.disconnect();
         }
         return dataProducto;
+    }
+
+    public MisProductosData verMisCompras(String id_usuario){
+        int idNum = Integer.parseInt(id_usuario);
+        MisProductosData data = new MisProductosData();
+        data.setMessage("CAGADON APOTEOSICO");
+        try{
+            motorsql.connect();
+            SQL = "SELECT V.*, P.*\n" +
+                    "FROM VENTA V\n" +
+                    "JOIN PRODUCTO P ON V.ID_PRODUCTO = P.ID_PRODUCTO\n" +
+                    "WHERE V.ID_USUARIO_COMPRADOR = "+ idNum +";";
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery(SQL);
+            while(rs.next()){
+                Model.Beans.MisCompras.Producto producto = new Model.Beans.MisCompras.Producto();
+                producto.setNombreProducto(rs.getString("nombre_producto"));
+                producto.setFechaCompra(rs.getString("fecha_venta"));
+                producto.setImagenProducto(rs.getString("imagen_producto"));
+                data.getLstProductos().add(producto);
+            }
+            data.setMessage("TODO PERLAS");
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            motorsql.disconnect();
+        }
+        return data;
     }
 
 }

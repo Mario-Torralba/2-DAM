@@ -52,43 +52,43 @@ INSERT INTO VALORACION (ID_USUARIO, ESTRELLAS, COMENTARIO) VALUES
     (5,3,' ');
 -- ID_USUARIO 1: Rojo
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
-    (1, 1, 'Camiseta roja', 'Preciosa camiseta roja', 'ADIDAS', 10, 'camisetaRoja.jpg'),
-    (1, 1, 'Pantalones rojos', 'Preciosos pantalones rojos', 'NIKE', 40, 'pantalonesRojos.jpg'),
-    (1, 1, 'Sudadera roja', 'Preciosa sudadera roja', 'UNDER ARMOUR', 30, 'sudaderaRoja.jpg'),
-    (1, 1, 'Calcetines rojos', 'Preciosos calcetines rojos', 'DOMYOS', 5, 'calcetinesRojos.jpg'),
-    (1, 1, 'Zapatillas rojas', 'Preciosas zapatillas rojas', 'REEBOK', 60, 'zapatillasRojas.jpg');
+    (1, 1, 'Camiseta roja', 'Preciosa camiseta roja', 'ADIDAS', 10, 'camisetaRoja'),
+    (1, 1, 'Pantalones rojos', 'Preciosos pantalones rojos', 'NIKE', 40, 'pantalonesRojos'),
+    (1, 1, 'Sudadera roja', 'Preciosa sudadera roja', 'UNDER ARMOUR', 30, 'sudaderaRoja'),
+    (1, 1, 'Calcetines rojos', 'Preciosos calcetines rojos', 'DOMYOS', 5, 'calcetinesRojos'),
+    (1, 1, 'Zapatillas rojas', 'Preciosas zapatillas rojas', 'REEBOK', 60, 'zapatillasRojas');
 
 -- ID_USUARIO 2: Azul
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
-    (2, 1, 'Camiseta azul', 'Preciosa camiseta azul', 'ADIDAS', 10, 'camisetaAzul.jpg'),
-    (2, 1, 'Pantalones azules', 'Preciosos pantalones azules', 'NIKE', 40, 'pantalonesAzules.jpg'),
-    (2, 1, 'Sudadera azul', 'Preciosa sudadera azul', 'UNDER ARMOUR', 30, 'sudaderaAzul.jpg'),
-    (2, 1, 'Calcetines azules', 'Preciosos calcetines azules', 'DOMYOS', 5, 'calcetinesAzules.jpg'),
-    (2, 1, 'Zapatillas azules', 'Preciosas zapatillas azules', 'REEBOK', 60, 'zapatillasAzules.jpg');
+    (2, 1, 'Camiseta azul', 'Preciosa camiseta azul', 'ADIDAS', 10, 'camisetaAzul'),
+    (2, 1, 'Pantalones azules', 'Preciosos pantalones azules', 'NIKE', 40, 'pantalonesAzules'),
+    (2, 1, 'Sudadera azul', 'Preciosa sudadera azul', 'UNDER ARMOUR', 30, 'sudaderaAzul'),
+    (2, 1, 'Calcetines azules', 'Preciosos calcetines azules', 'DOMYOS', 5, 'calcetinesAzules'),
+    (2, 1, 'Zapatillas azules', 'Preciosas zapatillas azules', 'REEBOK', 60, 'zapatillasAzules');
 
 -- ID_USUARIO 3: Verde
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
-    (3, 1, 'Camiseta verde', 'Preciosa camiseta verde', 'ADIDAS', 10, 'camisetaVerde.jpg'),
-    (3, 1, 'Pantalones verdes', 'Preciosos pantalones verdes', 'NIKE', 40, 'pantalonesVerdes.jpg'),
-    (3, 1, 'Sudadera verde', 'Preciosa sudadera verde', 'UNDER ARMOUR', 30, 'sudaderaVerde.jpg'),
-    (3, 1, 'Calcetines verdes', 'Preciosos calcetines verdes', 'DOMYOS', 5, 'calcetinesVerdes.jpg'),
-    (3, 1, 'Zapatillas verdes', 'Preciosas zapatillas verdes', 'REEBOK', 60, 'zapatillasVerdes.jpg');
+    (3, 1, 'Camiseta verde', 'Preciosa camiseta verde', 'ADIDAS', 10, 'camisetaVerde'),
+    (3, 1, 'Pantalones verdes', 'Preciosos pantalones verdes', 'NIKE', 40, 'pantalonesVerdes'),
+    (3, 1, 'Sudadera verde', 'Preciosa sudadera verde', 'UNDER ARMOUR', 30, 'sudaderaVerde'),
+    (3, 1, 'Calcetines verdes', 'Preciosos calcetines verdes', 'DOMYOS', 5, 'calcetinesVerdes'),
+    (3, 1, 'Zapatillas verdes', 'Preciosas zapatillas verdes', 'REEBOK', 60, 'zapatillasVerdes');
 
 -- ID_USUARIO 4: Amarillo
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
-    (4, 1, 'Camiseta amarilla', 'Preciosa camiseta amarilla', 'ADIDAS', 10, 'camisetaAmarilla.jpg'),
-    (4, 1, 'Pantalones amarillos', 'Preciosos pantalones amarillos', 'NIKE', 40, 'pantalonesAmarillos.jpg'),
-    (4, 1, 'Sudadera amarilla', 'Preciosa sudadera amarilla', 'UNDER ARMOUR', 30, 'sudaderaAmarilla.jpg'),
-    (4, 1, 'Calcetines amarillos', 'Preciosos calcetines amarillos', 'DOMYOS', 5, 'calcetinesAmarillos.jpg'),
-    (4, 1, 'Zapatillas amarillas', 'Preciosas zapatillas amarillas', 'REEBOK', 60, 'zapatillasAmarillas.jpg');
+    (4, 1, 'Camiseta amarilla', 'Preciosa camiseta amarilla', 'ADIDAS', 10, 'camisetaAmarilla'),
+    (4, 1, 'Pantalones amarillos', 'Preciosos pantalones amarillos', 'NIKE', 40, 'pantalonesAmarillos'),
+    (4, 1, 'Sudadera amarilla', 'Preciosa sudadera amarilla', 'UNDER ARMOUR', 30, 'sudaderaAmarilla'),
+    (4, 1, 'Calcetines amarillos', 'Preciosos calcetines amarillos', 'DOMYOS', 5, 'calcetinesAmarillos'),
+    (4, 1, 'Zapatillas amarillas', 'Preciosas zapatillas amarillas', 'REEBOK', 60, 'zapatillasAmarillas');
 
 -- ID_USUARIO 5: Negro
 INSERT INTO PRODUCTO (ID_USUARIO, ID_ESTADO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO) VALUES
-    (5, 1, 'Camiseta negra', 'Preciosa camiseta negra', 'ADIDAS', 10, 'camisetaNegra.jpg'),
-    (5, 1, 'Pantalones negros', 'Preciosos pantalones negros', 'NIKE', 40, 'pantalonesNegros.jpg'),
-    (5, 1, 'Sudadera negra', 'Preciosa sudadera negra', 'UNDER ARMOUR', 30, 'sudaderaNegra.jpg'),
-    (5, 1, 'Calcetines negros', 'Preciosos calcetines negros', 'DOMYOS', 5, 'calcetinesNegros.jpg'),
-    (5, 1, 'Zapatillas negras', 'Preciosas zapatillas negras', 'REEBOK', 60, 'zapatillasNegras.jpg');
+    (5, 1, 'Camiseta negra', 'Preciosa camiseta negra', 'ADIDAS', 10, 'camisetaNegra'),
+    (5, 1, 'Pantalones negros', 'Preciosos pantalones negros', 'NIKE', 40, 'pantalonesNegros'),
+    (5, 1, 'Sudadera negra', 'Preciosa sudadera negra', 'UNDER ARMOUR', 30, 'sudaderaNegra'),
+    (5, 1, 'Calcetines negros', 'Preciosos calcetines negros', 'DOMYOS', 5, 'calcetinesNegros'),
+    (5, 1, 'Zapatillas negras', 'Preciosas zapatillas negras', 'REEBOK', 60, 'zapatillasNegras');
 
 
 -- Direcciones para el Usuario 1

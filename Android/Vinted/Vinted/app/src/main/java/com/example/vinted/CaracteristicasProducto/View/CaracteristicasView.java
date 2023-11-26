@@ -5,15 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.vinted.Busqueda.data.Producto;
-import com.example.vinted.Busqueda.view.RecyclerViewBusqueda.RecyclerViewAdapter;
-import com.example.vinted.Busqueda.view.RecyclerViewBusqueda.Recyclerview_list;
 import com.example.vinted.CaracteristicasProducto.ContractCaracteristicasProducto;
 import com.example.vinted.CaracteristicasProducto.Data.DataProductoRelacionado;
 import com.example.vinted.CaracteristicasProducto.Data.ProductoCaracteristicas;
@@ -21,8 +21,7 @@ import com.example.vinted.CaracteristicasProducto.Data.ProductoRelacionado;
 import com.example.vinted.CaracteristicasProducto.Presenter.CaracteristicasPresenter;
 import com.example.vinted.CaracteristicasProducto.View.RecyclerViewCaracteristicas.RecyclerViewAdapterCaracteristicas;
 import com.example.vinted.CaracteristicasProducto.View.RecyclerViewCaracteristicas.RecyclerViewListCaracteristicas;
-import com.example.vinted.CargaView;
-import com.example.vinted.MisVentas.Presenter.MisVentasPresenter;
+import com.example.vinted.MainActivity;
 import com.example.vinted.R;
 
 import java.util.ArrayList;
@@ -31,6 +30,15 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
 
     RecyclerView recyclerViewCaracteristicas;
     ArrayList<RecyclerViewListCaracteristicas> recyclerViewListCaracteristicas;
+
+    String nombre;
+    int id_usuario_vendedor;
+    int id_usuario_comprador = 1;
+
+    LinearLayout pantallaCarga;
+    ConstraintLayout padre;
+
+    LinearLayout botonCompra;
 
     Intent intent;
     Context contexto;
@@ -56,9 +64,6 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         this.contexto = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caracteristicas);
-        Intent intent = new Intent(CaracteristicasView.this, CargaView.class);
-        this.intent = intent;
-        startActivity(intent);
         initComponents();
     }
 
@@ -79,12 +84,17 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         this.coloresProducto = findViewById(R.id.coloresProducto);
         this.descripcionProducto = findViewById(R.id.descripcionProducto);
         this.productosRelacionados = findViewById(R.id.productosRelacionados);
+        this.pantallaCarga = findViewById(R.id.pantallaCarga);
+        this.padre = findViewById(R.id.padre);
+        this.botonCompra = findViewById(R.id.botonCompra);
 
 
         String nombre = getIntent().getStringExtra("nombreProducto");
         presenter.caracteristicasProductoPresenter(nombre);
 
-
+        botonCompra.setOnClickListener(e->{
+            presenter.compraPresenter(nombre, id_usuario_vendedor, id_usuario_comprador);
+        });
 
 
     }
@@ -93,6 +103,9 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
     @Override
     public void successCaracteristicas(ProductoCaracteristicas producto) {
 
+        nombre = producto.getNombre_producto();
+        id_usuario_vendedor = producto.getId_usuario_vendedor();
+        id_usuario_comprador = producto.getId_usuario_comprador();
 
         nombreUsuario.setText(producto.getNombre_apellidos());
         this.cantidadValoraciones = findViewById(R.id.cantidadValoraciones);
@@ -148,12 +161,22 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         recyclerViewListCaracteristicas = new ArrayList<>();
 
         for (ProductoRelacionado e: data.getLstProductosRelacionados()) {
-            recyclerViewListCaracteristicas.add(new RecyclerViewListCaracteristicas(R.drawable.pepo,e.getNombreProducto(), e.getPrecio() + " €"));
+            recyclerViewListCaracteristicas.add(new RecyclerViewListCaracteristicas(R.drawable.goku_meme ,e.getNombreProducto(), e.getPrecio() + " €"));
         }
 
         RecyclerViewAdapterCaracteristicas recyclerviewAdapter = new RecyclerViewAdapterCaracteristicas(recyclerViewListCaracteristicas,this);
         recyclerViewCaracteristicas.setAdapter(recyclerviewAdapter);
 
+        padre.removeView(pantallaCarga);
+
+    }
+
+    @Override
+    public void successCompra(String resp) {
+        Toast.makeText(contexto, resp, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(CaracteristicasView.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

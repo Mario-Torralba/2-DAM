@@ -96,7 +96,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="17"
-                                android:text="Mis Ventas"
+                                android:text="Mis productos a la venta"
                                 android:gravity="center_vertical"/>
                             <ImageView
                                 android:layout_width="0dp"

@@ -27,6 +27,11 @@ public class CaracteristicasPresenter implements ContractCaracteristicasProducto
         model.productosRelacionadosModel(id_usuario, this);
     }
 
+    @Override
+    public void compraPresenter(String nombreProducto, int id_usuario_vendedor, int id_usuario_comprador) {
+        model.compraModel(nombreProducto,id_usuario_vendedor, id_usuario_comprador, this);
+    }
+
 
     @Override
     public void onFinished(ProductoCaracteristicas producto) {
@@ -36,6 +41,11 @@ public class CaracteristicasPresenter implements ContractCaracteristicasProducto
     @Override
     public void onFinished2(DataProductoRelacionado data) {
         view.successProductosRelacionados(data);
+    }
+
+    @Override
+    public void onFinishedCompra(String resp) {
+        view.successCompra(resp);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.vinted.CaracteristicasProducto.Model;
 import com.example.vinted.Busqueda.data.DataProducto;
 import com.example.vinted.CaracteristicasProducto.ContractCaracteristicasProducto;
 import com.example.vinted.CaracteristicasProducto.Data.DataProductoRelacionado;
+import com.example.vinted.CaracteristicasProducto.Data.MensajeCompra;
 import com.example.vinted.CaracteristicasProducto.Data.ProductoCaracteristicas;
 import com.example.vinted.Util.ApiService;
 import com.example.vinted.Util.RetrofitCliente;
@@ -48,6 +49,25 @@ public class CaracteristicasModel implements ContractCaracteristicasProducto.Mod
 
             @Override
             public void onFailure(Call<DataProductoRelacionado> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void compraModel(String nombreProducto, int id_usuario_vendedor, int id_usuario_comprador, UserListener userListener) {
+        ApiService apiService = RetrofitCliente.getClient("http://" + RetrofitCliente.IP_BASE + "/").
+                create(ApiService.class);
+        Call<MensajeCompra> call = apiService.comprarProducto("COMPRADOR.realizarCompra", nombreProducto, id_usuario_vendedor, id_usuario_comprador);
+        call.enqueue(new Callback<MensajeCompra>() {
+            @Override
+            public void onResponse(Call<MensajeCompra> call, Response<MensajeCompra> response) {
+                MensajeCompra data = response.body();
+                userListener.onFinishedCompra(data.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<MensajeCompra> call, Throwable t) {
 
             }
         });

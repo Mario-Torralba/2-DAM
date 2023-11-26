@@ -3,8 +3,10 @@ package com.example.vinted.Util;
 
 import com.example.vinted.Busqueda.data.DataProducto;
 import com.example.vinted.CaracteristicasProducto.Data.DataProductoRelacionado;
+import com.example.vinted.CaracteristicasProducto.Data.MensajeCompra;
 import com.example.vinted.CaracteristicasProducto.Data.ProductoCaracteristicas;
 import com.example.vinted.Login.data.MyData;
+import com.example.vinted.MisCompras.Data.MisProductosData;
 import com.example.vinted.MisVentas.Data.ArrayProductos;
 import com.example.vinted.MisVentas.Data.Producto;
 import com.example.vinted.MostrarTopValoraciones.Data.DataUsuarioValoracion;
@@ -67,6 +69,12 @@ public interface ApiService {
 
     @GET("Controller")
     Call<DataProductoRelacionado> getProductosRelacionados(@Query("ACTION") String action, @Query("ID_USUARIO") int id_usuario);
+
+    @GET("Controller")
+    Call<MisProductosData> getMisCompras(@Query("ACTION") String action, @Query("ID_USUARIO") int id_usuario);
+
+    @GET("Controller")
+    Call<MensajeCompra> comprarProducto(@Query("ACTION") String action, @Query("NOMBRE_PRODUCTO") String nombreProducto, @Query("ID_VENDEDOR") int id_vendedor, @Query("ID_COMPRADOR") int id_comprador);
     //@GET("MyServlet")
     //Call<DataMovies> getDataMovies(@Query("ACTION") String action);
 

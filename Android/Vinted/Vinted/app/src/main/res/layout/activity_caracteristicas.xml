@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
+    android:id="@+id/padre"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -331,4 +332,16 @@
 
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/pantallaCarga"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="24dp"
+            android:gravity="center"
+            android:text="PANTALLA DE CARGA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

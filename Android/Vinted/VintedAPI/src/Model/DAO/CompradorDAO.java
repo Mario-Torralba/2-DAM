@@ -1,11 +1,13 @@
 package Model.DAO;
 
 import Model.Beans.IdProducto;
+import Model.Beans.ProductoCaracteristicas.MensajeCompra;
 import Model.Beans.ProductoCaracteristicas.ProductoCaracteristicas;
 import Model.Beans.ProductosRelacionados.DataProductosRelacionados;
 import Model.Beans.ProductosRelacionados.ProductoRelacionado;
 import Model.MotorSQL.MotorSQL;
 
+import javax.xml.transform.Result;
 import java.sql.ResultSet;
 
 public class CompradorDAO {
@@ -107,6 +109,34 @@ public class CompradorDAO {
             motorsql.disconnect();
         }
         return data;
+
+    }
+
+    public MensajeCompra realizarCompra(String nombreProducto, String id_vendedor, String id_comprador){
+        int idVendedorNum = Integer.parseInt(id_vendedor);
+        int idCompradorNum = Integer.parseInt(id_comprador);
+        int idProducto = 0;
+        MensajeCompra mensaje = new MensajeCompra();
+
+
+        mensaje.setMessage("Cagadón apoteósico");
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery("SELECT * FROM PRODUCTO WHERE nombre_producto = '" + nombreProducto + "'");
+            while (rs.next()){
+                idProducto = rs.getInt("id_producto");
+            }
+            SQL = "INSERT INTO VENTA (ID_USUARIO_VENDEDOR, ID_USUARIO_COMPRADOR, ID_PRODUCTO, FECHA_VENTA)\n" +
+                    "VALUES (" + idVendedorNum + ", " + idCompradorNum + ", " + idProducto +", CURRENT_DATE);";
+            int salida = motorsql.execute(SQL);
+            mensaje.setMessage("Se ha realizado la compra con éxito");
+        }catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return mensaje;
 
     }
 }

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.vinted.Busqueda.view.BusquedaView;
 import com.example.vinted.MainActivity;
 import com.example.vinted.Mensajes.view.MensajesView;
+import com.example.vinted.MisCompras.View.MisComprasView;
 import com.example.vinted.MisVentas.View.MisVentasView;
 import com.example.vinted.Perfil.ContractPerfil;
 import com.example.vinted.R;
@@ -84,7 +85,8 @@ public class PerfilView extends AppCompatActivity implements ContractPerfil.View
         misCompras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(PerfilView.this, MisComprasView.class);
+                startActivity(intent);
 
             }
         });

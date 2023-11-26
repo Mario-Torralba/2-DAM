@@ -76,7 +76,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".CargaView"
+            android:name=".MisCompras.View.MisComprasView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".MisCompras.View.RecyclerViewMisCompras.PagesMisCompras.View.PagesMisCompras"
             android:exported="true">
         </activity>
     </application>

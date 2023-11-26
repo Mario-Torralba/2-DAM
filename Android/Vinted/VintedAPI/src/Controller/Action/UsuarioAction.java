@@ -2,6 +2,7 @@ package Controller.Action;
 
 import Model.Beans.Busqueda.DataProducto;
 import Model.Beans.Mensaje;
+import Model.Beans.MisCompras.MisProductosData;
 import Model.Beans.VerValoraciones.DataUsuarioValoracion;
 import Model.DAO.UsuarioDAO;
 import com.google.gson.Gson;
@@ -36,6 +37,9 @@ public class UsuarioAction implements IAction{
             case "busqueda":
                 cadDestino = busqueda(request, response);
                 break;
+            case "verMisCompras":
+                cadDestino = verMisCompras(request, response);
+                break;
 
         }
         return cadDestino;
@@ -67,6 +71,14 @@ public class UsuarioAction implements IAction{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         DataProducto dataProducto = usuarioDAO.busqueda(request.getParameter("CATEGORIA"), request.getParameter("COLOR"), request.getParameter("BUSQUEDA"));
         String salida = gson.toJson(dataProducto);
+        System.out.println(salida);
+        return salida;
+    }
+
+    public String verMisCompras(HttpServletRequest request, HttpServletResponse response){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        MisProductosData data = usuarioDAO.verMisCompras(request.getParameter("ID_USUARIO"));
+        String salida = gson.toJson(data);
         System.out.println(salida);
         return salida;
     }
