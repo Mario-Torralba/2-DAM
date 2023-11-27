@@ -23,6 +23,7 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
     TextView coloresProducto;
     TextView descripcionProducto;
     TextView fechaCompra;
+    TextView cantidadValoraciones;
 
     ImageView estrella1;
     ImageView estrella2;
@@ -53,6 +54,7 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
         coloresProducto = findViewById(R.id.coloresProducto);
         descripcionProducto = findViewById(R.id.descripcionProducto);
         fechaCompra = findViewById(R.id.fechaCompra);
+        cantidadValoraciones = findViewById(R.id.cantidadValoraciones);
 
         presenter.verMisComprasPresenter(nombre);
 
@@ -60,7 +62,39 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
 
     @Override
     public void successVerMisComprasView(PagesMisComprasProducto producto) {
-        System.out.println(producto.toString());
+        nombreUsuario.setText(producto.getNombreUsuario());
+        nombreProducto.setText(producto.getNombreProducto());
+        estadoProducto.setText(producto.getEstadoProducto());
+        coloresProducto.setText(producto.getColoresProducto());
+        descripcionProducto.setText(producto.getDescripcionProducto());
+        fechaCompra.setText(producto.getFechaCompra());
+        cantidadValoraciones.setText("(" + producto.getCantidadValoraciones() + ")");
+
+        if(producto.getValoracionMedia()==1){
+            estrella1.setImageResource(R.drawable.estrella_llena);
+        }
+        if(producto.getValoracionMedia()==2){
+            estrella1.setImageResource(R.drawable.estrella_llena);
+            estrella2.setImageResource(R.drawable.estrella_llena);
+        }
+        if(producto.getValoracionMedia()==3){
+            estrella1.setImageResource(R.drawable.estrella_llena);
+            estrella2.setImageResource(R.drawable.estrella_llena);
+            estrella3.setImageResource(R.drawable.estrella_llena);
+        }
+        if(producto.getValoracionMedia()==4){
+            estrella1.setImageResource(R.drawable.estrella_llena);
+            estrella2.setImageResource(R.drawable.estrella_llena);
+            estrella3.setImageResource(R.drawable.estrella_llena);
+            estrella4.setImageResource(R.drawable.estrella_llena);
+        }
+        if(producto.getValoracionMedia()==5){
+            estrella1.setImageResource(R.drawable.estrella_llena);
+            estrella2.setImageResource(R.drawable.estrella_llena);
+            estrella3.setImageResource(R.drawable.estrella_llena);
+            estrella4.setImageResource(R.drawable.estrella_llena);
+            estrella5.setImageResource(R.drawable.estrella_llena);
+        }
     }
 
     @Override

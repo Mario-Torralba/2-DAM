@@ -144,14 +144,60 @@ public class CompradorDAO {
     public PagesMisComprasProducto verMisCompras(String nombreProducto){
 
         PagesMisComprasProducto data = new PagesMisComprasProducto();
-        SQL = "";
+        SQL = "SELECT\n" +
+                "    V.ID_VENTA,\n" +
+                "    U1.NICK AS COMPRADOR_NICK,\n" +
+                "    U1.NOMBRE_USUARIO AS COMPRADOR_NOMBRE,\n" +
+                "    U1.APELLIDO_1_USUARIO AS COMPRADOR_APELLIDO1,\n" +
+                "    U1.APELLIDO_2_USUARIO AS COMPRADOR_APELLIDO2,\n" +
+                "    P.NOMBRE_PRODUCTO AS PRODUCTO_NOMBRE,\n" +
+                "    P.DESCRIPCION_PRODUCTO AS PRODUCTO_DESCRIPCION,\n" +
+                "    P.MARCA_PRODUCTO AS PRODUCTO_MARCA,\n" +
+                "    P.PRECIO_PRODUCTO AS PRODUCTO_PRECIO,\n" +
+                "    U2.NICK AS VENDEDOR_NICK,\n" +
+                "    U2.NOMBRE_USUARIO AS VENDEDOR_NOMBRE,\n" +
+                "    U2.APELLIDO_1_USUARIO AS VENDEDOR_APELLIDO1,\n" +
+                "    U2.APELLIDO_2_USUARIO AS VENDEDOR_APELLIDO2,\n" +
+                "    AVG(VA.ESTRELLAS) AS VALORACION_MEDIA_VENDEDOR,\n" +
+                "    COUNT(DISTINCT VA.ID_VALORACION) AS CANTIDAD_VALORACIONES_VENDEDOR,\n" +
+                "    E.NOMBRE_ESTADO AS ESTADO_DEL_PRODUCTO,\n" +
+                "    V.FECHA_VENTA AS FECHA_DE_VENTA\n" +
+                "FROM VENTA V\n" +
+                "INNER JOIN USUARIO U1 ON V.ID_USUARIO_COMPRADOR = U1.ID_USUARIO\n" +
+                "INNER JOIN PRODUCTO P ON V.ID_PRODUCTO = P.ID_PRODUCTO\n" +
+                "INNER JOIN USUARIO U2 ON P.ID_USUARIO = U2.ID_USUARIO\n" +
+                "LEFT JOIN VALORACION VA ON P.ID_USUARIO = VA.ID_USUARIO\n" +
+                "LEFT JOIN PRODUCTO_COLOR PC ON P.ID_PRODUCTO = PC.ID_PRODUCTO\n" +
+                "LEFT JOIN ESTADO E ON P.ID_ESTADO = E.ID_ESTADO\n" +
+                "WHERE P.NOMBRE_PRODUCTO = '"+nombreProducto+"'\n" +
+                "GROUP BY V.ID_VENTA, U1.NICK, U1.NOMBRE_USUARIO, U1.APELLIDO_1_USUARIO, U1.APELLIDO_2_USUARIO,\n" +
+                "         P.NOMBRE_PRODUCTO, P.DESCRIPCION_PRODUCTO, P.MARCA_PRODUCTO, P.PRECIO_PRODUCTO,\n" +
+                "         U2.NICK, U2.NOMBRE_USUARIO, U2.APELLIDO_1_USUARIO, U2.APELLIDO_2_USUARIO,\n" +
+                "         E.NOMBRE_ESTADO, V.FECHA_VENTA;";
         try{
             motorsql.connect();
             System.out.println(SQL);
-            ResultSet rs = motorsql.executeQuery("SELECT * FROM PRODUCTO WHERE nombre_producto = '" + nombreProducto + "'");
+            ResultSet rs = motorsql.executeQuery(SQL);
             while (rs.next()){
-
+                data.setValoracionMedia(rs.getInt("valoracion_media_vendedor"));
+                data.setCantidadValoraciones(rs.getInt("cantidad_valoraciones_vendedor"));
+                data.setNombreUsuario(rs.getString("vendedor_nick"));
+                data.setNombreProducto(rs.getString("producto_nombre"));
+                data.setEstadoProducto(rs.getString("estado_del_producto"));
+                data.setDescripcionProducto(rs.getString("producto_descripcion"));
+                data.setFechaCompra(rs.getString("fecha_de_venta"));
             }
+            SQL = "SELECT C.NOMBRE_COLOR\n" +
+                    "FROM PRODUCTO_COLOR PC\n" +
+                    "         INNER JOIN COLOR C ON PC.ID_COLOR = C.ID_COLOR\n" +
+                    "         INNER JOIN PRODUCTO P ON PC.ID_PRODUCTO = P.ID_PRODUCTO\n" +
+                    "WHERE P.NOMBRE_PRODUCTO = '"+nombreProducto+"';";
+            rs = motorsql.executeQuery(SQL);
+            String colores = "";
+            while(rs.next()){
+                colores+= rs.getString("nombre_color") + " ";
+            }
+            data.setColoresProducto(colores);
         }catch(Exception ex) {
             System.out.println(ex.getMessage());
         }finally{
