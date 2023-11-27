@@ -45,6 +45,7 @@ public class AdapterMisCompras extends RecyclerView.Adapter<AdapterMisCompras.Vi
         holder.textView.setText(recyclerview_list.get(position).getTitulo());
         holder.cardView.setOnClickListener(e->{
             Intent intent = new Intent(context, PagesMisCompras.class);
+            intent.putExtra("nombre",recyclerview_list.get(position).getTitulo());
             context.startActivity(intent);
         });
 

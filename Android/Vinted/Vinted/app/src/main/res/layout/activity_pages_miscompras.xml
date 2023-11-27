@@ -1,6 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:id="@+id/padre"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imagenProducto"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/pepo"
+                android:scaleType="centerCrop"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="10"
+                android:layout_height="60dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="5"
+                        android:layout_height="0dp">
+                        <TextView
+                            android:textSize="16dp"
+                            android:id="@+id/nombreUsuario"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:text="Usuario"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_weight="5"
+                        android:layout_height="0dp">
+                        <ImageView
+                            android:id="@+id/estrella1"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/estrella_vacia"
+                            app:tint="@color/vinted" />
+                        <ImageView
+                            android:id="@+id/estrella2"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/estrella_vacia"
+                            app:tint="@color/vinted" />
+                        <ImageView
+                            android:id="@+id/estrella3"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/estrella_vacia"
+                            app:tint="@color/vinted" />
+                        <ImageView
+                            android:id="@+id/estrella4"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/estrella_vacia"
+                            app:tint="@color/vinted" />
+                        <ImageView
+                            android:id="@+id/estrella5"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/estrella_vacia"
+                            app:tint="@color/vinted" />
+                        <TextView
+                            android:id="@+id/cantidadValoraciones"
+                            android:textSize="16dp"
+                            android:gravity="center"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:text="(0)"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="4"                        android:gravity="center"
+
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:background="@color/vinted"
+                        android:layout_gravity="center"
+                        android:layout_width="124dp"
+                        android:layout_height="34dp"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:background="@color/white"
+                            android:layout_gravity="center"
+                            android:layout_width="120dp"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:textColor="@color/vinted"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Enviar mensaje"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/gris"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="120dp"
+                android:weightSum="10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/nombreProducto"
+                            android:gravity="center_vertical"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:text="Nombre Producto"/>
+                        <TextView
+                            android:id="@+id/estadoProducto"
+                            android:gravity="center_vertical"
+                            android:textSize="14dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:text="Estado Producto"
+                            android:textColor="#909090"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/coloresProducto"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:text="Colores Producto"
+                            android:textColor="@color/vinted"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="Fecha de compra"/>
+                    <TextView
+                        android:id="@+id/fechaCompra"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="14dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textColor="@color/vinted"
+                        android:text="Comprado el día ..."/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@color/gris"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:orientation="vertical">
+                <TextView
+                    android:padding="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="Descripción del articulo"
+                    android:textColor="#909090"/>
+
+                <TextView
+                    android:padding="5dp"
+                    android:id="@+id/descripcionProducto"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Descripción del articulo ..." />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    <!--    <LinearLayout-->
+    <!--        android:background="@color/white"-->
+    <!--        android:id="@+id/pantallaCarga"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+    <!--        <TextView-->
+    <!--            android:textSize="24dp"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text="PANTALLA DE CARGA"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"/>-->
+    <!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

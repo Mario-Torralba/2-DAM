@@ -1,6 +1,7 @@
 package Controller.Action;
 
 import Model.Beans.ArrayProductos;
+import Model.Beans.PagesCompras.PagesMisComprasProducto;
 import Model.Beans.ProductoCaracteristicas.MensajeCompra;
 import Model.Beans.ProductoCaracteristicas.ProductoCaracteristicas;
 import Model.Beans.ProductosRelacionados.DataProductosRelacionados;
@@ -30,6 +31,9 @@ public class CompradorAction implements IAction{
             case "realizarCompra":
                 cadDestino = realizarCompra(request, response);
                 break;
+            case "verMisCompras":
+                cadDestino = verMisCompras(request, response);
+                break;
 
         }
         return cadDestino;
@@ -55,6 +59,14 @@ public class CompradorAction implements IAction{
         CompradorDAO comprador = new CompradorDAO();
         MensajeCompra mensaje = comprador.realizarCompra(request.getParameter("NOMBRE_PRODUCTO"), request.getParameter("ID_VENDEDOR"), request.getParameter("ID_COMPRADOR") );
         String json = gson.toJson(mensaje);
+        System.out.println(json);
+        return json;
+    }
+
+    public String verMisCompras(HttpServletRequest request, HttpServletResponse response){
+        CompradorDAO comprador = new CompradorDAO();
+        PagesMisComprasProducto data = comprador.verMisCompras(request.getParameter("NOMBRE_PRODUCTO"));
+        String json = gson.toJson(data);
         System.out.println(json);
         return json;
     }

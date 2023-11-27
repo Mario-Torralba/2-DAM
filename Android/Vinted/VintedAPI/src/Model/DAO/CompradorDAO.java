@@ -1,6 +1,7 @@
 package Model.DAO;
 
 import Model.Beans.IdProducto;
+import Model.Beans.PagesCompras.PagesMisComprasProducto;
 import Model.Beans.ProductoCaracteristicas.MensajeCompra;
 import Model.Beans.ProductoCaracteristicas.ProductoCaracteristicas;
 import Model.Beans.ProductosRelacionados.DataProductosRelacionados;
@@ -137,6 +138,26 @@ public class CompradorDAO {
             motorsql.disconnect();
         }
         return mensaje;
+
+    }
+
+    public PagesMisComprasProducto verMisCompras(String nombreProducto){
+
+        PagesMisComprasProducto data = new PagesMisComprasProducto();
+        SQL = "";
+        try{
+            motorsql.connect();
+            System.out.println(SQL);
+            ResultSet rs = motorsql.executeQuery("SELECT * FROM PRODUCTO WHERE nombre_producto = '" + nombreProducto + "'");
+            while (rs.next()){
+
+            }
+        }catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            motorsql.disconnect();
+        }
+        return data;
 
     }
 }

@@ -50,7 +50,7 @@ public class MisComprasView extends AppCompatActivity implements MisComprasContr
         recyclerview_list = new ArrayList<>();
 
         for (Producto e: productos.getLstProductos()) {
-            recyclerview_list.add(new RecyclerView_list_mis_compras(R.drawable.risitas,e.getNombreProducto()));
+            recyclerview_list.add(new RecyclerView_list_mis_compras(R.drawable.risitas,e.getNombreProducto(), e));
         }
         AdapterMisCompras recyclerviewAdapter = new AdapterMisCompras(recyclerview_list,this);
         recyclerView.setAdapter(recyclerviewAdapter);

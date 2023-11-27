@@ -7,6 +7,7 @@ import com.example.vinted.CaracteristicasProducto.Data.MensajeCompra;
 import com.example.vinted.CaracteristicasProducto.Data.ProductoCaracteristicas;
 import com.example.vinted.Login.data.MyData;
 import com.example.vinted.MisCompras.Data.MisProductosData;
+import com.example.vinted.MisCompras.View.RecyclerViewMisCompras.PagesMisCompras.Data.PagesMisComprasProducto;
 import com.example.vinted.MisVentas.Data.ArrayProductos;
 import com.example.vinted.MisVentas.Data.Producto;
 import com.example.vinted.MostrarTopValoraciones.Data.DataUsuarioValoracion;
@@ -75,6 +76,10 @@ public interface ApiService {
 
     @GET("Controller")
     Call<MensajeCompra> comprarProducto(@Query("ACTION") String action, @Query("NOMBRE_PRODUCTO") String nombreProducto, @Query("ID_VENDEDOR") int id_vendedor, @Query("ID_COMPRADOR") int id_comprador);
+
+    @GET("Controller")
+    Call<PagesMisComprasProducto> getMisCompras2(@Query("ACTION") String action, @Query("NOMBRE_PRODUCTO") String nombreProducto);
+
     //@GET("MyServlet")
     //Call<DataMovies> getDataMovies(@Query("ACTION") String action);
 
