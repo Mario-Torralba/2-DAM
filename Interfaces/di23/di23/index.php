@@ -19,6 +19,7 @@
         <script defer src="js/app.js"></script>
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/lista.css">
+        <link rel="stylesheet" href="css/paginado.css">
         
     </head>
     <body>
@@ -27,7 +28,7 @@
                 <div class="divLogotipo col-lg-2 col-md-2 col-sm-10">
                     <img src="./img/logodi23.png">
                 </div>
-                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block">Desarrollo de Interfaces.</div>
+                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block">Mario Torralba Pardos</div>
                 <div class="divLog col-lg-2 col-md-2 col-sm-2">
                     <?php
                         if(isset($_SESSION['usuario'])){
@@ -85,6 +86,9 @@
         <section id="secContenidoPagina" class="container-fluid">
 
         </section>
+        <div id="paginado">
+
+        </div>
         
         
 
@@ -92,5 +96,4 @@
 
         <script src="librerias/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
     </body>
-
 </html>

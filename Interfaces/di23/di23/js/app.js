@@ -20,6 +20,7 @@ function peticion(controlador, metodo) {
 
             document.getElementById("secContenidoPagina").innerHTML = vista;
             cargarUnScript('js/'+controlador+'.js');
+            cargarUnScript('js/Paginado.js');
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);

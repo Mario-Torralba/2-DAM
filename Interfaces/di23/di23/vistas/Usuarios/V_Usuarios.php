@@ -20,6 +20,8 @@
                 </select>
             </label>
             <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios()">GO!!</button>
+            <!-- <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="paginado(127)">GO!!</button> -->
+        
             </form>
     </div>
 

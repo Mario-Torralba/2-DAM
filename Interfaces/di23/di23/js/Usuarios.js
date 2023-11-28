@@ -151,3 +151,32 @@ function confirmarEditarUsuarios(id){
         });
 
 }
+
+function confirmarEditarUsuarios(cantidadFilas){
+
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Usuarios&metodo=confirmarEditarUsuarios";
+    parametros += "&id=" + id;
+    parametros += "&nombre_editar=" + nombre.value;
+    parametros += "&apellido_1_editar=" + apellido_1.value;
+    parametros += "&apellido_2_editar=" + apellido_2.value;
+    parametros += "&email_editar=" + email.value;
+    parametros += "&activo_editar=" + activo.value;
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+    console.log(parametros)
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
+        })
+        .then(vista => {
+
+            document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
+
+}

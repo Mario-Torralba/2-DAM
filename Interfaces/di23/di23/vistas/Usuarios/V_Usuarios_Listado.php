@@ -1,5 +1,6 @@
 <?php
     $usuarios = $datos['usuarios'];
+
     echo "
     <div id='lista'>
         <div class='filaSuperior'>
@@ -13,7 +14,13 @@
             <div class='celda'>EDITAR</div>
         </div>
     ";
-    $contador = 1;
+    $contador = 0;
+    foreach ($usuarios as $fila) {
+        $contador++;
+    }
+
+    $_SESSION["contador"] = $contador;
+
     foreach($usuarios as $fila){
         if($contador%2==1){
             echo'

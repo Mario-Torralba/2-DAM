@@ -11,7 +11,6 @@
         }
 
         public function validarUsuario($datos){
-
             $usuario='';
             $pass='';
             extract($datos);
@@ -32,10 +31,10 @@
         }
         public function buscarUsuarios($filtros=array()){
             $usuarios=$this->modelo->buscarUsuarios($filtros);
-            
             //echo json_encode($usuarios);
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
+
         }
         public function crearUsuarios($usuario){
             

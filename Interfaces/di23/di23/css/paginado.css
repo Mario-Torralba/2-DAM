@@ -1,0 +1,52 @@
+.centradoPaginado{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+.menos{
+    border: 1px solid black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+}
+.mas{
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+}
+.numero{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+}
+.menos:hover{
+    cursor: pointer;
+    background-color: rgb(104, 168, 241);
+    color: white;
+    transition: 200ms;
+}
+.mas:hover{
+    cursor: pointer;
+    background-color: rgb(104, 168, 241);
+    color: white;
+    transition: 200ms;
+}
+.numero:hover{
+    cursor: pointer;
+    background-color: rgb(104, 168, 241);
+    color: white;
+    transition: 200ms;
+}
+
+
