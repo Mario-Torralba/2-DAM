@@ -1,5 +1,12 @@
 <?php
+    $cantidadEntradas = 5;
     $usuarios = $datos['usuarios'];
+    $contador = 0;
+    foreach ($usuarios as $fila) {
+        $contador++;
+    }
+
+    $cantidadPaginas = $contador/$cantidadEntradas;
 
     echo "
     <div id='lista'>
@@ -14,13 +21,13 @@
             <div class='celda'>EDITAR</div>
         </div>
     ";
-    $contador = 0;
-    foreach ($usuarios as $fila) {
-        $contador++;
-    }
+    
 
     $_SESSION["contador"] = $contador;
 
+    for ($i=0; $i < $cantidadEntradas; $i++) { 
+        # code...
+    }
     foreach($usuarios as $fila){
         if($contador%2==1){
             echo'

@@ -1,5 +1,15 @@
 <?php session_start();
+
     $getPost=array_merge($_POST,$_GET,$_FILES);
+
+    if(isset($getPost["paginaActual"])){
+        $_SESSION["paginaActual"]=$getPost["paginaActual"];
+    }
+
+    if(isset($getPost["cantidadEntradas"])){
+        $_SESSION["cantidadEntradas"]=$getPost["cantidadEntradas"];
+    }
+
 
     if(isset($getPost['controlador'])){
         $controlador= 'C_' .$getPost['controlador'];

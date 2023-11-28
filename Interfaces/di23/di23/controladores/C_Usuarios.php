@@ -30,12 +30,27 @@
             Vista::render('vistas/Usuarios/V_Usuarios.php');
         }
         public function buscarUsuarios($filtros=array()){
+ 
             $usuarios=$this->modelo->buscarUsuarios($filtros);
-            //echo json_encode($usuarios);
+            
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
+            Vista::render('vistas/V_Paginado.php', 
+            array('usuarios'=>$usuarios));
 
         }
+
+        public function buscarUsuariosTotales($filtros=array()){
+ 
+            $usuarios=$this->modelo->buscarUsuariosTotales($filtros);
+            $contador = 0;
+            foreach ($usuarios as $element) {
+                $contador++;
+            }
+            $_SESSION["cantidadTotal"] = $contador;
+
+        }
+
         public function crearUsuarios($usuario){
             
             $salida = $this->modelo->crear($usuario);

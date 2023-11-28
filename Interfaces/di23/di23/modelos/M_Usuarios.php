@@ -12,6 +12,48 @@
         public function buscarUsuarios($filtros=array()){
             $b_texto='';
             $nombre_texto='';
+            $paginaActual = $_SESSION["paginaActual"];
+            $cantidadEntradas = $_SESSION["cantidadEntradas"];
+            
+            extract($filtros);
+            
+            $SQL="SELECT * FROM usuarios WHERE 1=1 ";
+            
+            if($nombre_texto!=''){
+                $aTexto=explode(' ', $nombre_texto);
+                $SQL.=" AND (1=2 ";
+                foreach ($aTexto as $palabra){
+                    $SQL.=" OR nombre LIKE '%$palabra%' ";
+                }
+                $SQL.=" ) ";
+            }
+
+            if($apellido_texto!=''){
+                $aTexto=explode(' ', $apellido_texto);
+                $SQL.=" AND (1=2 ";
+                foreach ($aTexto as $palabra){
+                    $SQL.=" OR apellido_1 LIKE '%$palabra%' ";
+                }
+                $SQL.=" ) ";
+            }
+
+            if($a_texto!=''){
+                $aTexto=explode(' ', $a_texto);
+                $SQL.=" AND (1=2 ";
+                foreach ($aTexto as $palabra){
+                    $SQL.=" OR activo LIKE '%$palabra%' ";
+                }
+                $SQL.=" ) LIMIT " . (($paginaActual-1)*$cantidadEntradas) . ",$cantidadEntradas";
+            }
+            
+            $usuarios=$this->DAO->consultar($SQL);
+            return $usuarios;
+        }
+
+        public function buscarUsuariosTotales($filtros=array()){
+            $b_texto='';
+            $nombre_texto='';
+            
             extract($filtros);
             
             $SQL="SELECT * FROM usuarios WHERE 1=1 ";

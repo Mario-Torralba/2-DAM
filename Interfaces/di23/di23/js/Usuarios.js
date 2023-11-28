@@ -25,9 +25,9 @@ function funcionDisplay2(){
     }
 }
 
-function buscarUsuarios(){
+function buscarUsuarios(paginaActual, cantidadEntradas){
     let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=buscarUsuarios";
+    let parametros = "controlador=Usuarios&metodo=buscarUsuarios" + "&paginaActual=" + paginaActual  + "&cantidadEntradas=" + cantidadEntradas;
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
     console.log(parametros)
     fetch("C_Ajax.php?" + parametros, opciones)
@@ -40,6 +40,23 @@ function buscarUsuarios(){
         .then(vista => {
 
             document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
+}
+
+function buscarUsuariosTotales(){
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Usuarios&metodo=buscarUsuariosTotales";
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+    console.log(parametros)
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);

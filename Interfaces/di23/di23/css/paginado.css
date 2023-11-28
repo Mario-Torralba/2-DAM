@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     font-weight: 700;
+    height: 20vh;
 }
 .menos{
     border: 1px solid black;
@@ -47,6 +48,10 @@
     background-color: rgb(104, 168, 241);
     color: white;
     transition: 200ms;
+}
+.marcado{
+    background-color: rgb(104, 168, 241);
+    color: white;
 }
 
 
