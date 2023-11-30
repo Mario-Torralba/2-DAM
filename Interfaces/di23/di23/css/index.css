@@ -44,7 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(15, 95, 160);
+    background-color: rgb(104, 168, 241);
     height: 5vh;
     width: 10vw;
     border-radius: 5px;
@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 .cont:hover{
-    background-color: rgb(50, 151, 233);
+    background-color: rgb(51, 133, 226);
     transition: 0.3s;
 }
 #formularioBusqueda{
@@ -68,7 +68,7 @@
         margin-left: 2vw;
     }
     #botonBusquedaUsuarios{
-        background-color: rgb(15, 95, 160);
+        background-color: rgb(104, 168, 241);
         color: white;
         margin-left: 2vw;
         height: 3vh;
@@ -78,7 +78,7 @@
         box-shadow: 1px 1px 10px #c0c0c0;cursor: pointer;
     }
     #botonBusquedaUsuarios:hover{
-        background-color: rgb(50, 151, 233);
+        background-color: rgb(51, 133, 226);
         transition: 0.3s;
     }
 #formularioCrear{
@@ -90,7 +90,7 @@
         margin-left: 2vw;
     }
     #botonCrearUsuarios{
-        background-color: rgb(15, 95, 160);
+        background-color: rgb(104, 168, 241);
         color: white;
         margin-left: 2vw;
         height: 3vh;
@@ -100,6 +100,6 @@
         box-shadow: 1px 1px 10px #c0c0c0;cursor: pointer;
     }
     #botonCrearUsuarios:hover{
-        background-color: rgb(50, 151, 233);
+        background-color: rgb(51, 133, 226);
         transition: 0.3s;
     }

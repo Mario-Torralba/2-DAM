@@ -26,11 +26,46 @@ function funcionDisplay2(){
 }
 
 function buscarUsuarios(paginaActual, cantidadEntradas){
-    let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=buscarUsuarios" + "&paginaActual=" + paginaActual  + "&cantidadEntradas=" + cantidadEntradas;
-    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
-    console.log(parametros)
-    fetch("C_Ajax.php?" + parametros, opciones)
+
+    if(paginaActual==0 && cantidadEntradas==0){
+        let paginaActualNueva = document.getElementById("paginaActual").value
+        let cantidadEntradaNueva = document.getElementById("cantidadEntradas").value
+    
+        if(paginaActualNueva!=0){
+            paginaActual = paginaActualNueva;
+        }
+        if(cantidadEntradaNueva!=0){
+            cantidadEntradas = cantidadEntradaNueva;
+        }
+    }
+    if(paginaActual==0 && cantidadEntradas!=0){
+        
+        let opciones = { method: "GET" };
+        let parametros = "controlador=Usuarios&metodo=buscarUsuarios" + "&cantidadEntradas=" + cantidadEntradas;
+        parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+        console.log(parametros)
+        fetch("C_Ajax.php?" + parametros, opciones)
+            .then(res => {
+                if (res.ok) {
+                    console.log('Respuesta ok');
+                    return res.text();
+                }
+            })
+            .then(vista => {
+
+                document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+            })
+            .catch(err => {
+                console.log("Error al realizar la peticion.", err.message);
+            });
+    }
+    if(paginaActual!=0 && cantidadEntradas==0){
+        
+        let opciones = { method: "GET" };
+        let parametros = "controlador=Usuarios&metodo=buscarUsuarios" + "&paginaActual=" + paginaActual;
+        parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+        console.log(parametros)
+        fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
                 console.log('Respuesta ok');
@@ -44,7 +79,54 @@ function buscarUsuarios(paginaActual, cantidadEntradas){
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
         });
+    }
+
+    if(paginaActual!=0 && cantidadEntradas!=0){
+
+        let opciones = { method: "GET" };
+        let parametros = "controlador=Usuarios&metodo=buscarUsuarios" + "&paginaActual=" + paginaActual  + "&cantidadEntradas=" + cantidadEntradas;
+        parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+        console.log(parametros)
+        fetch("C_Ajax.php?" + parametros, opciones)
+            .then(res => {
+                if (res.ok) {
+                    console.log('Respuesta ok');
+                    return res.text();
+                }
+            })
+            .then(vista => {
+    
+                document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+            })
+            .catch(err => {
+                console.log("Error al realizar la peticion.", err.message);
+            });
+    }
 }
+
+// function buscarUsuariosPaginado(){
+//     alert("a")
+//     // let opciones = { method: "GET" };
+//     // let parametros = "controlador=Usuarios&metodo=buscarUsuarios";
+//     // parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+//     // parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioPaginado"))).toString();
+
+//     // console.log(parametros)
+//     // fetch("C_Ajax.php?" + parametros, opciones)
+//     //     .then(res => {
+//     //         if (res.ok) {
+//     //             console.log('Respuesta ok');
+//     //             return res.text();
+//     //         }
+//     //     })
+//     //     .then(vista => {
+
+//     //         document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+//     //     })
+//     //     .catch(err => {
+//     //         console.log("Error al realizar la peticion.", err.message);
+//     //     });
+// }
 
 function buscarUsuariosTotales(){
     let opciones = { method: "GET" };

@@ -19,7 +19,7 @@
                     <option value="N">N</option>
                 </select>
             </label>
-            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuarios(1,5), buscarUsuariosTotales()">GO!!</button>
+            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuariosTotales(),buscarUsuarios(1,10)">GO!!</button>
             <!-- <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="paginado(127)">GO!!</button> -->
         
             </form>

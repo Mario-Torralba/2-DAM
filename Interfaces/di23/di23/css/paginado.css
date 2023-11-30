@@ -50,5 +50,43 @@
     color: rgb(255, 103, 103);
     font-weight: 800;
 }
-
-
+.cajaInput{
+    height: auto;
+    width: auto;
+    border: 1 px solid red;
+}
+.textoAzul{
+    color: rgb(104, 168, 241);
+}
+.inputPaginado{
+    margin-left: 1vw;
+    margin-right: 5vw;
+    width: 60px;
+    border: none;
+    border-bottom: 1px solid rgb(104, 168, 241);
+}
+.inputPaginado2{
+    margin-left: 1vw;
+    width: 60px;
+    border: none;
+    border-bottom: 1px solid rgb(104, 168, 241);
+}
+.margenIzquierdo{
+    margin-left: 3vw;
+}
+.botonPaginado{
+    margin-top: -20VH;
+    border: none;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(104, 168, 241);
+    height: 50px;
+    width: 150px;
+    box-shadow: 1px 1px 10px #d1d1d1;
+    border-radius: 5px;
+}
+.botonPaginado:hover{
+    background-color: rgb(51, 133, 226);
+    transition: 200ms;
+    scale: 1.05;
+}

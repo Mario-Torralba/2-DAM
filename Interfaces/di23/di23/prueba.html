@@ -9,14 +9,25 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <div class="centradoPaginado">
-        <div class="menos"><</div>
-        <div class="numero">1</div>
-        <div class="numero">2</div>
-        <div class="numero">1230</div>
-        <div class="numero">1230</div>
-        <div class="mas">></div>
-    </div>
+    <form id="formularioPaginado" name="formularioPaginado">
+        <div class="centradoPaginado">
+                <label class="textoAzul" for="pagina_actual_input">Ir a la página
+                    <input class="inputPaginado" type="number" id="pagina_actual_input" name="pagina_actual_input">
+                </label>
+            <div class="menos"><</div>
+            <div class="numero">1</div>
+            <div class="numero">2</div>
+            <div class="numero">1230</div>
+            <div class="numero">1230</div>
+            <div class="mas">></div>
+            <label class="textoAzul margenIzquierdo" for="cantidad_por_pagina_input">Cantidad por página
+                <input class="inputPaginado2" type="number" id="cantidad_por_pagina_input" name="cantidad_por_pagina_input">
+            </label>
+        </div>
+        <div class="centradoPaginado">
+            <button id="botonBusquedaUsuarios" class="botonPaginado" type="button" onclick="buscarUsuariosTotales(), buscarUsuarios(1,1)">CAMBIAR PAGINADO</button>
+        </div>
+    </form>
 
 </body>
 </html>
