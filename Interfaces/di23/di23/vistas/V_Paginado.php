@@ -15,7 +15,6 @@
                 $cantidadSobrante = $_SESSION["cantidadTotal"] % $_SESSION["cantidadEntradas"] ;
 
                 echo "<div class='centradoPaginado'>";
-
                 if($_SESSION["paginaActual"]!=1){
                         echo "<div onclick='buscarUsuarios(".($_SESSION["paginaActual"] - 1).",".$_SESSION["cantidadEntradas"].")' class='menos hover'><</div>";
                 }else{
@@ -71,6 +70,82 @@
                                 }
                         }
                 }
+                if($cantidadNumeros==4&&$cantidadSobrante==0){ 
+
+                        for ($i=1; $i <= $cantidadNumeros; $i++) { 
+                                if($i==$_SESSION["paginaActual"]){
+                                        echo "<div class='numero marcado'>$i</div>"; 
+                                }else{
+                                        echo "<div onclick='buscarUsuarios(".$i.",".$_SESSION["cantidadEntradas"].")' class='numero hover'>$i</div>"; 
+                                }
+                        }
+                }
+                if($cantidadNumeros==4&&$cantidadSobrante!=0){ 
+
+                        for ($i=1; $i <= $cantidadNumeros+1; $i++) { 
+                                if($i==$_SESSION["paginaActual"]){
+                                        echo "<div class='numero marcado'>$i</div>"; 
+                                }else{
+                                        echo "<div onclick='buscarUsuarios(".$i.",".$_SESSION["cantidadEntradas"].")' class='numero hover'>$i</div>"; 
+                                }
+                        }
+                }
+                if($cantidadNumeros==5&&$cantidadSobrante==0){ 
+
+                        for ($i=1; $i <= $cantidadNumeros; $i++) { 
+                                if($i==$_SESSION["paginaActual"]){
+                                        echo "<div class='numero marcado'>$i</div>"; 
+                                }else{
+                                        echo "<div onclick='buscarUsuarios(".$i.",".$_SESSION["cantidadEntradas"].")' class='numero hover'>$i</div>"; 
+                                }
+                        }
+                }
+                if($cantidadNumeros>=5&&$cantidadSobrante!=0){ 
+
+                        if($_SESSION["paginaActual"]==1){
+                                echo "<div class='numero marcado'>1</div>";  
+                                echo "<div onclick='buscarUsuarios(2,".$_SESSION["cantidadEntradas"].")' class='numero hover'>2</div>"; 
+                                echo "<div onclick='buscarUsuarios(3,".$_SESSION["cantidadEntradas"].")' class='numero hover'>3</div>"; 
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros+1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros+1)."</div>"; 
+
+                        }
+
+                        if($_SESSION["paginaActual"]==2){
+                                echo "<div onclick='buscarUsuarios(1,".$_SESSION["cantidadEntradas"].")' class='numero hover'>1</div>"; 
+                                echo "<div class='numero marcado'>2</div>";  
+                                echo "<div onclick='buscarUsuarios(3,".$_SESSION["cantidadEntradas"].")' class='numero hover'>3</div>"; 
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros+1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros+1)."</div>"; 
+                        }
+
+                        if($_SESSION["paginaActual"]==($cantidadNumeros+1)){
+                                echo "<div onclick='buscarUsuarios(1,".$_SESSION["cantidadEntradas"].")' class='numero hover'>1</div>"; 
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros-1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros-1)."</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros)."</div>"; 
+                                echo "<div class='numero marcado'>".($cantidadNumeros+1)."</div>";  
+                        }
+                        if($_SESSION["paginaActual"]==($cantidadNumeros)){
+                                echo "<div onclick='buscarUsuarios(1,".$_SESSION["cantidadEntradas"].")' class='numero hover'>1</div>"; 
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros-1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros-1)."</div>"; 
+                                echo "<div class='numero marcado'>".($cantidadNumeros)."</div>";  
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros+1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros+1)."</div>"; 
+
+                        }
+                        if($_SESSION["paginaActual"]!=1&&$_SESSION["paginaActual"]!=2&&$_SESSION["paginaActual"]!=($cantidadNumeros+1)&&$_SESSION["paginaActual"]!=($cantidadNumeros)){
+                                echo "<div onclick='buscarUsuarios(1,".$_SESSION["cantidadEntradas"].")' class='numero hover'>1</div>"; 
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div class='numero marcado'>".$_SESSION["paginaActual"]."</div>";  
+                                echo "<div class='numero hover'>-</div>"; 
+                                echo "<div onclick='buscarUsuarios(".($cantidadNumeros+1).",".$_SESSION["cantidadEntradas"].")' class='numero hover'>".($cantidadNumeros+1)."</div>"; 
+
+                        }
+
+
+
+                }
                 // else{
                 //         for ($i=1; $i < $cantidadNumeros; $i++) { 
                 //                 if($i==$_SESSION["paginaActual"]){
@@ -93,6 +168,8 @@
                         }
                 }
                 echo "</div>";
+
+                echo "";
         }
 
 
