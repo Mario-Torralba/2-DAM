@@ -17,12 +17,12 @@
 
             $valido='N';
             $usuarios = $this->modelo->login($usuario);
-
-            if($usuario==$usuarios[0]['login'] && md5($pass)== $usuarios[0]['pass']){
-                $_SESSION['usuario']=$usuario;
-                $valido='S';
+            if (count($usuarios)>0) {
+                if($usuario==$usuarios[0]['login'] && md5($pass)== $usuarios[0]['pass']){
+                    $_SESSION['usuario']=$usuario;
+                    $valido='S';
+                }
             }
-            echo $valido;
             return $valido;
         }
 
@@ -30,7 +30,7 @@
             Vista::render('vistas/Usuarios/V_Usuarios.php');
         }
         public function buscarUsuarios($filtros=array()){
- 
+            sleep(0.5);
             $usuarios=$this->modelo->buscarUsuarios($filtros);
             
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
@@ -54,15 +54,20 @@
         public function crearUsuarios($usuario){
             
             $salida = $this->modelo->crear($usuario);
-            $usuarios=$this->modelo->buscarUsuarios($usuario);
-            Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
-                            array('usuarios'=>$usuarios));
 
         }
         public function borrarUsuarios($data){
             $salida = $this->modelo->borrar($data);
+            $usuarios=$this->modelo->buscarUsuariosTotales($data);
+            $contador = 0;
+            foreach ($usuarios as $element) {
+                $contador++;
+            }
+            $_SESSION["cantidadTotal"] = $contador;
             $usuarios=$this->modelo->buscarUsuarios($data);
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php',
+                            array('usuarios'=>$usuarios));
+            Vista::render('vistas/V_Paginado.php', 
                             array('usuarios'=>$usuarios));
         }
 
@@ -73,6 +78,8 @@
             $usuarios=$this->modelo->buscarUsuarios($filtros);
             Vista::render('vistas/Usuarios/V_Usuarios_Editar.php',
                             array('usuarios'=>$usuarios));
+            Vista::render('vistas/V_Paginado.php', 
+                            array('usuarios'=>$usuarios));
         }
 
         public function confirmarEditarUsuarios($data){
@@ -80,6 +87,8 @@
             $this->modelo->editar($data);
             $usuarios=$this->modelo->buscarUsuarios($data);
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
+                            array('usuarios'=>$usuarios));
+            Vista::render('vistas/V_Paginado.php', 
                             array('usuarios'=>$usuarios));
 
         }

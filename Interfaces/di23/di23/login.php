@@ -4,7 +4,7 @@ $pass = '';
 extract($_POST);
 //var_dump($_POST);
 if ($usuario == '' || $pass == '') {
-    $mensa = 'Debe completar los campos -- PHP';
+    $mensa = '';
 } else {
     require_once 'controladores/C_Usuarios.php';
     $objUsuarios = new C_Usuarios();
@@ -31,7 +31,7 @@ if ($usuario == '' || $pass == '') {
             const pass = document.getElementById("pass");
             let mensaje = '';
             if (usuario.value == '' || pass.value == '') {
-                mensaje = 'Desbes completar los campos -- JS';
+                mensaje = 'Desbes completar los campos';
             } else {
                 //enviar formulario
                 document.getElementById("formularioLogin").submit();

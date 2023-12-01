@@ -1,5 +1,12 @@
 <?php
+    $cantidadEntradas = 5;
     $usuarios = $datos['usuarios'];
+    $contador = 0;
+    foreach ($usuarios as $fila) {
+        $contador++;
+    }
+
+    $cantidadPaginas = $contador/$cantidadEntradas;
     echo "
     <div id='lista'>
         <div class='filaSuperior'>
@@ -13,7 +20,8 @@
             <div class='celda'>CONFIRMAR</div>
         </div>
     ";
-    $contador = 1;
+
+    $_SESSION["contador"] = $contador;
     foreach($usuarios as $fila){
         if($_SESSION['idEditar'] == $fila['id_Usuario']){
             echo '<form id="formularioEditar" name="formularioEditar">';
@@ -31,7 +39,7 @@
                             <option value="N">N</option>
                         </select>
                     </label></div>
-                    <div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="buscarUsuarios()"></div>
+                    <div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="buscarUsuarios('.$_SESSION["paginaActual"].','.$_SESSION["cantidadEntradas"].')"></div>
                     <div class="celda"><img class="prueba" src="img/confirmar.png" value="" onclick="confirmarEditarUsuarios('.$fila['id_Usuario'].')"></div>
                 </div>
                 ';
@@ -49,7 +57,7 @@
                             <option value="N">N</option>
                         </select>
                     </label></div>
-                    <div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="buscarUsuarios()"></div>
+                    <div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="buscarUsuarios('.$_SESSION["paginaActual"].','.$_SESSION["cantidadEntradas"].')"></div>
                     <div class="celda"><img class="prueba" src="img/confirmar.png" value="" onclick="confirmarEditarUsuarios('.$fila['id_Usuario'].')"></div>
                 </div>
                 ';
@@ -94,22 +102,6 @@
             }
         }
         
-        // echo '
-        // <tr class="celdaSecundaria"> 
-        //     <td>'.$fila['id_Usuario'].'</td>
-        //     <td>'.$fila['nombre'].'</td>
-        //     <td>'.$fila['apellido_1'].'</td>
-        //     <td>'.$fila['apellido_2'].'</td>
-        //     <td>'.$fila['sexo'].'</td>
-        //     <td>'.$fila['fecha_Alta'].'</td>
-        //     <td>'.$fila['mail'].'</td>
-        //     <td>'.$fila['movil'].'</td>
-        //     <td>'.$fila['login'].'</td>
-        //     <td>'.$fila['pass'].'</td>
-        //     <td>'.$fila['activo'].'</td>
-        //     <td class="imagenTabla"><img class="prueba" src="img/delete.png" value="'.$contador.'" onclick="borrarUsuarios()"></td>
-        //     <td class="imagenTabla"><img class="prueba" src="img/editar.png" value="'.$contador.'" ></td>
-        // </tr>';
         $contador++;
     }
     echo '</div>';

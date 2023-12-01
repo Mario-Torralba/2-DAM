@@ -25,9 +25,6 @@
 
     $_SESSION["contador"] = $contador;
 
-    for ($i=0; $i < $cantidadEntradas; $i++) { 
-        # code...
-    }
     foreach($usuarios as $fila){
         if($contador%2==1){
             echo'
@@ -64,22 +61,6 @@
             </div>
             ';
         }
-        // echo '
-        // <tr class="celdaSecundaria"> 
-        //     <td>'.$fila['id_Usuario'].'</td>
-        //     <td>'.$fila['nombre'].'</td>
-        //     <td>'.$fila['apellido_1'].'</td>
-        //     <td>'.$fila['apellido_2'].'</td>
-        //     <td>'.$fila['sexo'].'</td>
-        //     <td>'.$fila['fecha_Alta'].'</td>
-        //     <td>'.$fila['mail'].'</td>
-        //     <td>'.$fila['movil'].'</td>
-        //     <td>'.$fila['login'].'</td>
-        //     <td>'.$fila['pass'].'</td>
-        //     <td>'.$fila['activo'].'</td>
-        //     <td class="imagenTabla"><img class="prueba" src="img/delete.png" value="'.$contador.'" onclick="borrarUsuarios()"></td>
-        //     <td class="imagenTabla"><img class="prueba" src="img/editar.png" value="'.$contador.'" ></td>
-        // </tr>';
         $contador++;
     }
     echo '</div>';
