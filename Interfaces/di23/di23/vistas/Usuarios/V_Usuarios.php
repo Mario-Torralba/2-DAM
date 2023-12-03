@@ -39,34 +39,59 @@
         <form id='formularioCrear2' name='formularioCrear2' >
             
             <div>
-                <label id="label" for='nombre_crear'>Nombre <?php echo $mensajeNombre?>
+                <label id="label" for='nombre_crear'>Nombre 
+                    <?php 
+                    if(isset($mensajeNombre)){
+                        echo $mensajeNombre;
+                    }
+                    ?>
                     <input class="inputBusqueda" type='text' id='nombre_crear' name='nombre_crear'>
                 </label>
             </div>
 
             <div>
-                <label id="label" for='apellido_1_crear'>Primer apellido <?php echo $mensajeApellido1?>
+                <label id="label" for='apellido_1_crear'>Primer apellido
+                    <?php 
+                    if(isset($mensajeApellido1)){
+                        echo $mensajeApellido1;
+                    }
+                    ?>
                     <input class="inputBusqueda"  type='text' id='apellido_1_crear' name='apellido_1_crear'>
                 </label>
             </div>
             <div>
-                <label id="label" for='apellido_2_crear'>Segundo apellido <?php echo $mensajeApellido2?>
+                <label id="label" for='apellido_2_crear'>Segundo apellido
+                <?php 
+                    if(isset($mensajeApellido2)){
+                        echo $mensajeApellido2;
+                    }
+                    ?>
                     <input class="inputBusqueda"  type='text' id='apellido_2_crear' name='apellido_2_crear'>
                 </label>
 
             </div>
             <div> 
-            <label id="label" for='login_crear'>Usuario <?php echo $mensajeUsuario?>
+            <label id="label" for='login_crear'>Usuario 
+                    <?php 
+                    if(isset($mensajeUsuario)){
+                        echo $mensajeUsuario;
+                    }
+                    ?>
                 <input class="inputBusqueda"  type='text' id='login_crear' name='login_crear'>
             </label>
             </div>
             <div>
-                <label id="label" for='pass_crear'>Contraseña <?php echo $mensajeContraseña?>
+                <label id="label" for='pass_crear'>Contraseña 
+                    <?php 
+                    if(isset($mensajeContraseña)){
+                        echo $mensajeContraseña;
+                    }
+                    ?>
                     <input class="inputBusqueda"  type='password' id='pass_crear' name='pass_crear'>
                 </label>
             </div>
             <div id="botonbuscar2">
-                <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='crearUsuarios(),buscarUsuariosTotales(),buscarUsuarios(1,10)'>CREAR</button>
+                <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='validarNuevoUsuario(),crearUsuarios(),buscarUsuariosTotales(),buscarUsuarios(1,10)'>CREAR</button>
             </div>
         </form>
     </div>

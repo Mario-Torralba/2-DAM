@@ -68,6 +68,9 @@
     justify-content: center;
     align-items: center;
 }
+#formularioBuscar{
+    width: 60%;
+}
     #formularioBusqueda>form>label>input{
         margin-left: 2vw;
     }
@@ -96,6 +99,9 @@
     justify-content: center;
     align-items: center;
 }
+#formularioCrear2{
+    width: 40%;
+}
     #formularioCrear>form>label>input{
         margin-left: 2vw;
     }
@@ -117,7 +123,7 @@
     }
 #label{
     margin-bottom: 20px;
-    width: 350px;
+    width: inherit;
     color: rgb(51, 133, 226);
     font-weight: 500;
     display: flex;
@@ -125,6 +131,7 @@
     align-items: flex-end;
 }
 .inputBusqueda{
+    width: 70%;
     height: 20px;
     border: none;
     border-bottom: 1px solid rgb(51, 133, 226);
@@ -135,8 +142,12 @@
     justify-content: center;
     align-items: center;
 }
-#divSelect{
+/* #divSelect{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    width: max-content;
+} */
+/* *{
+    border: 1px solid red;
+} */
