@@ -11,11 +11,43 @@ import com.example.vinted.MisCompras.View.RecyclerViewMisCompras.PagesMisCompras
 import com.example.vinted.MisCompras.View.RecyclerViewMisCompras.PagesMisCompras.Presenter.PagesMisComprasPresenter;
 import com.example.vinted.R;
 
+import java.util.Random;
+
 public class PagesMisCompras extends AppCompatActivity implements ContractPagesMisCompras.View{
 
     Context contexto;
     String nombre;
     PagesMisComprasPresenter presenter = new PagesMisComprasPresenter(this);
+
+    Random rand = new Random();
+
+    int[] imagenes = {
+            R.drawable.calcetinesamarillos,
+            R.drawable.calcetinesazules,
+            R.drawable.calcetinesnegros,
+            R.drawable.calcetinesrojos,
+            R.drawable.calcetinesverdes,
+            R.drawable.camisetaamarilla,
+            R.drawable.camisetaazul,
+            R.drawable.camisetanegra,
+            R.drawable.camisetaroja,
+            R.drawable.camisetaverde,
+            R.drawable.pantalonesamarillos,
+            R.drawable.pantalonesazules,
+            R.drawable.pantalonesnegros,
+            R.drawable.pantalonesrojos,
+            R.drawable.pantalonesverdes,
+            R.drawable.sudaderaamarilla,
+            R.drawable.sudaderaazul,
+            R.drawable.sudaderanegra,
+            R.drawable.sudaderaroja,
+            R.drawable.sudaderaverde,
+            R.drawable.zapatillasamarillas,
+            R.drawable.zapatillasazules,
+            R.drawable.zapatillasnegras,
+            R.drawable.zapatillasrojas,
+            R.drawable.zapatillasverdes
+    };
 
     TextView nombreUsuario;
     TextView nombreProducto;
@@ -30,6 +62,8 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
     ImageView estrella3;
     ImageView estrella4;
     ImageView estrella5;
+
+    ImageView imagenProducto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -55,6 +89,7 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
         descripcionProducto = findViewById(R.id.descripcionProducto);
         fechaCompra = findViewById(R.id.fechaCompra);
         cantidadValoraciones = findViewById(R.id.cantidadValoraciones);
+        imagenProducto = findViewById(R.id.imagenProducto);
 
         presenter.verMisComprasPresenter(nombre);
 
@@ -62,6 +97,8 @@ public class PagesMisCompras extends AppCompatActivity implements ContractPagesM
 
     @Override
     public void successVerMisComprasView(PagesMisComprasProducto producto) {
+
+        imagenProducto.setImageResource(imagenes[rand.nextInt(25)]);
         nombreUsuario.setText(producto.getNombreUsuario());
         nombreProducto.setText(producto.getNombreProducto());
         estadoProducto.setText(producto.getEstadoProducto());

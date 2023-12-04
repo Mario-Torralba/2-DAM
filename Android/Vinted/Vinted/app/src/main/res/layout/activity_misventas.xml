@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <TextView
+                android:textColor="@color/vinted"
                 android:textSize="20dp"
                 android:text="MIS VENTAS"
                 android:gravity="center"
@@ -19,7 +20,7 @@
     <LinearLayout
         android:background="@color/gris"
         android:layout_width="match_parent"
-        android:layout_height="10dp">
+        android:layout_height="2dp">
     </LinearLayout>
 
     <LinearLayout

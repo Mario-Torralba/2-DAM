@@ -14,12 +14,13 @@
                 android:text="MIS COMPRAS"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textColor="@color/vinted"/>
         </LinearLayout>
         <LinearLayout
             android:background="@color/gris"
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="2dp">
         </LinearLayout>
 
         <LinearLayout

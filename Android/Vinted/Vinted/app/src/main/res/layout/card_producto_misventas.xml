@@ -5,14 +5,13 @@
     android:id="@+id/cardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="188dp"
+    android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingConstraints"
     android:layout_margin="10dp"
     android:elevation="10dp"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="20dp">
+    app:cardElevation="10dp">
 
 
         <LinearLayout
@@ -23,8 +22,9 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/baseline_check_24" />
+                android:layout_height="250dp"
+                android:src="@drawable/baseline_check_24"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -33,7 +33,8 @@
                 android:text="TextView"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textSize="18dp"/>
+                android:textSize="16dp"
+                android:textColor="@color/vinted"/>
 
         </LinearLayout>
 

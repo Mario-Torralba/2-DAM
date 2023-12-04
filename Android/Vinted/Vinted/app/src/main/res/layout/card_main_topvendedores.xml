@@ -6,14 +6,13 @@
     android:id="@+id/cardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
+    android:layout_width="200dp"
+    android:layout_height="310dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingConstraints"
     android:layout_margin="10dp"
     android:elevation="10dp"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="20dp">
+    app:cardElevation="10dp">
 
 
     <LinearLayout
@@ -24,42 +23,62 @@
         <ImageView
             android:layout_gravity="center"
             android:id="@+id/imagen"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:src="@drawable/baseline_check_24" />
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/baseline_check_24"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/nombre_apellidos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:text="Mario Torralba Pardos"
             android:gravity="center"
             android:padding="5dp"
-            android:textSize="20dp"/>
-        <TextView
-            android:id="@+id/email"
+            android:textSize="14dp"
+            android:textColor="@color/vinted"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="a26807@svalero.com"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="16dp"/>
-        <TextView
-            android:id="@+id/telefono"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="722100138"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="16dp"/>
-        <TextView
-            android:id="@+id/ventas"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Ventas : 5"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="16dp"/>
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="0dp"
+                android:layout_weight="7.5"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:text="a26807@svalero.com"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:textSize="13dp"
+                android:textColor="@color/gris"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/ventas"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="5"
+                    android:gravity="center"
+                    android:textSize="14dp"/>
+                <ImageView
+                    android:id="@+id/vector"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_sell_24"
+                    android:padding="2dp"
+                    app:tint="@color/vinted" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

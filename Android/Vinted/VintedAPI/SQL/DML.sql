@@ -27,10 +27,10 @@ INSERT INTO COLOR (NOMBRE_COLOR) VALUES
 
 INSERT INTO USUARIO (NICK, PASS, TLF_USUARIO, NOMBRE_USUARIO, APELLIDO_1_USUARIO, APELLIDO_2_USUARIO, EMAIL_USUARIO) VALUES
     ('Pinchauvas','1234','722100138','Mario','Torralba','Pardos','a26807@svalero.com'),
-    ('SolLuna', '5678', '699200247', 'Ana', 'García', 'López', 'ana.garcia@example.com'),
-    ('EstrellaFugaz', '9012', '655300356', 'Carlos', 'Fernández', 'Martín', 'carlos.fernandez@example.com'),
-    ('ArcoIris', '3456', '611400465', 'Lucía', 'Pérez', 'Ruiz', 'lucia.perez@example.com'),
-    ('RayoVeloz', '7890', '677500574', 'Jorge', 'Sánchez', 'Jiménez', 'jorge.sanchez@example.com');
+    ('SolLuna', '5678', '699200247', 'Ana', 'García', 'López', 'a26807@svalero.com'),
+    ('EstrellaFugaz', '9012', '655300356', 'Carlos', 'Fernández', 'Martín', 'a26807@svalero.com'''),
+    ('ArcoIris', '3456', '611400465', 'Lucía', 'Pérez', 'Ruiz', 'a26807@svalero.com'''),
+    ('RayoVeloz', '7890', '677500574', 'Jorge', 'Sánchez', 'Jiménez', 'a26807@svalero.com''');
 INSERT INTO VALORACION (ID_USUARIO, ESTRELLAS, COMENTARIO) VALUES
     (1,5,' '),
     (1,4,' '),

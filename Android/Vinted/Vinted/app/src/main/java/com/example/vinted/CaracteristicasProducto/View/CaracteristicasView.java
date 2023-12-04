@@ -25,6 +25,7 @@ import com.example.vinted.MainActivity;
 import com.example.vinted.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CaracteristicasView extends AppCompatActivity implements ContractCaracteristicasProducto.View {
 
@@ -43,6 +44,37 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
     Intent intent;
     Context contexto;
     CaracteristicasPresenter presenter = new CaracteristicasPresenter(this);
+
+    ImageView imagenProducto;
+    Random rand = new Random();
+
+    int[] imagenes = {
+            R.drawable.calcetinesamarillos,
+            R.drawable.calcetinesazules,
+            R.drawable.calcetinesnegros,
+            R.drawable.calcetinesrojos,
+            R.drawable.calcetinesverdes,
+            R.drawable.camisetaamarilla,
+            R.drawable.camisetaazul,
+            R.drawable.camisetanegra,
+            R.drawable.camisetaroja,
+            R.drawable.camisetaverde,
+            R.drawable.pantalonesamarillos,
+            R.drawable.pantalonesazules,
+            R.drawable.pantalonesnegros,
+            R.drawable.pantalonesrojos,
+            R.drawable.pantalonesverdes,
+            R.drawable.sudaderaamarilla,
+            R.drawable.sudaderaazul,
+            R.drawable.sudaderanegra,
+            R.drawable.sudaderaroja,
+            R.drawable.sudaderaverde,
+            R.drawable.zapatillasamarillas,
+            R.drawable.zapatillasazules,
+            R.drawable.zapatillasnegras,
+            R.drawable.zapatillasrojas,
+            R.drawable.zapatillasverdes
+    };
 
     TextView nombreUsuario;
     TextView cantidadValoraciones;
@@ -87,6 +119,7 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         this.pantallaCarga = findViewById(R.id.pantallaCarga);
         this.padre = findViewById(R.id.padre);
         this.botonCompra = findViewById(R.id.botonCompra);
+        this.imagenProducto = findViewById(R.id.imagenProducto);
 
 
         String nombre = getIntent().getStringExtra("nombreProducto");
@@ -106,6 +139,8 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
         nombre = producto.getNombre_producto();
         id_usuario_vendedor = producto.getId_usuario_vendedor();
         id_usuario_comprador = producto.getId_usuario_comprador();
+
+        imagenProducto.setImageResource(imagenes[rand.nextInt(25)]);
 
         nombreUsuario.setText(producto.getNombre_apellidos());
         this.cantidadValoraciones = findViewById(R.id.cantidadValoraciones);
@@ -156,12 +191,12 @@ public class CaracteristicasView extends AppCompatActivity implements ContractCa
 
         recyclerViewCaracteristicas = findViewById(R.id.recyclerviewProductosRelacionados);
         recyclerViewCaracteristicas.setHasFixedSize(true);
-        recyclerViewCaracteristicas.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerViewCaracteristicas.setLayoutManager(new GridLayoutManager(this,2));
 
         recyclerViewListCaracteristicas = new ArrayList<>();
 
         for (ProductoRelacionado e: data.getLstProductosRelacionados()) {
-            recyclerViewListCaracteristicas.add(new RecyclerViewListCaracteristicas(R.drawable.goku_meme ,e.getNombreProducto(), e.getPrecio() + " €"));
+            recyclerViewListCaracteristicas.add(new RecyclerViewListCaracteristicas(imagenes[rand.nextInt(25)] ,e.getNombreProducto(), e.getPrecio() + " €"));
         }
 
         RecyclerViewAdapterCaracteristicas recyclerviewAdapter = new RecyclerViewAdapterCaracteristicas(recyclerViewListCaracteristicas,this);

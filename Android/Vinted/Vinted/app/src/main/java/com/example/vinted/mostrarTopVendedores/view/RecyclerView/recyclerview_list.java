@@ -5,15 +5,23 @@ public class recyclerview_list {
     int image;
     String nombre_apellidos;
     String email;
-    String telefono;
     String ventas;
+    int vector;
 
-    public recyclerview_list(int image, String nombre_apellidos, String email, String telefono, String ventas) {
+    public int getVector() {
+        return vector;
+    }
+
+    public void setVector(int vector) {
+        this.vector = vector;
+    }
+
+    public recyclerview_list(int image, String nombre_apellidos, String email, String ventas, int vector) {
         this.image = image;
         this.nombre_apellidos = nombre_apellidos;
         this.email = email;
-        this.telefono = telefono;
         this.ventas = ventas;
+        this.vector = vector;
     }
 
     public int getImage() {
@@ -38,14 +46,6 @@ public class recyclerview_list {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getVentas() {

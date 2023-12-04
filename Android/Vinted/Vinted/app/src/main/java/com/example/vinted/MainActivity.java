@@ -26,6 +26,7 @@ import com.example.vinted.Perfil.view.PerfilView;
 import com.example.vinted.nuevoProducto.view.NuevoView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 //Valorar en qué momento debemos pedir registro o login al Usuario.
 //        Usuario – Vendedor:
@@ -59,6 +60,20 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
     LinearLayout mensajes;
     LinearLayout perfil;
 
+    Random rand = new Random();
+
+    int[] arrayImagenes = {
+            R.drawable.persona1,
+            R.drawable.persona2,
+            R.drawable.persona3,
+            R.drawable.persona4,
+            R.drawable.persona5,
+            R.drawable.persona6,
+            R.drawable.persona7,
+            R.drawable.persona8,
+            R.drawable.persona9,
+            R.drawable.persona10
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
         recyclerview_list = new ArrayList<>();
 
         for (Usuario e:lstUsuarios) {
-            recyclerview_list.add(new recyclerview_list(R.drawable.goku_meme,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Ventas : " + e.getVentas()));
+
+            recyclerview_list.add(new recyclerview_list(arrayImagenes[rand.nextInt(10)],e.getNombre_apellidos(), e.getEmail(),"" + e.getVentas(),R.drawable.baseline_sell_24));
         }
 
         Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);
@@ -146,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements ContractMostrarTo
         recyclerview_list = new ArrayList<>();
 
         for (UsuarioValoraciones e:lstUsuarios) {
-            recyclerview_list.add(new recyclerview_list(R.drawable.dejava,e.getNombre_apellidos(), e.getEmail(),e.getTelefono(),"Valoracion : " + e.getEstrellas()));
+            recyclerview_list.add(new recyclerview_list(arrayImagenes[rand.nextInt(10)],e.getNombre_apellidos(), e.getEmail(),"" + e.getEstrellas(), R.drawable.estrella_llena));
         }
 
         Recyclerview_adapter recyclerviewAdapter = new Recyclerview_adapter(recyclerview_list,this);

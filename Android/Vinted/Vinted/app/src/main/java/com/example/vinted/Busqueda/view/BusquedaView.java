@@ -33,6 +33,7 @@ import com.example.vinted.nuevoProducto.view.NuevoView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class BusquedaView extends AppCompatActivity implements ContractBusqueda.View {
@@ -52,6 +53,36 @@ public class BusquedaView extends AppCompatActivity implements ContractBusqueda.
     LinearLayout crear;
     LinearLayout mensajes;
     LinearLayout perfil;
+
+    Random rand = new Random();
+
+    int[] imagenes = {
+            R.drawable.calcetinesamarillos,
+            R.drawable.calcetinesazules,
+            R.drawable.calcetinesnegros,
+            R.drawable.calcetinesrojos,
+            R.drawable.calcetinesverdes,
+            R.drawable.camisetaamarilla,
+            R.drawable.camisetaazul,
+            R.drawable.camisetanegra,
+            R.drawable.camisetaroja,
+            R.drawable.camisetaverde,
+            R.drawable.pantalonesamarillos,
+            R.drawable.pantalonesazules,
+            R.drawable.pantalonesnegros,
+            R.drawable.pantalonesrojos,
+            R.drawable.pantalonesverdes,
+            R.drawable.sudaderaamarilla,
+            R.drawable.sudaderaazul,
+            R.drawable.sudaderanegra,
+            R.drawable.sudaderaroja,
+            R.drawable.sudaderaverde,
+            R.drawable.zapatillasamarillas,
+            R.drawable.zapatillasazules,
+            R.drawable.zapatillasnegras,
+            R.drawable.zapatillasrojas,
+            R.drawable.zapatillasverdes
+    };
 //    private NuevoPresenter nuevoPresenter = new NuevoPresenter(this);
 
     protected void onCreate(Bundle savedInstanceState){
@@ -164,12 +195,12 @@ public class BusquedaView extends AppCompatActivity implements ContractBusqueda.
 
         recyclerView = findViewById(R.id.recyclerViewProductos);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         recyclerviewList = new ArrayList<>();
 
         for (Producto e: lstProducto) {
-            recyclerviewList.add(new Recyclerview_list(R.drawable.pepo,e.getNombre_producto(),e.getPrecio_producto() + " €"));
+            recyclerviewList.add(new Recyclerview_list(imagenes[rand.nextInt(25)],e.getNombre_producto(),e.getPrecio_producto() + " €"));
         }
 
         RecyclerViewAdapter recyclerviewAdapter = new RecyclerViewAdapter(recyclerviewList,this);

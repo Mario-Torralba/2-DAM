@@ -32,12 +32,12 @@
                         android:textSize="20dp"
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:text="Top VENDEDORES por ventas"
                         android:paddingLeft="30dp"/>
                     <LinearLayout
                         android:layout_gravity="center"
-                        android:background="@color/black"
+                        android:background="@color/gris"
                         android:layout_width="350dp"
                         android:layout_height="1dp">
 
@@ -62,19 +62,18 @@
                     </HorizontalScrollView>
 
                     <TextView
-                        android:layout_marginTop="20dp"
                         android:textColor="@color/vinted"
                         android:textSize="20dp"
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:text="Top VENDEDORES por valoración"
                         android:paddingLeft="30dp"/>
                     <LinearLayout
                         android:layout_gravity="center"
-                        android:background="@color/black"
+                        android:background="@color/gris"
                         android:layout_width="350dp"
-                        android:layout_height="1dp">
+                        android:layout_height="2dp">
 
                     </LinearLayout>
 

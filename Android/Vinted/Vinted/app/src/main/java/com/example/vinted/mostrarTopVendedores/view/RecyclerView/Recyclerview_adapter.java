@@ -41,8 +41,8 @@ public class Recyclerview_adapter extends RecyclerView.Adapter<Recyclerview_adap
         holder.imagen.setImageResource(recyclerview_list.get(position).getImage());
         holder.nombre_apellidos.setText(recyclerview_list.get(position).getNombre_apellidos());
         holder.email.setText(recyclerview_list.get(position).getEmail());
-        holder.telefono.setText(recyclerview_list.get(position).getTelefono());
         holder.ventas.setText(recyclerview_list.get(position).getVentas());
+        holder.vector.setImageResource(recyclerview_list.get(position).getVector());
 
         holder.cardView.setOnClickListener(e->{
             Intent intent = new Intent(context, ValorarView.class);
@@ -64,19 +64,18 @@ public class Recyclerview_adapter extends RecyclerView.Adapter<Recyclerview_adap
 
         TextView nombre_apellidos;
         TextView email;
-        TextView telefono;
         TextView ventas;
+        ImageView vector;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             cardView = itemView.findViewById(R.id.cardView);
-
             imagen = itemView.findViewById(R.id.imagen);
             nombre_apellidos = itemView.findViewById(R.id.nombre_apellidos);
             email = itemView.findViewById(R.id.email);
-            telefono = itemView.findViewById(R.id.telefono);
             ventas = itemView.findViewById(R.id.ventas);
+            vector = itemView.findViewById(R.id.vector);
 
 
         }
