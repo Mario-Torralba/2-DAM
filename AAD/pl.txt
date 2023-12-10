@@ -1,0 +1,180 @@
+
+
+        EJERCICIO 1 
+	ESCRIBE UN PROCEDIMIENTO QUE RECIBA DOS NÚMEROS Y VISUALICE SU SUMA
+
+
+
+
+CREATE OR REPLACE PROCEDURE SumaDeDosNumeros (
+    Numero1 IN NUMBER,
+    Numero2 IN NUMBER
+)IS
+    Suma NUMBER;
+BEGIN
+    Suma := Numero1 + Numero2;
+    DBMS_OUTPUT.PUT_LINE('La suma de ' || Numero1 || ' y ' || Numero2 || ' es: ' || Suma);
+END SumaDeDosNumeros;
+/
+
+
+
+DECLARE
+    Numero1 NUMBER := 10;
+    Numero2 NUMBER := 11;
+BEGIN
+    SumaDeDosNumeros (Numero1, Numero2);
+END;
+/
+
+
+
+
+
+
+        EJERCICIO 2
+	CODIFICA UN PROCEDIMIENTO QUE RECIBA UNA CADENA Y LA VISUALICE AL REVÉS
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE InvertirCadena (
+    Entrada IN VARCHAR2
+) IS
+    Salida VARCHAR2(200);
+BEGIN
+    
+    Salida := '';
+    
+    FOR i IN REVERSE 1..LENGTH(Entrada) LOOP
+        Salida := Salida || SUBSTR(Entrada , i, 1);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('La cadena al revés es: ' || Salida);
+END InvertirCadena;
+/
+
+
+DECLARE
+    texto VARCHAR2(200) := 'Hola caracola';
+BEGIN
+    InvertirCadena(texto);
+END;
+/
+
+
+
+
+
+        EJERCICIO 3
+	REESCRIBE EL CODIGO DE LOS DOS EJERCICIOS ANTERIORES PARA CONVERTIRLOS EN FUNCIONES
+	QUE RETORNEN LOS VALORES QUE MSOTRABAN LOS PROCEDIMIENTOS	
+
+
+
+
+CREATE OR REPLACE FUNCTION SumaDeDosNumeros2 (
+    Numero1 IN NUMBER,
+    Numero2 IN NUMBER
+)RETURN NUMBER 
+IS
+    Suma NUMBER;
+BEGIN
+    Suma := Numero1 + Numero2;
+	RETURN suma;
+		
+END SumaDeDosNumeros2;
+/
+
+
+
+DECLARE
+    Numero1 NUMBER := 10;
+    Numero2 NUMBER := 11;
+    resultado NUMBER := 0;
+BEGIN
+    resultado := SumaDeDosNumeros2 (Numero1, Numero2);
+    DBMS_OUTPUT.PUT_LINE('La suma de ' || Numero1 || ' y ' || Numero2 || ' es: ' || resultado);
+END;
+/
+
+
+
+
+CREATE OR REPLACE FUNCTION InvertirCadena2 (
+    Entrada IN VARCHAR2
+)RETURN VARCHAR2
+IS
+    Salida VARCHAR2(200);
+BEGIN
+    
+    Salida := '';
+    
+    FOR i IN REVERSE 1..LENGTH(Entrada) LOOP
+        Salida := Salida || SUBSTR(Entrada , i, 1);
+    END LOOP;
+
+    RETURN salida;
+END InvertirCadena2;
+/
+
+
+
+DECLARE
+    texto VARCHAR2(200) := 'Hola caracola';
+    resultado VARCHAR2(200) := '';
+BEGIN
+    resultado := InvertirCadena2(texto);
+    DBMS_OUTPUT.PUT_LINE(resultado);
+END;
+/
+
+
+
+
+
+
+        EJERCICIO 4
+	ESCRIBE UNA FUNCION QUE RECIBA UNA FECHA Y DEVUELVA EL AÑO, EN NÚMERO, CORRSPONDIENTE A ESA FECHA	
+
+
+
+
+CREATE OR REPLACE FUNCTION ObtenerFecha (FechaEntrada IN DATE) RETURN VARCHAR2
+IS
+    anyo NUMBER;
+    dia NUMBER;
+    mes NUMBER;
+    salida VARCHAR2(200);
+BEGIN
+    SELECT EXTRACT(YEAR FROM FechaEntrada) INTO anyo FROM DUAL;
+    SELECT EXTRACT(MONTH FROM FechaEntrada) INTO mes FROM DUAL;
+    SELECT EXTRACT(DAY FROM FechaEntrada) INTO dia FROM DUAL;
+
+    salida := TO_CHAR(anyo) || TO_CHAR(mes) || TO_CHAR(dia);
+
+    RETURN salida;
+END ObtenerFecha;
+/
+
+
+
+
+
+
+
+
+        EJERCICIO 5
+	ESCRIBE UN BLOQUE PL/SQL QUE HAGA USO DE LA FUNCION ANTERIOR	
+
+
+
+
+DECLARE
+    Fecha DATE := TO_DATE('2023-11-23', 'YYYY-MM-DD');
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(ObtenerFecha(Fecha));
+END;
+/
+
