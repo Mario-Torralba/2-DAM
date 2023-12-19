@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ProblemasDeHerencia_103{
+public class AvituallamientoEnLasEtapasCiclistas_122{
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -13,7 +13,7 @@ public class ProblemasDeHerencia_103{
             int distanciaTemp = 0;
 
             String salida = sc.nextLine();
-            if (salida == "-1") {
+            if (salida.equals("-1")) {
                 break;
             }
             String [] numeros = salida.split(" ");
@@ -22,24 +22,35 @@ public class ProblemasDeHerencia_103{
             for (int i = 0; i < numeros.length; i++) {
                 
                 if (i!= 0) {
-                    if(numeros[i] == numeros[i-1]){
+                    if(numeros[i].equals(numeros[i-1])){
                         distanciaTemp++;
                     }else{
                         if(distanciaTemp > distancia){
 
                             distancia = distanciaTemp;
+                            posicion = posicionTemp;
                         }
                         distanciaTemp = 0;
                     }
                 }
-                if(numeros[i] == numeros[i+1]){
-                    posicionTemp = i + 1;
+                if(i<numeros.length-1){
+
+                    if(numeros[i].equals(numeros[i+1])){
+                        posicionTemp = i + 1;
+                    }
+
                 }
+                
 
                 
             }
-            System.out.println(distancia);
-            System.out.println(posicion);
+            if((posicion-distancia) == 0 && distancia == 0){
+                System.out.println("HOY NO COMEN");
+            }else{
+                System.out.print(posicion-distancia);
+                System.out.println(" " + distancia);
+            }
+
         }
 
     }
