@@ -84,7 +84,7 @@
                 </div>
             </nav>
 
-            <section onload="peticionMenu('Menu', 'getVistaMenu')" id="secPruebaMenu" class="container-fluid">
+            <section id="secPruebaMenu" class="container-fluid">
 
             </section>     
                         

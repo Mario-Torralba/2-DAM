@@ -13,9 +13,16 @@
         }
 
         public function getVistaMenu(){
-            Vista::render('vistas/V_Menu.php');
+            recuperarMenu();
         }
+        public function recuperarMenu(){
 
+            $menu=$this->modelo->recuperarMenu();
+            
+            Vista::render('vistas/V_Menu.php', 
+            array('usuarios'=>$menu));
+
+        }
     }
 
 ?>
