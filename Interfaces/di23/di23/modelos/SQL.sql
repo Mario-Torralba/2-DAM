@@ -13,6 +13,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -43,10 +44,29 @@ CREATE TABLE `usuarios` (
   `pass` varchar(32) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `activo` char(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+CREATE TABLE `MENU` (
+  `ID_MENU` int(11) UNSIGNED NOT NULL,
+  `TITULO` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `ID_PADRE` int(11) UNSIGNED NOT NULL,
+  `ACCION` varchar(100) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `ORDEN` int(11) UNSIGNED NOT NULL,
+  `PRIVADO` char(1) NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
+INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO`) VALUES
+(1, 'Home', 0, 'returnHomePage()', 1, false),
+(2, 'Link', 0, '', 2, false),
+(3, 'Disabled', 0, '', 3, false),
+(4, 'Crud', 0, '', 4, false),
+(5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
+(6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
+(7, 'Something else here', 4, '', 3, true);
+
+ 
 
 INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES
 (1, 'mario', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'mario', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),

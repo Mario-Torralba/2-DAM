@@ -1,3 +1,5 @@
+window.onload = peticionMenu("Menu", "getVistaMenu")
+
 function cargarUnScript(url){
     let script = document.createElement('script');
     script.src = url;
@@ -21,6 +23,27 @@ function peticion(controlador, metodo) {
             document.getElementById("secContenidoPagina").innerHTML = vista;
             cargarUnScript('js/'+controlador+'.js');
             cargarUnScript('js/Paginado.js');
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
+}
+
+function peticionMenu(controlador, metodo) {
+    let opciones = { method: "GET" };
+    let parametros = "controlador=" + controlador + "&metodo=" + metodo;
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
+        })
+        .then(vista => {
+
+            document.getElementById("secPruebaMenu").innerHTML = vista;
+            cargarUnScript('js/'+controlador+'.js');
+
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);

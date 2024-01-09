@@ -74,7 +74,7 @@
                                     <li><a class="dropdown-item" 
                                         onclick="peticion('Usuarios', 'getVistaUsuarios')" >Usuarios</a></li>
                                     <li><a class="dropdown-item" 
-                                        onclick="peticion('Pedidos', 'getVistaPedidos')">Another action</a></li>
+                                        onclick="peticion('Pedidos', 'getVistaPedidos')">Pedidos</a></li>
                                     <li><a class="dropdown-item" 
                                         onclick="peticion('', '')">Something else here</a></li>
                                 </ul>
@@ -84,7 +84,10 @@
                 </div>
             </nav>
 
+            <section onload="peticionMenu('Menu', 'getVistaMenu')" id="secPruebaMenu" class="container-fluid">
 
+            </section>     
+                        
         </section>
         <section id="secContenidoPagina" class="container-fluid">
 
