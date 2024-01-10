@@ -12,5 +12,12 @@
             $this->DAO = new DAO();
         }
 
+        public function recuperarMenuModel(){
+
+            $SQL = "SELECT * FROM MENU";
+            $menu=$this->DAO->consultar($SQL);
+
+            return $menu;
+        }
     }
 ?>

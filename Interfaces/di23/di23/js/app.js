@@ -1,4 +1,4 @@
-window.onload = peticionMenu("Menu", "getVistaMenu")
+window.onload = peticionMenu("Menu", "recuperarMenuController")
 
 function cargarUnScript(url){
     let script = document.createElement('script');

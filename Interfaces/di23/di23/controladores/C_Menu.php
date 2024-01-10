@@ -12,16 +12,10 @@
             $this->modelo = new M_Menu();
         }
 
-        public function getVistaMenu(){
-            recuperarMenu();
-        }
-        public function recuperarMenu(){
-
-            $menu=$this->modelo->recuperarMenu();
-            
+        public function recuperarMenuController(){
+            $menu=$this->modelo->recuperarMenuModel();
             Vista::render('vistas/V_Menu.php', 
-            array('usuarios'=>$menu));
-
+            array('menu'=>$menu));
         }
     }
 
