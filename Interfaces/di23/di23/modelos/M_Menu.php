@@ -14,7 +14,7 @@
 
         public function recuperarMenuModel(){
 
-            $SQL = "SELECT * FROM MENU";
+            $SQL = "SELECT * FROM MENU ORDER BY ID_PADRE ASC, ORDEN ASC ";
             $menu=$this->DAO->consultar($SQL);
 
             return $menu;

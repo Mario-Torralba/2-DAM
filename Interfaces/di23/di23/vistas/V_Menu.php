@@ -11,11 +11,25 @@
             
     $menu = $datos['menu'];
 
+    $arrayPadres = array();
+
+    foreach ($menu as $dato) {
+        if($dato['ID_PADRE'] == 0){
+            $arrayPadres
+        }
+    }
+
+
     foreach($menu as $fila){
 
         if ($fila["ID_PADRE"] == 0) {
+
+            if($fila["ORDEN"] == 1){
+                
+            }
             echo    "<li class='nav-item'>
-                        <a class='nav-link' style='color: white' onclick='".$fila['ACCION']."'>".$fila['TITULO']."</a>";
+                        <a class='nav-link' href='#' style='color: white' onclick='".$fila['ACCION']."'>".$fila['TITULO']."</a>
+                    </li>";
         }
 
     }
@@ -41,10 +55,25 @@
 //                             onclick='peticion('', '')'>Something else here</a></li>
 //                     </ul>
 //                 </li>
-//             </ul>
-//         </div>
-//     </div>
-// </nav>"
+echo        "</ul>
+        </div>
+    </div>
+</nav>";
+
+$a = array('1','2','3',array(3.1,3.2,3.3));
+
+
+foreach ($a as $b) {
+    if(gettype($b) == 'string'){
+        echo $b;
+    }else{
+        foreach ($b as $c) {
+            echo $c;
+        }
+    }
+    
+}
+
 
 
 ?>
