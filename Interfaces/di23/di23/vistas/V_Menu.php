@@ -12,13 +12,41 @@
     $menu = $datos['menu'];
 
     $arrayPadres = array();
+    $contador = 1;
+    $arrayHijos = array();
 
     foreach ($menu as $dato) {
-        if($dato['ID_PADRE'] == 0){
-            $arrayPadres
+
+        if($dato['ID_PADRE'] == 0){   //   [0]     [1]
+            $arrayPadres[$contador] = array($dato, $arrayHijos);
+        }
+
+        $contador++;
+    }
+
+    $contadorHijo = 1;
+    $idDeMismoPadreParaReseteoDelContadorDeHijos = 0;
+
+    foreach ($menu as $dato) {
+
+        if($dato['ID_PADRE'] != $idDeMismoPadreParaReseteoDelContadorDeHijos){
+            $contadorHijo = 1;
+        }
+
+        if($dato['ID_PADRE'] != 0){
+            $arrayPadres[$dato['ID_PADRE']][0] = $dato;
+            $contadorHijo++;
+            $idDeMismoPadreParaReseteoDelContadorDeHijos = $dato['ID_PADRE'];
         }
     }
 
+    foreach ($arrayPadres as $elemento) {
+
+        echo $elemento[0]['ID_PADRE'];
+        // foreach ($elemento[1] as $elemento2) {
+        //     echo $elemento2[0]['ID_PADRE'];
+        // }
+    }
 
     foreach($menu as $fila){
 
