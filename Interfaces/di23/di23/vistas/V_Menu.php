@@ -32,7 +32,6 @@
 
     }
 
-    print_r($arrayPadres);
 
     echo "<nav class='navbar navbar-expand-sm navbar-light' style='background-color: #68a8f1' aria-label='Fourth navbar example'>
         <div class='container-fluid'>
@@ -45,10 +44,39 @@
             
     
 
-    foreach ($arrayPadres as $e) {
-        foreach($arrayPadres[$e] as $e2){
-            
+    foreach ($arrayPadres as $padre) {
+
+        if($padre[1] != null){
+            echo "  <li class='nav-item dropdown'>
+                    <a class='nav-link dropdown-toggle' style='color: ";
+            if($padre[0]['TITULO'] != 'Disabled'){
+                echo "white' ";
+            }else{
+                echo "grey' ";
+            }
+            echo    "href='#' data-bs-toggle='dropdown' aria-expanded='false'>".$padre[0]['TITULO']."</a>
+                    <ul class='dropdown-menu'>";
+
+            foreach ($padre[1] as $hijo) {
+
+                // print_r($hijo);
+                echo '  <li onclick="'.$hijo['ACCION'].'"><a class="dropdown-item" href="#">'.$hijo['TITULO'].'</a></li>';
+            }
+            echo "  </ul>
+                    </li>";
+        }else{
+            echo "  <li class='nav-item' onclick='".$padre[0]['ACCION']."'>
+            <a class='nav-link active' style='color: ";
+            if($padre[0]['TITULO'] != 'Disabled'){
+                echo "white' ";
+            }else{
+                echo "grey' ";
+            }
+        
+            echo "aria-current='page' href='#'>".$padre[0]['TITULO']."</a>
+            </li>";
         }
+
     }
 
     

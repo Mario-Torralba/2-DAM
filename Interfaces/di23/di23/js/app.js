@@ -7,6 +7,9 @@ function cargarUnScript(url){
     script.defer = true;
     script.type = "module";
 }
+function returnHomePage() {
+    window.location = "index.php"
+}
 
 function peticion(controlador, metodo) {
     let opciones = { method: "GET" };
