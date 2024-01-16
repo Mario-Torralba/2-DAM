@@ -79,28 +79,6 @@
 
     }
 
-    
-//                "<li class='nav-item'>
-//                     <a class='nav-link active' style='color: white' aria-current='page' href='#'>Home</a>
-//                 </li>
-//                 <li class='nav-item'>
-//                     <a class='nav-link' style='color: white' href='#'>Link</a>
-//                 </li>
-//                 <li class='nav-item'>
-//                     <a class='nav-link disabled'>Disabled</a>
-//                 </li>
-//                 <li class='nav-item dropdown'>
-//                     <a class='nav-link dropdown-toggle' style='color: white' href='#' data-bs-toggle='dropdown' 
-//                         aria-expanded='false'>Cruds</a>
-//                     <ul class='dropdown-menu'>
-//                         <li><a class='dropdown-item' 
-//                             onclick='peticion('Usuarios', 'getVistaUsuarios')' >Usuarios</a></li>
-//                         <li><a class='dropdown-item' 
-//                             onclick='peticion('Pedidos', 'getVistaPedidos')'>Pedidos</a></li>
-//                         <li><a class='dropdown-item' 
-//                             onclick='peticion('', '')'>Something else here</a></li>
-//                     </ul>
-//                 </li>
 echo        "</ul>
         </div>
     </div>
