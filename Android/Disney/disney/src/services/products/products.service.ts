@@ -1,43 +1,64 @@
-import { Injectable } from '@nestjs/common';
+
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateProductDto, UpdateProductDto } from 'src/DTO/product.dto';
 import { Product } from 'src/entities/product.entity';
+import { ProductMocks } from 'src/mocks/product.mocks';
 
 
 @Injectable()
 export class ProductsService {
 
-    private counterId = 1;
-    private Product : Product[] = [{
-        id:1,
-        name: 'Product 1',
-        descripcion: 'oeoeoe',
-        price: 100,
-        stock: 200,
-        image: 'Imagen 1'
-    }];
+    private counterId = 0;
+    private Product : Product[] = ProductMocks;
 
     findAll() {
         return this.Product;
     }
 
-    findOne (id:number){
-        return this.Product.find((item) => item.id ===id);
+    findOne (id:string){
+        // return this.Product.find((item) => item.id === id);
+        const producto = this.Product.find((item)=>item.id === id)
+
+        if(producto){
+            return producto;
+        }else{
+            throw new NotFoundException(`Product ${id} not found`);
+        }
     }
 
-    create(products:any){
+    create(products:CreateProductDto){
         this.counterId = this.counterId + 1;
         const newProduct = {
-            id: this.counterId,
+            id: this.counterId + "",
             ...products,
         };
         this.Product.push(newProduct);
         return newProduct;
     }
 
-    update(id:number, products:any){
+    update(id:string, newUpdate:UpdateProductDto){
+
         const productFound = this.findOne(id);
+        let message = '';
+
+        if(productFound){
+          
+            const index = this.Product.findIndex((item)=>
+                item.id === id
+            );
+
+            this.Prosdeduct[index] = {
+                ...newUpdate
+            }
+            message = 'Product updated';
+        }else{
+            message = 'Product not found';
+        }
+
+        return message;
     }
 
-    delete(id:number){
+    delete(id:string){
 
         const productFound = this.Product.findIndex((item) => item.id === id);
 
