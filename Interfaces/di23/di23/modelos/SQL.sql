@@ -12,37 +12,26 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `di23`
---
 CREATE DATABASE IF NOT EXISTS `di23` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `di23`;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id_Usuario` int(11) UNSIGNED NOT NULL,
-  `nombre` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `apellido_1` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `apellido_2` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `sexo` char(1) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `fecha_Alta` date DEFAULT NULL,
-  `mail` varchar(100) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `movil` varchar(15) NOT NULL DEFAULT '',
-  `login` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `pass` varchar(32) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `activo` char(1) NOT NULL DEFAULT 'N'
+CREATE TABLE `USUARIO` (
+  `ID_USUARIO` int(11) UNSIGNED NOT NULL,
+  `NOMBRE` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `APELLIDO_1` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `APELLIDO_2` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `SEXO` char(1) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `FECHA_ALTA` date DEFAULT NULL,
+  `MAIL` varchar(100) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `MOVIL` varchar(15) NOT NULL DEFAULT '',
+  `LOGIN` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `PASS` varchar(32) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `ACTIVO` char(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
 CREATE TABLE `MENU` (
@@ -54,9 +43,87 @@ CREATE TABLE `MENU` (
   `PRIVADO` char(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `usuarios`
---
+CREATE TABLE `PERMISO` (
+  `ID_PERMISO` int(11) UNSIGNED NOT NULL,
+  `ID_MENU` int(11) UNSIGNED NOT NULL,
+  `NOMBRE_PERMISO` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ROL` (
+  `ID_ROL` int(11) UNSIGNED NOT NULL,
+  `NOMBRE_ROL` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE PERMISO_USUARIO(
+  `ID_PERMISO_USUARIO` int(11) UNSIGNED NOT NULL,
+  `ID_PERMISO` int(11) UNSIGNED NOT NULL,
+  `ID_USUARIO` int(11) UNSIGNED NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE PERMISO_ROL(
+  `ID_PERMISO_ROL` int(11) UNSIGNED NOT NULL,
+  `ID_PERMISO` int(11) UNSIGNED NOT NULL,
+  `ID_ROL` int(11) UNSIGNED NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE ROL_USUARIO(
+  `ID_ROL_USUARIO` int(11) UNSIGNED NOT NULL,
+  `ID_ROL` int(11) UNSIGNED NOT NULL,
+  `ID_USUARIO` int(11) UNSIGNED NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+ALTER TABLE `USUARIO`
+  ADD PRIMARY KEY (`ID_USUARIO`),
+  ADD UNIQUE KEY `login` (`login`);
+
+
+ALTER TABLE `USUARIO`
+  MODIFY `ID_USUARIO` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
+  SET FOREIGN_KEY_CHECKS=1;
+
+
+ALTER TABLE `MENU`
+  ADD PRIMARY KEY (`ID_MENU`);
+  
+
+ALTER TABLE `PERMISO`
+  ADD PRIMARY KEY (`ID_PERMISO`),
+  ADD CONSTRAINT `FK_PERMISO_MENU` FOREIGN KEY (`ID_MENU`) REFERENCES `MENU` (`ID_MENU`);
+
+ALTER TABLE `ROL`
+  ADD PRIMARY KEY (`ID_ROL`);
+
+
+ALTER TABLE `PERMISO_USUARIO`
+  ADD PRIMARY KEY (`ID_PERMISO_USUARIO`),
+  ADD CONSTRAINT `FK_PERMISO_USUARIO_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`),
+  ADD CONSTRAINT `FK_PERMISO_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);
+  
+
+ALTER TABLE `PERMISO_ROL`
+  ADD PRIMARY KEY (`ID_PERMISO_ROL`),
+  ADD CONSTRAINT `FK_PERMISO_ROL_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`),
+  ADD CONSTRAINT `FK_PERMISO_ROL_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);
+
+ALTER TABLE `ROL_USUARIO`
+  ADD PRIMARY KEY (`ID_ROL_USUARIO`),
+  ADD CONSTRAINT `FK_ROL_USUARIO_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`),
+  ADD CONSTRAINT `FK_ROL_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);
+
+
+
+INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `PERMISO_NOMBRE`) VALUES
+(1,1,'Crear'),
+
+INSERT INTO `ROL` (`ID_ROL`,`ROL_NOMBRE`) VALUES
+(1,'Administrador'),
+(1,'Visitante');
+
+
 INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO`) VALUES
 (1, 'Home', 0, 'returnHomePage()', 1, false),
 (2, 'Link', 0, '', 2, false),
@@ -65,10 +132,10 @@ INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO
 (5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
 (6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
 (7, 'Something else here', 4, '', 3, true);
+-- (7, 'Administrador', 0, '', 5, true);
 
- 
 
-INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES
+INSERT INTO `USUARIO` (`ID_USUARIO`, `NOMBRE`, `APELLIDO_1`, `APELLIDO_2`, `SEXO`, `FECHA_ALTA`, `MAIL`, `MOVIL`, `LOGIN`, `PASS`, `ACTIVO`) VALUES
 (1, 'mario', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'mario', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
 (2, 'admin', 'ad', 'ad', 'H', '2020-10-02', 'admin@2si2023.es', '976466590', 'admin', 'e9dbd0ab151d5957cd9869a142ba2fd1', 'S'),
 (3, 'marie', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'marie', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
@@ -198,27 +265,6 @@ INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sex
 (496, 'Tony', 'Snowden', '', 'H', '2020-02-15', 'Snowden@2si2023.es', '64496496', 'Snowden', '202cb962ac59075b964b07152d234b70', 'N'),
 (497, 'ss', 'ss', '', 'H', '2022-12-07', 'asfsdf@sfsd.es', '', 'javier22', '25d55ad283aa400af464c76d713c07ad', 'S');
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_Usuario`),
-  ADD UNIQUE KEY `login` (`login`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id_Usuario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
