@@ -18,8 +18,9 @@
             $valido='N';
             $usuarios = $this->modelo->login($usuario);
             if (count($usuarios)>0) {
-                if($usuario==$usuarios[0]['login'] && md5($pass)== $usuarios[0]['pass']){
+                if($usuario==$usuarios[0]['LOGIN'] && md5($pass)== $usuarios[0]['PASS']){
                     $_SESSION['usuario']=$usuario;
+                    $_SESSION['ID_USUARIO']=$usuarios[0]['ID_USUARIO'];
                     $valido='S';
                 }
             }

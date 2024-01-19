@@ -44,7 +44,7 @@ function peticionMenu(controlador, metodo) {
         })
         .then(vista => {
 
-            document.getElementById("secPruebaMenu").innerHTML = vista;
+            document.getElementById("secMenuPagina").innerHTML = vista;
             cargarUnScript('js/'+controlador+'.js');
 
         })

@@ -116,28 +116,10 @@ ALTER TABLE `ROL_USUARIO`
 
 
 
-INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `PERMISO_NOMBRE`) VALUES
-(1,1,'Crear'),
-
-INSERT INTO `ROL` (`ID_ROL`,`ROL_NOMBRE`) VALUES
-(1,'Administrador'),
-(1,'Visitante');
-
-
-INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO`) VALUES
-(1, 'Home', 0, 'returnHomePage()', 1, false),
-(2, 'Link', 0, '', 2, false),
-(3, 'Disabled', 0, '', 3, false),
-(4, 'Crud', 0, '', 4, false),
-(5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
-(6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
-(7, 'Something else here', 4, '', 3, true);
--- (7, 'Administrador', 0, '', 5, true);
-
 
 INSERT INTO `USUARIO` (`ID_USUARIO`, `NOMBRE`, `APELLIDO_1`, `APELLIDO_2`, `SEXO`, `FECHA_ALTA`, `MAIL`, `MOVIL`, `LOGIN`, `PASS`, `ACTIVO`) VALUES
 (1, 'mario', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'mario', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
-(2, 'admin', 'ad', 'ad', 'H', '2020-10-02', 'admin@2si2023.es', '976466590', 'admin', 'e9dbd0ab151d5957cd9869a142ba2fd1', 'S'),
+(2, 'admin', 'ad', 'ad', 'H', '2020-10-02', 'admin@2si2023.es', '976466590', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'S'),
 (3, 'marie', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'marie', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
 (7, 'Maria', 'Fernandez', 'Castro', 'H', '0000-00-00', 'mfernandez@2si2023.es', '2342423', 'safdfa', 'e10adc3949ba59abbe56e057f20f883e', 'S'),
 (8, 'Felipe', 'Smit', 'Fernandez', 'H', '2020-11-23', 'fsmit@2si2023.com', '976466599', 'fperez', 'e10adc3949ba59abbe56e057f20f883e', 'S'),
@@ -265,8 +247,97 @@ INSERT INTO `USUARIO` (`ID_USUARIO`, `NOMBRE`, `APELLIDO_1`, `APELLIDO_2`, `SEXO
 (496, 'Tony', 'Snowden', '', 'H', '2020-02-15', 'Snowden@2si2023.es', '64496496', 'Snowden', '202cb962ac59075b964b07152d234b70', 'N'),
 (497, 'ss', 'ss', '', 'H', '2022-12-07', 'asfsdf@sfsd.es', '', 'javier22', '25d55ad283aa400af464c76d713c07ad', 'S');
 
+
+INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO`) VALUES
+(1, 'Home', 0, 'returnHomePage()', 1, false),
+(2, 'Link', 0, '', 2, false),
+(3, 'Disabled', 0, '', 3, false),
+(4, 'Crud', 0, '', 4, false),
+(5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
+(6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
+(7, 'Something else here', 4, '', 3, true),
+(8, 'Administrador', 0, '', 5, true);
+
+
+INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
+(1,1,'VerHome'),
+(2,2,'VerLink'),
+(3,3,'VerDisabled'),
+(4,4,'VerCrud'),
+(5,5,'VerUsuarios'),
+(6,6,'VerPedidos'),
+(7,7,'VerSomethingElseHere'),
+(8,8,'VerAdministracion');
+
+INSERT INTO `ROL` (`ID_ROL`,`NOMBRE_ROL`) VALUES
+(1,'Administrador'),
+(2,'Visitante');
+
+INSERT INTO `PERMISO_USUARIO` (`ID_PERMISO_USUARIO`, `ID_PERMISO`, `ID_USUARIO`) VALUES
+
+(1,1,1), -- mario
+(2,2,1), -- mario
+(3,3,1), -- mario
+(4,4,1), -- mario
+(5,5,1), -- mario
+(6,6,1), -- mario
+(7,7,1), -- mario
+
+(8,1,2), -- Admin
+(9,2,2), -- Admin
+(10,3,2), -- Admin
+(11,4,2), -- Admin
+(12,5,2), -- Admin
+(13,6,2), -- Admin
+(14,7,2), -- Admin
+(15,8,2); -- Admin
+
+INSERT INTO `PERMISO_ROL` (`ID_PERMISO_ROL`, `ID_PERMISO`, `ID_ROL`) VALUES
+(1,1,2), -- mario
+(2,2,2), -- mario
+(3,3,2), -- mario
+(4,4,2), -- mario
+(5,5,2), -- mario
+(6,6,2), -- mario
+(7,7,2), -- mario
+
+(8,1,1), -- Admin
+(9,2,1), -- Admin
+(10,3,1), -- Admin
+(11,4,1), -- Admin
+(12,5,1), -- Admin
+(13,6,1), -- Admin
+(14,7,1), -- Admin
+(15,8,1); -- Admin
+
+INSERT INTO `ROL_USUARIO` (`ID_ROL_USUARIO`, `ID_ROL`, `ID_USUARIO`) VALUES
+(1,1,2),
+(2,2,1);
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SELECT
+    PU.ID_PERMISO_USUARIO,
+    P.ID_PERMISO,
+    P.NOMBRE_PERMISO,
+    RU.ID_ROL_USUARIO,
+    R.ID_ROL,
+    R.NOMBRE_ROL,
+    M.ID_MENU,
+    M.TITULO,
+    M.ID_PADRE,
+    M.ACCION,
+    M.ORDEN,
+    M.PRIVADO
+FROM USUARIO U
+LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
+LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
+LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
+LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
+LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
+WHERE U.ID_USUARIO = 2
+ORDER BY M.ID_PADRE ASC, M.ORDEN ASC;

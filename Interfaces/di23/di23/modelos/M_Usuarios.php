@@ -17,13 +17,13 @@
             
             extract($filtros);
             
-            $SQL="SELECT * FROM usuarios WHERE 1=1 ";
+            $SQL="SELECT * FROM USUARIO WHERE 1=1 ";
             
             if($nombre_texto!=''){
                 $aTexto=explode(' ', $nombre_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR nombre LIKE '%$palabra%' ";
+                    $SQL.=" OR NOMBRE LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
             }
@@ -32,7 +32,7 @@
                 $aTexto=explode(' ', $apellido_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR apellido_1 LIKE '%$palabra%' ";
+                    $SQL.=" OR APELLIDO_1 LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
             }
@@ -41,7 +41,7 @@
                 $aTexto=explode(' ', $a_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR activo LIKE '%$palabra%' ";
+                    $SQL.=" OR ACTIVO LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) LIMIT " . (($paginaActual-1)*$cantidadEntradas) . ",$cantidadEntradas";
             }
@@ -56,13 +56,13 @@
             
             extract($filtros);
             
-            $SQL="SELECT * FROM usuarios WHERE 1=1 ";
+            $SQL="SELECT * FROM USUARIO WHERE 1=1 ";
             
             if($nombre_texto!=''){
                 $aTexto=explode(' ', $nombre_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR nombre LIKE '%$palabra%' ";
+                    $SQL.=" OR NOMBRE LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
             }
@@ -71,7 +71,7 @@
                 $aTexto=explode(' ', $apellido_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR apellido_1 LIKE '%$palabra%' ";
+                    $SQL.=" OR APELLIDO_1 LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
             }
@@ -80,7 +80,7 @@
                 $aTexto=explode(' ', $a_texto);
                 $SQL.=" AND (1=2 ";
                 foreach ($aTexto as $palabra){
-                    $SQL.=" OR activo LIKE '%$palabra%' ";
+                    $SQL.=" OR ACTIVO LIKE '%$palabra%' ";
                 }
                 $SQL.=" ) ";
             }
@@ -91,7 +91,7 @@
 
         public function login($usuario){
 
-            $SQL = "SELECT * FROM usuarios WHERE login LIKE '%$usuario%'";
+            $SQL = "SELECT * FROM USUARIO WHERE LOGIN LIKE '%$usuario%'";
             $usuarios=$this->DAO->consultar($SQL);
 
             return $usuarios;
@@ -109,7 +109,7 @@
 
             $passw = md5($pass_crear);
 
-            $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, login, pass) VALUES ('$nombre_crear', '$apellido_1_crear', '$apellido_2_crear', '$login_crear', '$passw')";
+            $SQL = "INSERT INTO USUARIO (NOMBRE, APELLIDO_1, APELLIDO_2, LOGIN, PASS) VALUES ('$nombre_crear', '$apellido_1_crear', '$apellido_2_crear', '$login_crear', '$passw')";
 
             $this->DAO->insertar($SQL);
             
@@ -123,7 +123,7 @@
             $id = 9999;
             extract($data);
 
-            $SQL = "DELETE FROM usuarios WHERE id_Usuario = $id;";
+            $SQL = "DELETE FROM USUARIO WHERE ID_USUARIO = $id;";
             
             $filas = $this->DAO->borrar($SQL);
 
@@ -141,7 +141,7 @@
 
             extract($data);
 
-            $SQL = "UPDATE usuarios SET nombre = '$nombre_editar', apellido_1 = '$apellido_1_editar', apellido_2 = '$apellido_2_editar', mail = '$email_editar', activo = '$activo_editar' WHERE id_Usuario = $id;";
+            $SQL = "UPDATE USUARIO SET NOMBRE = '$nombre_editar', APELLIDO_1 = '$apellido_1_editar', APELLIDO_2 = '$apellido_2_editar', MAIL = '$email_editar', ACTIVO = '$activo_editar' WHERE ID_USUARIO = $id;";
             
             $filas = $this->DAO->actualizar($SQL);
 

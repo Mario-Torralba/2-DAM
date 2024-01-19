@@ -29,35 +29,35 @@
         if($contador%2==1){
             echo'
             <div class="filaInferior1">
-                <div class="celda">'.$fila['id_Usuario'].'</div>
-                <div class="celda">'.$fila['nombre'].'</div>
-                <div class="celda">'.$fila['apellido_1'].'</div>
-                <div class="celda">'.$fila['apellido_2'].'</div>
-                <div class="celda">'.$fila['mail'].'</div>';
-                if($fila['activo']=='S'){
+                <div class="celda">'.$fila['ID_USUARIO'].'</div>
+                <div class="celda">'.$fila['NOMBRE'].'</div>
+                <div class="celda">'.$fila['APELLIDO_1'].'</div>
+                <div class="celda">'.$fila['APELLIDO_2'].'</div>
+                <div class="celda">'.$fila['MAIL'].'</div>';
+                if($fila['ACTIVO']=='S'){
                     echo '<div class="celda verde">Activo</div>';
                 }else{
                     echo '<div class="celda rojo">No Activo</div>';
                 }
-                echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['id_Usuario'].')"></div>
-                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['id_Usuario'].')"></div>
+                echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['ID_USUARIO'].')"></div>
+                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['ID_USUARIO'].')"></div>
             </div>
             ';
         }else{
             echo'
             <div class="filaInferior2">
-                <div class="celda">'.$fila['id_Usuario'].'</div>
-                <div class="celda">'.$fila['nombre'].'</div>
-                <div class="celda">'.$fila['apellido_1'].'</div>
-                <div class="celda">'.$fila['apellido_2'].'</div>
-                <div class="celda">'.$fila['mail'].'</div>';
-                if($fila['activo']=='S'){
+                <div class="celda">'.$fila['ID_USUARIO'].'</div>
+                <div class="celda">'.$fila['NOMBRE'].'</div>
+                <div class="celda">'.$fila['APELLIDO_1'].'</div>
+                <div class="celda">'.$fila['APELLIDO_2'].'</div>
+                <div class="celda">'.$fila['MAIL'].'</div>';
+                if($fila['ACTIVO']=='S'){
                     echo '<div class="celda verde">Activo</div>';
                 }else{
                     echo '<div class="celda rojo">No Activo</div>';
                 }
-                echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['id_Usuario'].')"></div>
-                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['id_Usuario'].')"></div>
+                echo '<div class="celda"><img class="prueba" src="img/delete2.png" value="" onclick="borrarUsuarios('.$fila['ID_USUARIO'].')"></div>
+                <div class="celda"><img class="prueba" src="img/editar.png" value="" onclick="editarUsuarios('.$fila['ID_USUARIO'].')"></div>
             </div>
             ';
         }

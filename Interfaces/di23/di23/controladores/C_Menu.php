@@ -13,9 +13,11 @@
         }
 
         public function recuperarMenuController(){
+
             $menu=$this->modelo->recuperarMenuModel();
             Vista::render('vistas/V_Menu.php', 
             array('menu'=>$menu));
+
         }
     }
 
