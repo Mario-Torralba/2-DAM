@@ -1,7 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static Thread programaPrincipal = Thread.currentThread();
+
+    public static void main(String[] args) throws InterruptedException {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Cuántos hilos quieres que tenga el programa?");
@@ -65,6 +68,11 @@ public class Main {
 
         Multihilo.getLstHilos().get(0).interrupt();
 
+        try {
+            Thread.sleep(9999);
+        } catch (InterruptedException e) {
+            System.out.println("CLAP, CLAP , CLAP");
+        }
 
     }
 

@@ -28,7 +28,16 @@ public class Multihilo extends Thread{
                 try{
                     Cancion.getCancion().get(Cancion.getEstrofaActual());
                 }catch(Exception ex){
-                    salida = false;
+                    if(this.idHilo == lstHilos.size()-1){
+                        reset = true;
+                    }
+                    if(reset){
+                        lstHilos.get(0).interrupt();
+                    }else{
+                        lstHilos.get(this.idHilo+1).interrupt();
+                    }
+                    Main.programaPrincipal.interrupt();
+                    break;
                 }
 
                 System.out.println("Soy el hilo " + idHilo + " -------> " + Cancion.getCancion().get(Cancion.getEstrofaActual()));
@@ -37,7 +46,6 @@ public class Multihilo extends Thread{
                 if(this.idHilo == lstHilos.size()-1){
                     reset = true;
                 }
-
                 if(reset){
                     lstHilos.get(0).interrupt();
                 }else{
