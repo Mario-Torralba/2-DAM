@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static Thread programaPrincipal = Thread.currentThread();
+    public static ArrayList<Multihilo> listaHilos = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -57,6 +58,7 @@ public class Main {
         for (int i = 0; i < iteraciones; i++) {
 
             Multihilo hilo = new Multihilo();
+            listaHilos.add(hilo);
             hilo.start();
             try {
                 Thread.sleep(100);
@@ -69,11 +71,11 @@ public class Main {
         Multihilo.getLstHilos().get(0).interrupt();
 
         try {
-            Thread.sleep(9999);
+            listaHilos.get(0).join();
         } catch (InterruptedException e) {
-            System.out.println("CLAP, CLAP , CLAP");
         }
 
+        System.out.println("CLAP, CLAP, CLAP");
     }
 
 }

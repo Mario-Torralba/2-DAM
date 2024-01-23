@@ -6,7 +6,7 @@ public class Multihilo extends Thread{
     protected int idHilo;
     protected static int contadorHilos = 0;
     boolean reset;
-    boolean salida = true;
+    boolean salida = false;
 
     protected static ArrayList<Multihilo> lstHilos = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class Multihilo extends Thread{
     @Override
     public synchronized void run() {
 
-        while(salida){
+        while(!salida){
 
             try {
                 sleep(9999);
@@ -36,7 +36,7 @@ public class Multihilo extends Thread{
                     }else{
                         lstHilos.get(this.idHilo+1).interrupt();
                     }
-                    Main.programaPrincipal.interrupt();
+                    salida = true;
                     break;
                 }
 
