@@ -1,0 +1,132 @@
+///////////////////////////
+///     EJERCICIO_6     ///
+///////////////////////////
+
+CREATE OR REPLACE FUNCTION ejercicio6(fecha_inicio DATE, fecha_fin DATE) RETURN NUMBER IS
+    anos_completos NUMBER;
+BEGIN
+    SELECT EXTRACT(YEAR FROM fecha_fin) - EXTRACT(YEAR FROM fecha_inicio) INTO anos_completos FROM dual;
+
+    IF TO_CHAR(fecha_fin, 'MMDD') < TO_CHAR(fecha_inicio, 'MMDD') THEN
+        anos_completos := anos_completos - 1;
+    END IF;
+
+    RETURN anos_completos;
+END ejercicio6;
+/
+
+SELECT ejercicio6(TO_DATE('2021-01-01', 'YYYY-MM-DD'), TO_DATE('2024-01-01', 'YYYY-MM-DD')) FROM dual;
+/
+
+///////////////////////////
+///     EJERCICIO_7     ///
+///////////////////////////
+
+CREATE OR REPLACE FUNCTION ejercicio7(fecha_inicio DATE, fecha_fin DATE) RETURN NUMBER IS
+    anos_completos NUMBER;
+    trienios NUMBER;
+BEGIN
+    anos_completos := ejercicio6(fecha_inicio, fecha_fin);
+
+    trienios := FLOOR(anos_completos / 3);
+
+    RETURN trienios;
+END ejercicio7;
+/
+
+SELECT ejercicio7(TO_DATE('2000-01-01', 'YYYY-MM-DD'), TO_DATE('2024-01-01', 'YYYY-MM-DD')) FROM dual;
+/
+
+///////////////////////////
+///     EJERCICIO_8     ///
+///////////////////////////
+
+CREATE OR REPLACE PROCEDURE ejercicio8(
+    num1 NUMBER DEFAULT 0,
+    num2 NUMBER DEFAULT 0,
+    num3 NUMBER DEFAULT 0,
+    num4 NUMBER DEFAULT 0,
+    num5 NUMBER DEFAULT 0
+) IS
+    suma_total NUMBER;
+BEGIN
+    suma_total := num1 + num2 + num3 + num4 + num5;
+
+    DBMS_OUTPUT.PUT_LINE('La suma de los números es: ' || suma_total);
+END ejercicio8;
+/
+
+BEGIN
+    ejercicio8(10, 20, 30, 40, 50);
+END;
+/
+
+///////////////////////////
+///     EJERCICIO_9     ///
+///////////////////////////
+
+CREATE OR REPLACE FUNCTION ejercicio_9(p_cadena IN VARCHAR2) RETURN VARCHAR2 IS
+    cadena_resultante VARCHAR2(4000);
+BEGIN
+    cadena_resultante := '';
+    FOR i IN 1..LENGTH(p_cadena) LOOP
+        IF SUBSTR(p_cadena, i, 1) BETWEEN 'A' AND 'Z' OR SUBSTR(p_cadena, i, 1) BETWEEN 'a' AND 'z' THEN
+            cadena_resultante := cadena_resultante || SUBSTR(p_cadena, i, 1);
+        ELSE
+            cadena_resultante := cadena_resultante || ' ';
+        END IF;
+    END LOOP;
+    RETURN cadena_resultante;
+END ejercicio_9;
+/
+
+SELECT ejercicio_9('Texto1 con símbolos!') FROM dual;
+/
+
+///////////////////////////
+///     EJERCICIO_10     ///
+///////////////////////////
+
+CREATE OR REPLACE PROCEDURE ejercicio10(p_empleado_id IN NUMBER) IS
+BEGIN
+    DELETE FROM EMPLE WHERE EMP_NO = p_empleado_id;
+    COMMIT;
+END ejercicio10;
+/
+
+BEGIN
+    ejercicio10(123);
+END;
+/
+
+
+///////////////////////////
+///     EJERCICIO_11     ///
+///////////////////////////
+
+CREATE OR REPLACE PROCEDURE ejercicio11(
+    p_departamento_id IN DEPART.DEPT_NO%TYPE,
+    p_nueva_localidad IN DEPART.LOC%TYPE
+) IS
+BEGIN
+    UPDATE DEPART
+    SET LOC = p_nueva_localidad
+    WHERE DEPT_NO= p_departamento_id;
+    COMMIT;
+END ejercicio11;
+/
+
+
+BEGIN
+    ejercicio11(1, 'Nueva Localidad'); 
+END;
+/
+
+///////////////////////////
+///     EJERCICIO_12     ///
+///////////////////////////
+
+
+SELECT object_name, object_type, status
+FROM user_objects
+WHERE object_type IN ('PROCEDURE', 'FUNCTION');
