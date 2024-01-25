@@ -65,12 +65,12 @@
             echo "  </ul>
                     </li>";
         }else{
-            echo "  <li class='nav-item' onclick='".$padre[0]['ACCION']."'>
-            <a class='nav-link active' style='color: ";
+            echo '  <li class="nav-item" onclick="'.$padre[0]['ACCION'].'">
+            <a class="nav-link active" style="color: ';
             if($padre[0]['TITULO'] != 'Disabled'){
-                echo "white' ";
+                echo 'white" ';
             }else{
-                echo "grey' ";
+                echo 'grey" ';
             }
         
             echo "aria-current='page' href='#'>".$padre[0]['TITULO']."</a>

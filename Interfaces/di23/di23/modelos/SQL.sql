@@ -256,7 +256,8 @@ INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO
 (5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
 (6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
 (7, 'Something else here', 4, '', 3, true),
-(8, 'Administrador', 0, '', 5, true);
+(8, 'Administrador', 0, '', 5, true),
+(9, 'Configuracion-Menu', 0, "peticion('Menu','getVistaConfiguracionMenu')", 6, true);
 
 
 INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
@@ -267,7 +268,8 @@ INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
 (5,5,'VerUsuarios'),
 (6,6,'VerPedidos'),
 (7,7,'VerSomethingElseHere'),
-(8,8,'VerAdministracion');
+(8,8,'VerAdministracion'),
+(9,9,'VerConfiguracionMenu');
 
 INSERT INTO `ROL` (`ID_ROL`,`NOMBRE_ROL`) VALUES
 (1,'Administrador'),
@@ -290,9 +292,13 @@ INSERT INTO `PERMISO_USUARIO` (`ID_PERMISO_USUARIO`, `ID_PERMISO`, `ID_USUARIO`)
 (12,5,2), -- Admin
 (13,6,2), -- Admin
 (14,7,2), -- Admin
-(15,8,2); -- Admin
+(15,8,2), -- Admin
+(16,9,2); -- Admin
+
+
 
 INSERT INTO `PERMISO_ROL` (`ID_PERMISO_ROL`, `ID_PERMISO`, `ID_ROL`) VALUES
+
 (1,1,2), -- mario
 (2,2,2), -- mario
 (3,3,2), -- mario
@@ -308,7 +314,8 @@ INSERT INTO `PERMISO_ROL` (`ID_PERMISO_ROL`, `ID_PERMISO`, `ID_ROL`) VALUES
 (12,5,1), -- Admin
 (13,6,1), -- Admin
 (14,7,1), -- Admin
-(15,8,1); -- Admin
+(15,8,1), -- Admin
+(16,9,1); -- Admin
 
 INSERT INTO `ROL_USUARIO` (`ID_ROL_USUARIO`, `ID_ROL`, `ID_USUARIO`) VALUES
 (1,1,2),
@@ -320,24 +327,26 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-SELECT
-    PU.ID_PERMISO_USUARIO,
-    P.ID_PERMISO,
-    P.NOMBRE_PERMISO,
-    RU.ID_ROL_USUARIO,
-    R.ID_ROL,
-    R.NOMBRE_ROL,
-    M.ID_MENU,
-    M.TITULO,
-    M.ID_PADRE,
-    M.ACCION,
-    M.ORDEN,
-    M.PRIVADO
-FROM USUARIO U
-LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
-LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
-LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
-LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
-LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
-WHERE U.ID_USUARIO = 2
-ORDER BY M.ID_PADRE ASC, M.ORDEN ASC;
+
+
+-- SELECT
+--     PU.ID_PERMISO_USUARIO,
+--     P.ID_PERMISO,
+--     P.NOMBRE_PERMISO,
+--     RU.ID_ROL_USUARIO,
+--     R.ID_ROL,
+--     R.NOMBRE_ROL,
+--     M.ID_MENU,
+--     M.TITULO,
+--     M.ID_PADRE,
+--     M.ACCION,
+--     M.ORDEN,
+--     M.PRIVADO
+-- FROM USUARIO U
+-- LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
+-- LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
+-- LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
+-- LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
+-- LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
+-- WHERE U.ID_USUARIO = 2
+-- ORDER BY M.ID_PADRE ASC, M.ORDEN ASC;
