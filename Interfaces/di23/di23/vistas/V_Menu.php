@@ -1,6 +1,7 @@
 <?php
 
     $menu = $datos['menu'];
+    $_SESSION['PERMISOS'] = $menu;
 
     $arrayPadres = array();
     $arrayHijos = array();
