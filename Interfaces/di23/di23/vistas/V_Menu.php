@@ -5,8 +5,22 @@
     $arrayPadres = array();
     $arrayHijos = array();
     $contador = 1;
+    $menus = array();
+    $contador2 = -1;
+  
+    foreach ($menu as $elemento) {
+        if($contador2 == -1){
+            array_push($menus, $elemento);
+            $contador2++;
+        }else{
+            if($menu[$contador2]['ID_MENU'] != $elemento['ID_MENU']){
+                array_push($menus, $elemento);
+                $contador2++;
+            }
+        }
+    }
 
-    foreach ($menu as $dato) {
+    foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] == 0){   //   [0]     [1]
             $arrayPadres[$contador] = array($dato, $arrayHijos);

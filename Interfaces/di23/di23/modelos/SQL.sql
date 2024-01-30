@@ -257,7 +257,7 @@ INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO
 (6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
 (7, 'Something else here', 4, '', 3, true),
 (8, 'Administrador', 0, '', 5, true),
-(9, 'Configuracion-Menu', 0, "peticion('Menu','getVistaConfiguracionMenu')", 6, true);
+(9, 'Seguridad', 0, "peticion('Menu','getVistaConfiguracionMenu')", 6, true);
 
 
 INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
@@ -269,7 +269,12 @@ INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
 (6,6,'VerPedidos'),
 (7,7,'VerSomethingElseHere'),
 (8,8,'VerAdministracion'),
-(9,9,'VerConfiguracionMenu');
+(9,9,'VerSeguridad'),
+(10,9,'seguridadBuscarMenus'),
+(11,9,'seguridadCrearMenus'),
+(12,9,'seguridadBorrarMenus'),
+(13,9,'seguridadEditarMenus');
+
 
 INSERT INTO `ROL` (`ID_ROL`,`NOMBRE_ROL`) VALUES
 (1,'Administrador'),
@@ -293,7 +298,11 @@ INSERT INTO `PERMISO_USUARIO` (`ID_PERMISO_USUARIO`, `ID_PERMISO`, `ID_USUARIO`)
 (13,6,2), -- Admin
 (14,7,2), -- Admin
 (15,8,2), -- Admin
-(16,9,2); -- Admin
+(16,9,2), -- Admin
+(17,10,2), -- Admin
+(18,11,2), -- Admin
+(19,12,2), -- Admin
+(20,13,2); -- Admin
 
 
 
@@ -315,7 +324,11 @@ INSERT INTO `PERMISO_ROL` (`ID_PERMISO_ROL`, `ID_PERMISO`, `ID_ROL`) VALUES
 (13,6,1), -- Admin
 (14,7,1), -- Admin
 (15,8,1), -- Admin
-(16,9,1); -- Admin
+(16,9,1), -- Admin
+(17,10,1), -- Admin
+(18,11,1), -- Admin
+(19,12,1), -- Admin
+(20,13,1); -- Admin
 
 INSERT INTO `ROL_USUARIO` (`ID_ROL_USUARIO`, `ID_ROL`, `ID_USUARIO`) VALUES
 (1,1,2),
