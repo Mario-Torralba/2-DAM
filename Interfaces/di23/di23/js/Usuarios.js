@@ -9,8 +9,7 @@ let apellido2 = document.getElementById("apellido_2_crear");
 let usuario = document.getElementById("login_crear");
 let contraseña = document.getElementById("pass_crear");
 
-
-function funcionDisplay1(){
+botonBuscar.addEventListener("click", function(){
     if(formBuscar.style.display == "flex"){
         formBuscar.style.display = "none"
     }else{
@@ -19,9 +18,8 @@ function funcionDisplay1(){
     if(formCrear.style.display == "flex"){
         formCrear.style.display = "none"
     }
-}
-
-function funcionDisplay2(){
+});
+botonCrear.addEventListener("click", function(){
     if(formBuscar.style.display == "flex"){
         formBuscar.style.display = "none"
     }
@@ -30,7 +28,8 @@ function funcionDisplay2(){
     }else{
         formCrear.style.display = "flex"
     }
-}
+});
+
 
 function buscarUsuarios(paginaActual, cantidadEntradas){
 
