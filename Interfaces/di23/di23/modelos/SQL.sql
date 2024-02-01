@@ -253,11 +253,13 @@ INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO
 (2, 'Link', 0, '', 2, false),
 (3, 'Disabled', 0, '', 3, false),
 (4, 'Crud', 0, '', 4, false),
-(5, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
-(6, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
-(7, 'Something else here', 4, '', 3, true),
-(8, 'Administrador', 0, '', 5, true),
-(9, 'Seguridad', 0, "peticion('Menu','getVistaConfiguracionMenu')", 6, true);
+(5, 'Administrador', 0, '', 5, true),
+(6, 'Seguridad', 0, '', 6, true),
+(7, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
+(8, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
+(9, 'Something else here', 4, '', 3, true),
+(10, 'Mtto. Menú y permisos', 9, "peticion('Seguridad','getVistaSeguridad')", 1, true),
+(11, 'Undefined', 9, '', 2, true);
 
 
 INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
@@ -265,15 +267,16 @@ INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
 (2,2,'VerLink'),
 (3,3,'VerDisabled'),
 (4,4,'VerCrud'),
-(5,5,'VerUsuarios'),
-(6,6,'VerPedidos'),
-(7,7,'VerSomethingElseHere'),
-(8,8,'VerAdministracion'),
-(9,9,'VerSeguridad'),
-(10,9,'seguridadBuscarMenus'),
-(11,9,'seguridadCrearMenus'),
-(12,9,'seguridadBorrarMenus'),
-(13,9,'seguridadEditarMenus');
+(5,5,'VerAdministracion'),
+(6,6,'VerSeguridad'),
+(7,7,'VerUsuarios'),
+(8,8,'VerPedidos'),
+(9,9,'VerSomethingElseHere'),
+(10,10,'mantenimientoBuscarMenus'),
+(11,10,'mantenimientoCrearMenus'),
+(12,10,'mantenimientoBorrarMenus'),
+(13,10,'mantenimientoEditarMenus'),
+(14,11,'verUndefined');
 
 
 INSERT INTO `ROL` (`ID_ROL`,`NOMBRE_ROL`) VALUES
@@ -302,7 +305,8 @@ INSERT INTO `PERMISO_USUARIO` (`ID_PERMISO_USUARIO`, `ID_PERMISO`, `ID_USUARIO`)
 (17,10,2), -- Admin
 (18,11,2), -- Admin
 (19,12,2), -- Admin
-(20,13,2); -- Admin
+(20,13,2), -- Admin
+(21,14,2); -- Admin
 
 
 
@@ -328,7 +332,8 @@ INSERT INTO `PERMISO_ROL` (`ID_PERMISO_ROL`, `ID_PERMISO`, `ID_ROL`) VALUES
 (17,10,1), -- Admin
 (18,11,1), -- Admin
 (19,12,1), -- Admin
-(20,13,1); -- Admin
+(20,13,1), -- Admin
+(21,14,1); -- Admin
 
 INSERT INTO `ROL_USUARIO` (`ID_ROL_USUARIO`, `ID_ROL`, `ID_USUARIO`) VALUES
 (1,1,2),

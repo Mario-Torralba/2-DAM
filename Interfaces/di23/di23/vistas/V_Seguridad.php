@@ -1,15 +1,15 @@
 <div id='contenedores'>
     <?php
         foreach ($_SESSION['PERMISOS'] as $permiso) {
-            if($permiso['NOMBRE_PERMISO'] == 'seguridadBuscarMenus'){
+            if($permiso['NOMBRE_PERMISO'] == 'mantenimientoBuscarMenus'){
                 $seguridadBuscarMenus = true;
-                echo '<div class="cont" id="desplegarFormularioBuscar" onclick="funcionDisplay3()">Búsqueda</div>';
+                echo '<div class="cont" id="desplegarFormularioBuscarMenu">Búsqueda</div>';
             }
         }
         foreach ($_SESSION['PERMISOS'] as $permiso) {
-            if($permiso['NOMBRE_PERMISO'] == 'seguridadCrearMenus'){
+            if($permiso['NOMBRE_PERMISO'] == 'mantenimientoCrearMenus'){
                 $seguridadCrearMenus = true;
-                echo '<div class="cont" id="desplegarFormularioCrear" onclick="funcionDisplay3()">Nuevo</div>';
+                echo '<div class="cont" id="desplegarFormularioCrearMenu">Nuevo</div>';
             }
         }
     ?>
@@ -83,8 +83,8 @@
         </form>
 </div>
 
-<div id="formularioCrear">
-    <form id='formularioCrear2' name='formularioCrear2' >
+<div id="formularioCrearMenu">
+    <form id='formularioCrearMenu2' name='formularioCrearMenu2' >
         
         <div>
             <label id="label" for='nombre_crear'>Nombre 

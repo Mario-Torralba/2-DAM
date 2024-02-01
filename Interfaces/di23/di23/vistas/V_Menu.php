@@ -9,6 +9,7 @@
     $menus = array();
     $contador2 = -1;
   
+
     foreach ($menu as $elemento) {
         if($contador2 == -1){
             array_push($menus, $elemento);
@@ -21,6 +22,8 @@
         }
     }
 
+    // echo json_encode($menus);
+
     foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] == 0){   //   [0]     [1]
@@ -30,22 +33,24 @@
         $contador++;
     }
 
-    $contadorHijo = 1;
-    $idDeMismoPadreParaReseteoDelContadorDeHijos = 0;
+    echo json_encode($menus);
 
-    foreach ($menu as $dato) {
 
-        if($dato['ID_PADRE'] != $idDeMismoPadreParaReseteoDelContadorDeHijos){
-            $contadorHijo = 1;
-        }
+    foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] != 0){
-            array_push($arrayPadres[$dato['ID_PADRE']][1],$dato);
-            $contadorHijo++;
-            $idDeMismoPadreParaReseteoDelContadorDeHijos = $dato['ID_PADRE'];
+            print_r($arrayPadres[$dato['ID_PADRE']][1]);
+            // print_r($dato);
+            array_push($arrayPadres[$dato['ID_MENU']-1][1],$dato);
         }
 
     }
+    echo '******';
+    echo '******';
+    echo '******';
+    echo '******';
+
+    echo json_encode($arrayPadres);
 
 
     echo "<nav class='navbar navbar-expand-sm navbar-light' style='background-color: #68a8f1' aria-label='Fourth navbar example'>
