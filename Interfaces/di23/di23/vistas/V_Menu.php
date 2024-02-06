@@ -33,7 +33,7 @@
         $contador++;
     }
 
-    echo json_encode($menus);
+    echo json_encode($_SESSION['PERMISOS']);
 
 
     foreach ($menus as $dato) {
