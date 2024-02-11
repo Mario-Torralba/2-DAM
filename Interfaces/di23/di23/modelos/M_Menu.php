@@ -22,11 +22,11 @@
                                 R.ID_ROL, R.NOMBRE_ROL, 
                                 M.ID_MENU, M.TITULO, M.ID_PADRE, M.ACCION, M.ORDEN, M.PRIVADO
                         FROM USUARIO U
-                        LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
-                        LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
-                        LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
-                        LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
-                        LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
+                        INNER JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
+                        INNER JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
+                        INNER JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
+                        INNER JOIN ROL R ON RU.ID_ROL = R.ID_ROL
+                        INNER JOIN MENU M ON P.ID_MENU = M.ID_MENU
                         WHERE U.ID_USUARIO = '.$_SESSION['ID_USUARIO'].' ORDER BY M.ID_PADRE ASC, M.ORDEN ASC ';
 
             }else{
@@ -37,11 +37,11 @@
                                 R.ID_ROL, R.NOMBRE_ROL, 
                                 M.ID_MENU, M.TITULO, M.ID_PADRE, M.ACCION, M.ORDEN, M.PRIVADO
                         FROM USUARIO U
-                        LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
-                        LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
-                        LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
-                        LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
-                        LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
+                        INNER JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
+                        INNER JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
+                        INNER JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
+                        INNER JOIN ROL R ON RU.ID_ROL = R.ID_ROL
+                        INNER JOIN MENU M ON P.ID_MENU = M.ID_MENU
                         WHERE U.ID_USUARIO = 1
                         ORDER BY M.ID_PADRE ASC, M.ORDEN ASC ";
                 

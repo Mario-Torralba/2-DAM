@@ -258,8 +258,8 @@ INSERT INTO `MENU` (`ID_MENU`, `TITULO`, `ID_PADRE`, `ACCION`, `ORDEN`, `PRIVADO
 (7, 'Usuarios', 4, "peticion('Usuarios', 'getVistaUsuarios')", 1, true),
 (8, 'Pedidos', 4, "peticion('Pedidos', 'getVistaUsuarios')", 2, true),
 (9, 'Something else here', 4, '', 3, true),
-(10, 'Mtto. Menú y permisos', 9, "peticion('Seguridad','getVistaSeguridad')", 1, true),
-(11, 'Undefined', 9, '', 2, true);
+(10, 'Mtto. Menú y permisos', 6, "peticion('Seguridad','getVistaSeguridad')", 1, true),
+(11, 'Undefined', 6, '', 2, true);
 
 
 INSERT INTO `PERMISO` (`ID_PERMISO`, `ID_MENU`, `NOMBRE_PERMISO`) VALUES
@@ -289,9 +289,9 @@ INSERT INTO `PERMISO_USUARIO` (`ID_PERMISO_USUARIO`, `ID_PERMISO`, `ID_USUARIO`)
 (2,2,1), -- mario
 (3,3,1), -- mario
 (4,4,1), -- mario
-(5,5,1), -- mario
-(6,6,1), -- mario
-(7,7,1), -- mario
+(5,7,1), -- mario
+(6,8,1), -- mario
+(7,9,1), -- mario
 
 (8,1,2), -- Admin
 (9,2,2), -- Admin
@@ -361,10 +361,10 @@ COMMIT;
 --     M.ORDEN,
 --     M.PRIVADO
 -- FROM USUARIO U
--- LEFT JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
--- LEFT JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
--- LEFT JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
--- LEFT JOIN ROL R ON RU.ID_ROL = R.ID_ROL
--- LEFT JOIN MENU M ON P.ID_MENU = M.ID_MENU
+-- INNER JOIN PERMISO_USUARIO PU ON U.ID_USUARIO = PU.ID_USUARIO
+-- INNER JOIN PERMISO P ON PU.ID_PERMISO = P.ID_PERMISO
+-- INNER JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
+-- INNER JOIN ROL R ON RU.ID_ROL = R.ID_ROL
+-- INNER JOIN MENU M ON P.ID_MENU = M.ID_MENU
 -- WHERE U.ID_USUARIO = 2
 -- ORDER BY M.ID_PADRE ASC, M.ORDEN ASC;

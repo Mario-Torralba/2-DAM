@@ -4,11 +4,10 @@
     $_SESSION['PERMISOS'] = $menu;
 
     $arrayPadres = array();
-    $arrayHijos = array();
     $contador = 1;
     $menus = array();
     $contador2 = -1;
-  
+
 
     foreach ($menu as $elemento) {
         if($contador2 == -1){
@@ -22,35 +21,22 @@
         }
     }
 
-    // echo json_encode($menus);
-
     foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] == 0){   //   [0]     [1]
-            $arrayPadres[$contador] = array($dato, $arrayHijos);
+            $arrayPadres[$contador] = array($dato, array());
         }
 
         $contador++;
     }
 
-    echo json_encode($_SESSION['PERMISOS']);
-
-
     foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] != 0){
-            print_r($arrayPadres[$dato['ID_PADRE']][1]);
-            // print_r($dato);
-            array_push($arrayPadres[$dato['ID_MENU']-1][1],$dato);
+            array_push($arrayPadres[$dato['ID_PADRE']][1],$dato);
         }
 
     }
-    echo '******';
-    echo '******';
-    echo '******';
-    echo '******';
-
-    echo json_encode($arrayPadres);
 
 
     echo "<nav class='navbar navbar-expand-sm navbar-light' style='background-color: #68a8f1' aria-label='Fourth navbar example'>
