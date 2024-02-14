@@ -18,8 +18,8 @@ export class UsersController {
 
   @Get()
   findAll() {
-    // return this.usersService.getTasks();
-    return this.usersService.findAll();
+    return this.usersService.getTasks();
+    // return this.usersService.findAll();
   }
 
   @Get(':id')

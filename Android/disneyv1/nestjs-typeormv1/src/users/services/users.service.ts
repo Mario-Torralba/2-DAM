@@ -9,7 +9,6 @@ import { ProductsService } from './../../products/services/products.service';
 import { Client } from 'pg';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CustomersService } from './customers.service';
 
 @Injectable()
 export class UsersService {
@@ -18,7 +17,6 @@ export class UsersService {
     private configService: ConfigService,
     @Inject('PG') private clientePG: Client,
     @InjectRepository(User) private userRepo: Repository<User>,
-    private customService: CustomersService,
   ) {}
 
   private counterId = 1;
@@ -35,12 +33,12 @@ export class UsersService {
     const apiKey = this.configService.get('API_KEY');
     const dbName = this.configService.get('DATABASE_NAME');
     console.log(apiKey, dbName);
-    // return this.users;
-    return this.userRepo.find(); //Listar todos = find
+    //return this.users;
+    return this.userRepo.find();// Listar todos, find()
   }
 
   async findOne(id: number) {
-    const user = this.userRepo.findOne(id); // Metodo integrado en typeorm
+    const user = this.userRepo.findOne(id); // Método integrado en TypeORM
     if (!user) {
       throw new NotFoundException(`User #${id} not found`);
     }
@@ -48,41 +46,38 @@ export class UsersService {
   }
 
   create(data: CreateUserDto) {
-    // this.counterId = this.counterId + 1;
-    // const newUser = {
-    //   id: this.counterId,
-    //   ...data,
-    // };
-    // this.userRepo.push(newUser);
-    const newUser = this.userRepo.create(data);
-    if (data.customerId) {
-      const customer = await this.customService.findOne(data.customerId);
-      newUser.customer = customer;
-    }
+    /*this.counterId = this.counterId + 1;
+    const newUser = {
+      id: this.counterId,
+      ...data,
+    };
+    this.users.push(newUser);
+    return newUser;*/
+    const newUser = this.userRepo.create(data); // TypeORM, para crear un nuevo registro
     return this.userRepo.save(newUser);
   }
 
   async update(id: number, changes: UpdateUserDto) {
-    // const user = this.findOne(id);
-    // const index = this.users.findIndex((item) => item.id === id);
-    // this.users[index] = {
-    //   ...user,
-    //   ...changes,
-    // };
-    // return this.users[index];
+   /* const user = this.findOne(id);
+    const index = this.users.findIndex((item) => item.id === id);
+    this.users[index] = {
+      ...user,
+      ...changes,
+    };
+    return this.users[index];*/
     const user = await this.findOne(id);
-    this.userRepo.merge(user, changes); //Sobreescribir la informacion que cioncida
+    this.userRepo.merge(user, changes); // Sobreescribir la info que coincida
     return this.userRepo.save(user);
   }
 
   remove(id: number) {
-    // const index = this.users.findIndex((item) => item.id === id);
-    // if (index === -1) {
-    //   throw new NotFoundException(`User #${id} not found`);
-    // }
-    // this.users.splice(index, 1);
-    // return true;
-    return this.userRepo.delete(id); 
+   /* const index = this.users.findIndex((item) => item.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`User #${id} not found`);
+    }
+    this.users.splice(index, 1);
+    return true;*/
+    return this.userRepo.delete(id);
   }
 
   async getOrderByUser(id: number): Promise<Order> {
