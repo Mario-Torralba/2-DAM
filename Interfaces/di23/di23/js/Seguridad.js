@@ -29,3 +29,38 @@ botonCrearMenu.addEventListener('click',function(){
 
 })
 
+
+function buscarMenus(){
+
+
+    if(formBuscarMenu.style.display == "flex"){
+        formBuscarMenu.style.display = "none"
+    }else{
+        formBuscarMenu.style.display = "flex"
+    }
+    if(formCrearMenu.style.display == "flex"){
+        formCrearMenu.style.display = "none"
+    }
+
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Seguridad&metodo=buscarMenus";
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscarMenu"))).toString();
+    console.log(parametros)
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
+        })
+        .then(vista => {
+
+            document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
+    
+
+}
+

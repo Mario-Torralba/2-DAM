@@ -13,8 +13,17 @@
         }
 
         public function getVistaSeguridad(){
+            $roles=$this->modelo->buscarRoles();
+            $_SESSION['ROLES'] = $roles;
             Vista::render('vistas/V_Seguridad.php');
         }
+
+        public function buscarMenus($filtros){
+            $menus=$this->modelo->buscarMenus($filtros);
+            Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
+            array('menus'=>$menus));
+        }
+
     }
 
 ?>

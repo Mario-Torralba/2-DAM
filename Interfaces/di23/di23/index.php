@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/lista.css">
         <link rel="stylesheet" href="css/paginado.css">
+        <link rel="stylesheet" href="css/seguridad.css">
         
     </head>
     <body>

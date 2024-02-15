@@ -13,70 +13,35 @@
             }
         }
     ?>
-    <!-- <div class="cont" id="desplegarFormularioBuscar" onclick="funcionDisplay1()">Búsqueda</div>
-    <div class="cont" id="desplegarFormularioCrear" onclick="funcionDisplay2()">Nuevo</div> -->
 </div>
-<?php 
-
-        if($seguridadBuscarMenus){
-            // echo '<div id="formularioBusqueda">
-
-            //     <form id="formularioBuscar" name="formularioBuscar">
-            //         <div>
-            //             <label id="label" for="nombre_texto"> Nombre 
-            //                 <input class="inputBusqueda" type="text" id="nombre_texto" name="nombre_texto">
-            //             </label>
-            //         </div>
-            //         <div>
-            //             <label id="label" for="apellido_texto"> Primer apellido 
-            //                 <input class="inputBusqueda" type="text" id="apellido_texto" name="apellido_texto">
-            //             </label>
-            //         </div>
-            //         <div id="divSelect">
-            //             <label id="label" for="a_texto"> Activo
-            //                 <select class="inputBusqueda" name="a_texto" id="a_texto">
-            //                     <option value=" "></option>
-            //                     <option value="S">S</option>
-            //                     <option value="N">N</option>
-            //                 </select>
-            //             </label>
-            //         </div>
-                
-            //         <div id="botonbuscar2">
-            
-            //             <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuariosTotales(),buscarUsuarios(1,10)">BUSCAR</button>
-            //         </div>
-            //     </form>
-            // </div>';
-        }
-
-?>
 <div id="formularioBusquedaMenu">
 
     <form id="formularioBuscarMenu" name="formularioBuscarMenu">
         <div>
-            <label id="label" for="nombre_texto"> Nombre Menú
+            <label id="label" for="nombre_texto"> ID de Usuario
                 <input class="inputBusqueda" type="text" id="nombre_texto" name="nombre_texto">
             </label>
         </div>
         <div>
-            <label id="label" for="apellido_texto"> Primer apellido 
-                <input class="inputBusqueda" type="text" id="apellido_texto" name="apellido_texto">
-            </label>
         </div>
         <div id="divSelect">
-            <label id="label" for="a_texto"> Activo
-                <select class="inputBusqueda" name="a_texto" id="a_texto">
+            <label id="label" for="rol_texto"> Rol
+                <select class="inputBusqueda" name="rol_texto" id="rol_texto">
                     <option value=" "></option>
-                    <option value="S">S</option>
-                    <option value="N">N</option>
+                    <?php
+                    print_r($_SESSION['ROLES']);
+                        foreach ($_SESSION['ROLES'] as $element) {
+                            echo '<option value="'.$element['NOMBRE_ROL'].'">'.$element['NOMBRE_ROL'].'</option>';
+
+                        }
+                    ?>
                 </select>
             </label>
         </div>
     
-        <div id="botonbuscar2">
+        <div id="botonbuscardiv">
 
-            <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="buscarUsuariosTotales(),buscarUsuarios(1,10)">BUSCAR</button>
+            <button id="botonBusquedaMenus" class="botonUsuarios" type="button" onclick="buscarMenus()">BUSCAR</button>
         </div>
         <!-- <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="paginado(127)">GO!!</button> -->
     
@@ -138,11 +103,12 @@
                 <input class="inputBusqueda"  type='password' id='pass_crear' name='pass_crear'>
             </label>
         </div>
-        <div id="botonbuscar2">
-            <button id='botonCrearUsuarios' class='botonUsuarios' type='button' onclick='validarNuevoUsuario(),crearUsuarios(),buscarUsuariosTotales(),buscarUsuarios(1,10)'>CREAR</button>
+        <div id="botonbuscardiv">
+            <button id='botonCrearMenu' class='botonUsuarios' type='button' onclick='validarNuevoUsuario(),crearUsuarios(),buscarUsuariosTotales(),buscarUsuarios(1,10)'>CREAR</button>
         </div>
     </form>
 </div>
 <br><br>
 <div id="capaResultadosBusqueda">
+    
 </div>

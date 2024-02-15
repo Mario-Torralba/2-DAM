@@ -146,12 +146,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-#formularioBuscarMenu{
-    display: none;
-}
-#formularioCrearMenu{
-    display: none;
-}
+
 /* #divSelect{
     display: flex;
     justify-content: center;

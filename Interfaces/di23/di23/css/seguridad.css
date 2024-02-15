@@ -1,0 +1,67 @@
+#formularioBusquedaMenu{
+    
+    margin-top: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#formularioBuscarMenu{
+    width: 20%;
+}
+    #formularioBusquedaMenu>form>label>input{
+        margin-left: 2vw;
+    }
+    #formularioBusquedaMenu>form>label>select{
+        margin-left: 2vw;
+    }
+    #botonBusquedaMenus{
+        margin-top: 20px;
+        background-color: rgb(104, 168, 241);
+        color: white;
+        height: 45px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #c0c0c0;
+        cursor: pointer;
+        font-size: 18px;
+
+    }
+    #botonBusquedaMenus:hover{
+        background-color: rgb(51, 133, 226);
+        transition: 0.3s;
+    }
+#formularioCrearMenu{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#formularioCrearMenu2{
+    width: 40%;
+}
+    #formularioCrearMenu>form>label>input{
+        margin-left: 2vw;
+    }
+    #botonCrearMenu{
+        margin-top: 20px;
+        background-color: rgb(104, 168, 241);
+        color: white;
+        height: 45px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #c0c0c0;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    #botonCrearMenu:hover{
+        background-color: rgb(51, 133, 226);
+        transition: 0.3s;
+    }
+
+#botonbuscardiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
