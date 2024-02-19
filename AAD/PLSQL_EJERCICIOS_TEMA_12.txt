@@ -1,0 +1,103 @@
+*********************************************************
+*************         EJERCICIO 1         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_1 AS
+	CURSOR v_cursor IS
+		SELECT * FROM EMPLE
+		ORDER BY APELLIDO;
+	v_emple EMPLE%ROWTYPE;
+BEGIN
+	OPEN v_cursor;
+		FETCH v_cursor INTO v_emple;
+		WHILE v_cursor %FOUND LOOP
+			DBMS_OUTPUT.PUT_LINE('Empleado con apellido '|| v_emple.APELLIDO ||' y fecha de alta '||v_emple.FECHA_ALT);
+			FETCH v_cursor INTO v_emple;
+		END LOOP;
+END;
+/
+
+CALL EJERCICIO_1();
+
+
+*********************************************************
+*************         EJERCICIO 2         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_2 AS
+	CURSOR v_cursor IS
+		SELECT D.DNOMBRE,COUNT(D.DEPT_NO) AS EMPLEADOS 
+		FROM DEPART D
+		INNER JOIN EMPLE E 
+		ON D.DEPT_NO = E.DEPT_NO
+		GROUP BY D.DNOMBRE;
+	v_dnombre DEPART.DNOMBRE%TYPE;
+	v_cantidad NUMBER;
+BEGIN
+	OPEN v_cursor;
+		FETCH v_cursor INTO v_dnombre,v_cantidad;
+		WHILE v_cursor %FOUND LOOP
+			DBMS_OUTPUT.PUT_LINE('El departamento de '|| v_dnombre ||' tiene '|| v_cantidad || ' empleados');
+			FETCH v_cursor INTO v_dnombre,v_cantidad;
+		END LOOP;
+END;
+/
+
+CALL EJERCICIO_2();
+
+*********************************************************
+*************         EJERCICIO 3         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_3 AS
+	CURSOR v_cursor IS
+		SELECT * FROM EMPLE
+		ORDER BY SALARIO DESC
+		FETCH FIRST 5 ROWS ONLY;
+	v_emple EMPLE%ROWTYPE;
+BEGIN
+	OPEN v_cursor;
+		FETCH v_cursor INTO v_emple;
+		WHILE v_cursor %FOUND LOOP
+			DBMS_OUTPUT.PUT_LINE('El empleado con apellido '|| v_emple.APELLIDO ||' cobra '|| v_emple.SALARIO || ' soles');
+			FETCH v_cursor INTO v_emple;
+		END LOOP;
+END;
+/
+
+CALL EJERCICIO_3();
+
+*********************************************************
+*************         EJERCICIO 4         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_4 AS
+	CURSOR v_cursor1 IS
+		SELECT OFICIO FROM EMPLE
+		GROUP BY OFICIO;
+	v_oficio EMPLE.OFICIO%TYPE;
+	CURSOR v_cursor2 IS
+		SELECT OFICIO, SALARIO FROM EMPLE
+		WHERE OFICIO = v_oficio
+		ORDER BY SALARIO ASC
+		FETCH FIRST 2 ROWS ONLY;
+	v_oficio2 EMPLE.OFICIO%TYPE;
+	v_salario EMPLE.SALARIO%TYPE;
+BEGIN
+	OPEN v_cursor1;
+		FETCH v_cursor1 INTO v_oficio;
+		WHILE v_cursor1 %FOUND LOOP
+			OPEN v_cursor2;
+				FETCH v_cursor2 INTO v_oficio2, v_salario;
+				WHILE v_cursor2 %FOUND LOOP
+					DBMS_OUTPUT.PUT_LINE('El oficio de '|| v_oficio2 ||' tiene el salario de '|| v_salario);
+					FETCH v_cursor2 INTO v_oficio2, v_salario;
+				END LOOP;
+				CLOSE v_cursor2;
+			FETCH v_cursor1 INTO v_oficio;
+		END LOOP;
+		CLOSE v_cursor1;
+END;
+/
+
+CALL EJERCICIO_4();
