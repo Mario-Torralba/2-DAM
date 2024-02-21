@@ -101,3 +101,35 @@ END;
 /
 
 CALL EJERCICIO_4();
+
+
+*********************************************************
+*************         EJERCICIO 5         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_5(dep VARCHAR2, subida NUMBER) AS
+  CURSOR v_cur1 IS 
+    SELECT * FROM EMPLE
+    WHERE dept_no = dep FOR UPDATE;
+  v_emple EMPLE%ROWTYPE;
+  v_inc EMPLE.salario%TYPE;
+BEGIN
+  OPEN v_cur1;
+  FETCH v_cur1 INTO v_emple;
+  WHILE v_cur1%FOUND LOOP
+    DBMS_OUTPUT.PUT_LINE('Empleado ' || v_emple.emp_no || ' ' || v_emple.apellido);
+    DBMS_OUTPUT.PUT_LINE('con salario ' || v_emple.salario || ' modificado a');
+    v_inc := v_emple.salario + ((v_emple.salario*subida)/100);
+    DBMS_OUTPUT.PUT_LINE(v_inc);
+    UPDATE EMPLE SET salario = v_inc WHERE CURRENT OF v_cur1; 
+    FETCH v_cur1 INTO v_emple;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE(v_cur1%ROWCOUNT||' EMPLEADOS LISTADOS');
+  CLOSE v_cur1;
+  COMMIT;
+END;
+/
+
+
+CALL EJERCICIO_5();
