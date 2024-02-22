@@ -143,19 +143,18 @@ CREATE OR REPLACE PROCEDURE EJERCICIO_6(p_numero_departamento IN NUMBER, p_impor
 		WHERE DEPT_NO = p_numero_departamento;
  	v_emple EMPLE%ROWTYPE;
 BEGIN
-OPEN v_cursor;
+	OPEN v_cursor;
 		FETCH v_cursor INTO v_emple;
 		WHILE v_cursor %FOUND LOOP
-			IF (v_emple.SALARIO + p_importe) > (v_emple.SALARIO * (1+(p_porcentaje/100)))
+			IF (v_emple.SALARIO + p_importe) > (v_emple.SALARIO * (1+(p_porcentaje/100))) THEN
 				DBMS_OUTPUT.PUT_LINE('El empleado '|| v_emple.APELLIDO ||' se le sube el sueldo '|| p_importe ||' € por importe');
-				EXEC INMEDIATE UPDATE DEPART SET SALARIO = (v_emple.SALARIO + p_importe);
+				EXECUTE IMMEDIATE 'UPDATE EMPLE SET SALARIO = (v_emple.SALARIO + p_importe) WHERE EMP_NO = v_emple.EMP_NO';
 			ELSE
-				DBMS_OUTPUT.PUT_LINE('El empleado '|| v_emple.APELLIDO ||' se le sube el sueldo '|| p_importe ||' € por importe');
-				EXEC INMEDIATE UPDATE DEPART SET SALARIO = (v_emple.SALARIO + p_importe);
+				DBMS_OUTPUT.PUT_LINE('El empleado '|| v_emple.APELLIDO ||' se le sube el sueldo '|| p_porcentaje ||' € por porcentaje');
+				EXECUTE IMMEDIATE 'UPDATE EMPLE SET SALARIO = (v_emple.SALARIO * (1+(p_porcentaje/100))) WHERE EMP_NO = v_emple.EMP_NO';
 			END IF;
-			DBMS_OUTPUT.PUT_LINE('El empleado con apellido '|| v_emple.APELLIDO ||' cobra '|| v_emple.SALARIO || ' soles');
 			FETCH v_cursor INTO v_emple;
-		END LOOP;amente. Nuevo número de departamento: ' || v_nuevo_numero);
+		END LOOP;
 END EJERCICIO_6;
 /
 
