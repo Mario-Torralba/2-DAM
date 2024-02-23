@@ -160,3 +160,179 @@ END EJERCICIO_6;
 
 
 CALL EJERCICIO_6(10,100,10);
+
+*********************************************************
+*************         EJERCICIO 7         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_7_1(v_dep_no IN NUMBER) AS
+	v_dep_avg_sal NUMBER;
+	v_c1_row EMPLE%ROWTYPE;
+	CURSOR C1 IS
+		SELECT * FROM EMPLE WHERE DEPT_NO = v_dep_no;
+	v_diff NUMBER;
+	v_sal_nuevo NUMBER;
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('Entrando en subir_sueldo_emp');
+	OPEN C1;
+	SELECT ROUND(AVG(SALARIO)) INTO v_dep_avg_sal FROM EMPLE WHERE DEPT_NO = v_dep_no;
+	FETCH C1 INTO v_c1_row;
+	WHILE C1%FOUND LOOP
+		v_diff := v_c1_row.SALARIO - v_dep_avg_sal;
+		v_sal_nuevo := ROUND(v_c1_row.SALARIO + (v_diff * 0.5));
+		DBMS_OUTPUT.PUT_LINE('Salario medio: '||v_dep_avg_sal);
+		DBMS_OUTPUT.PUT_LINE('Salario anterior: '||v_c1_row.SALARIO);
+		DBMS_OUTPUT.PUT_LINE('Salario nuevo: '||v_sal_nuevo);
+		UPDATE EMPLE SET SALARIO = 1000 WHERE EMP_NO = v_c1_row.EMP_NO;
+	        FETCH C1 INTO v_c1_row;
+	END LOOP;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_7_2 AS
+	v_avg_sueldo NUMBER;
+	v_dept_no NUMBER;
+	CURSOR C1 IS
+		SELECT DISTINCT DEPT_NO FROM EMPLE;
+BEGIN
+	OPEN C1;
+	FETCH C1 INTO v_dept_no;
+	WHILE C1%FOUND LOOP
+		subir_sueldo_emp(v_dept_no);
+		FETCH C1 INTO v_dept_no;
+		UPDATE EMPLE e
+		SET e.SALARIO = e.SALARIO + (0.5 * (SELECT AVG(SALARIO) FROM EMP WHERE DEPT_NO = C1.DEPT_NO))
+		WHERE e.DEPT_NO = C1.DEPT_NO;
+	END LOOP;
+END;
+/
+
+CALL EJERCICIO_7_2();
+
+*********************************************************
+*************         EJERCICIO 8         ***************
+*********************************************************
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_8 AS
+	CURSOR C1 IS
+		SELECT * FROM EMPLE;
+	v_emp_datos EMPLE%ROWTYPE;
+	v_comision NUMBER := 0;
+	v_comision_resp NUMBER := 0;
+	v_trienios NUMBER;
+BEGIN
+	OPEN C1;
+	FETCH C1 INTO v_emp_datos;
+	WHILE C1%FOUND LOOP
+		v_trienios := (ABS(MONTHS_BETWEEN(v_emp_datos.FECHA_ALT, CURRENT_DATE) / 12)) * 50;
+		DBMS_OUTPUT.PUT_LINE('Empleado: '||v_emp_datos.APELLIDO);
+		DBMS_OUTPUT.PUT_LINE('Dpto: '||v_emp_datos.DEPT_NO);
+		DBMS_OUTPUT.PUT_LINE('Oficio: '||v_emp_datos.OFICIO);
+		DBMS_OUTPUT.PUT_LINE('Salario: '||v_emp_datos.SALARIO);
+		DBMS_OUTPUT.PUT_LINE('Trienio: '||v_trienios);
+		DBMS_OUTPUT.PUT_LINE('Comp. responsabilidad: '||v_comision_resp);
+		DBMS_OUTPUT.PUT_LINE('Comisión: '||v_comision);
+		FETCH C1 INTO v_emp_datos;
+        END LOOP;
+END;
+/
+
+CALL EJERCICIO_8();
+
+
+*********************************************************
+*************         EJERCICIO 9         ***************
+*********************************************************
+
+
+CREATE TABLE EJ9 (APELLIDOS VARCHAR2(100), DEPTO NUMBER, OFICIO VARCHAR2(100), SALARIO NUMBER, TRIENIO NUMBER);
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_9 AS
+	CURSOR C1 IS
+        	SELECT * FROM EMPLE;
+	v_emp_datos EMPLE%ROWTYPE;
+	v_comision NUMBER := 0;
+	v_comision_resp NUMBER := 0;
+	v_trienios NUMBER;
+BEGIN
+	OPEN C1;
+	FETCH C1 INTO v_emp_datos;
+	SELECT COUNT(*) INTO v_count FROM user_tables WHERE table_name = upper('EJ9');
+	IF v_count = 0 THEN
+		EXECUTE IMMEDIATE 'CREATE TABLE EJ9 (APELLIDOS VARCHAR2(100), DEPTO NUMBER, OFICIO VARCHAR2(100), SALARIO NUMBER, TRIENIO NUMBER)';
+		DBMS_OUTPUT.PUT_LINE('Tabla EJ9 creada.');
+	ELSE
+        	EXECUTE IMMEDIATE 'DELETE from EMP_ERRORS';
+        	DBMS_OUTPUT.PUT_LINE('Tabla EJ9 ya existe.');
+	END IF;
+	WHILE C1%FOUND LOOP
+		v_trienios := (ABS(MONTHS_BETWEEN(v_emp_datos.FECHA_ALT, CURRENT_DATE) / 12)) * 50;
+		INSERT INTO EJ9 VALUES (v_emp_datos.APELLIDOS, v_emp_datos.DEPTO, v_emp_datos.OFICIO, v_emp_datos.SALARIO, v_trienios);
+		FETCH C1 INTO v_emp_datos;
+        END LOOP;
+END;
+/
+
+CALL EJERCICIO_9();
+
+
+*********************************************************
+*************         EJERCICIO 10         ***************
+*********************************************************
+
+
+CREATE OR REPLACE PROCEDURE EJERCICIO_10 AS
+	pedido_no NUMBER(10) := 100;
+	producto_no NUMBER(10) := 23;
+	cliente_no NUMBER(10) := 2;
+	unidades NUMBER(10) := 10;
+	fecha_pedido DATE := 10/10/2022;
+	precio NUMBER;
+BEGIN
+	SELECT PRECIO INTO precio FROM PRODUCTOS08.PRECIO_ACTUAL;
+	IF(cliente_credito_suficiente(cliente_no, unidades*precio)) THEN
+        	return;
+	END IF;
+	BEGIN
+		insertar_pedido(pedido_no, producto_no, cliente_no, unidades, fecha_pedido);
+		actualizar_deuda_cliente(cliente_no, unidades * precio(producto_no));
+		actualizar_unidades_producto(producto_no, unidades);
+	EXCEPTION
+		WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+	END;
+	DBMS_OUTPUT.PUT_LINE('Pedido introducido correctamente.');
+END;
+
+CREATE OR REPLACE FUNCTION cliente_credito_suficiente(cliente_no NUMBER, importe NUMBER) RETURN BOOLEAN IS
+	v_saldo NUMBER;
+BEGIN
+	select LIMITE_CREDITO INTO v_saldo FROM CLIENTES0808 WHERE CLIENTE_NO = cliente_no;
+	if((v_saldo - importe) < 0) THEN
+        	DBMS_OUTPUT.PUT_LINE('El cliente no tiene saldo suficiente');
+        	RETURN FALSE;
+	END IF;
+	RETURN TRUE;
+END;
+
+CREATE OR REPLACE PROCEDURE insertar_pedido(pedido_no NUMBER, producto_no NUMBER, cliente_no NUMBER, unidades NUMBER, fecha_pedido DATE) IS
+BEGIN
+	INSERT INTO PEDIDOS08 (pedido_no, producto_no, cliente_no, unidades, fecha_pedido)
+	VALUES (pedido_no, producto_no, cliente_no, unidades, fecha_pedido);
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_deuda_cliente(cliente_no NUMBER, importe NUMBER) IS
+BEGIN
+	UPDATE CLIENTES08
+	SET deuda = deuda + importe
+	WHERE cliente_no = cliente_no;
+END;
+
+
+CREATE OR REPLACE PROCEDURE actualizar_unidades_producto(producto_no NUMBER, unidades NUMBER) IS
+BEGIN
+	UPDATE PRODUCTOS08
+	SET unidades = unidades - unidades
+	WHERE producto_no = producto_no;
+END;
+/
