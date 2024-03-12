@@ -11,10 +11,11 @@ public class HiloCenturion extends Thread {
     private int numero;
     private int puertoServidor;
     private String accion;
+    private String tipoTarea;
 
-    private int litros;
-    private int prisioneros;
-    private int metros;
+    private int parametro;
+
+    int contador = 0;
 
     private String destinatario;
     private String cuerpo;
@@ -24,9 +25,11 @@ public class HiloCenturion extends Thread {
 
     public HiloCenturion(int puerto,int numero, String accion, int parametro){
 
+        this.parametro = parametro;
         this.puertoServidor = puerto;
         this.numero = numero;
         this.accion = accion;
+        tipoTarea = "LOGISTICA";
 
         try {
             skServidor = new ServerSocket(puertoServidor);
@@ -42,6 +45,7 @@ public class HiloCenturion extends Thread {
         this.puertoServidor = puerto;
         this.numero = numero;
         this.accion = accion;
+        tipoTarea = "EXPLORADOR";
 
         try {
             skServidor = new ServerSocket(puertoServidor);
@@ -58,6 +62,7 @@ public class HiloCenturion extends Thread {
         this.puertoServidor = puerto;
         this.numero = numero;
         this.accion = accion;
+        tipoTarea = "SOLDADO";
 
         try {
             skServidor = new ServerSocket(puertoServidor);
@@ -68,44 +73,86 @@ public class HiloCenturion extends Thread {
     }
     @Override
     public void run(){
-        while(true){
+        try {
+            conectar();
+            darOrden();
+
             try {
-                conectar();
-                darOrden();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                out.close();
-                in.close();
-                centurion.close();
-            } catch (IOException e) {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            out.close();
+            in.close();
+            centurion.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void conectar() throws IOException {
-        centurion = skServidor.accept();
+        while(true){
+            try{
+                centurion = skServidor.accept();
 
-        InputStream is = centurion.getInputStream();
-        in = new DataInputStream(is);
-        System.out.println(in.readUTF());
+                InputStream is = centurion.getInputStream();
+                in = new DataInputStream(is);
+                String tipoLegionario = in.readUTF();
 
-        OutputStream aux = centurion.getOutputStream();
-        out = new DataOutputStream(aux);
-        out.writeUTF("Hola Legionario, aqui CENTURION " + numero);
+                OutputStream aux = centurion.getOutputStream();
+                out = new DataOutputStream(aux);
+
+                if(tipoLegionario.equals(tipoTarea)){
+                    out.writeUTF("Hola Legionario, aqui CENTURION " + numero);
+                    break;
+                }
+            }catch (Exception ex){
+                ex.getMessage();
+            }
+        }
     }
 
     public void darOrden() throws IOException {
-
+        int legionario = in.readInt();
+        System.out.println("Mi siervo legionario " + legionario + " se ocupará de ello");
         switch (accion){
             case "CERVEZA":
+                out.writeUTF("CERVEZA");
+                out.writeInt(parametro);
+                if(in.readInt()==1){
+                    System.out.println("El legionario " + legionario + " ha traido la cerveza");
+                }
+                break;
             case "PRISIONEROS":
+                out.writeUTF("PRISIONEROS");
+                out.writeInt(parametro);
+                if(in.readInt()==1){
+                    System.out.println("El legionario " + legionario + " ha traido a los prisioneros");
+                }
+                break;
             case "PAPEL":
+                out.writeUTF("PAPEL");
+                out.writeInt(parametro);
+                if(in.readInt()==1){
+                    System.out.println("El legionario " + legionario + " ha traido el papel de pergamino");
+                }
+                break;
             case "MENSAJE":
+                out.writeUTF("MENSAJE");
+                out.writeUTF(destinatario);
+                out.writeUTF(cuerpo);
+                if(in.readInt()==1){
+                    System.out.println("El legionario " + legionario + " ha enviado el mensaje");
+                }
+                break;
             case "VIGILANCIA":
+                out.writeUTF("VIGILANCIA");
+                out.writeUTF(queVigilar);
+                out.writeInt(tiempo);
+                if(in.readInt()==1){
+                    System.out.println("El legionario " + legionario + " ha terminado la vigilancia");
+                }
+                break;
         }
 
     }

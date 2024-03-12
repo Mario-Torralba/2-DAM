@@ -57,6 +57,7 @@ public class Centurion extends Thread{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                     case "PRISIONEROS":
                         int prisioneros = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado traer " + prisioneros + " prisioneros");
@@ -67,6 +68,7 @@ public class Centurion extends Thread{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                     case "PAPEL":
                         int metros = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado traer " + metros + " de papel de pergamino");
@@ -78,6 +80,7 @@ public class Centurion extends Thread{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                     case "MENSAJE":
                         String destinatario = in.readUTF();
                         String cuerpo = in.readUTF();
@@ -89,6 +92,7 @@ public class Centurion extends Thread{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                     case "VIGILANCIA":
                         String queVigilar = in.readUTF();
                         int tiempo = in.readInt();
@@ -100,8 +104,10 @@ public class Centurion extends Thread{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                 }
             }catch (Exception ex) {
+                ex.getMessage();
             }
         }
 
