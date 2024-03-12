@@ -15,6 +15,10 @@ public class Julio extends Thread{
     Scanner sc = new Scanner(System.in);
     Socket centurion;
 
+    String [] personasMensaje = {"Mario", "Santi", "Dimitri", "Rebeca", "Cristina"};
+    String [] cuerpoMensaje = {"Hola", "Adios", "Prestame la PS5", "Parece que va a llover", "Vaya mierda de dia"};
+    String [] queVigilar2 = {"Casa", "Campamento", "Torre Eifel", "Patio", "Ovejas"};
+
     public Julio(){
         try {
             skServidor = new ServerSocket(PUERTO);
@@ -50,37 +54,60 @@ public class Julio extends Thread{
         String accion = accionAleatoria();
         switch (accion){
             case "CERVEZA":
-                System.out.println("El CESAR necesita cerveza, introduce los litros: ");
-                int litros = sc.nextInt();
+                int litros = random.nextInt(200)+1;
+                System.out.println("El CESAR necesita " + litros + " de cerveza");
                 out.writeUTF("CERVEZA");
                 out.writeInt(litros);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "PRISIONEROS":
-                System.out.println("El CESAR necesita interrogar prisioneros, introduce la cantidad: ");
-                int prisioneros = sc.nextInt();
+                int prisioneros = random.nextInt(5)+1;
+                System.out.println("El CESAR necesita interrogar " + prisioneros + " prisioneros");
                 out.writeUTF("PRISIONEROS");
                 out.writeInt(prisioneros);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "PAPEL":
                 int metros = random.nextInt(200)+1;
                 System.out.println("El CESAR necesita " + metros + " metros de papel de pergamino");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 out.writeUTF("PAPEL");
                 out.writeInt(metros);
                 break;
             case "MENSAJE":
-                System.out.println("El CESAR quiere enviar un mensaje, introduce el destinatario: ");
-                String destinatario = sc.next();
-                System.out.println("Ahora introduce el mensaje: ");
-                String cuerpo = sc.next();
+                String destinatario = personasMensaje[random.nextInt(4)];
+                System.out.println("El CESAR quiere enviar un mensaje a: " + destinatario);
+                String cuerpo = cuerpoMensaje[random.nextInt(4)];
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 out.writeUTF("MENSAJE");
                 out.writeUTF(destinatario);
                 out.writeUTF(cuerpo);
                 break;
             case "VIGILANCIA":
-                System.out.println("El CESAR quiere hacer vigilancia, introduce de que: ");
-                String queVigilar = sc.next();
-                System.out.println("Durante cuanto tiempo: ");
-                int tiempo = sc.nextInt();
+                String queVigilar = queVigilar2[random.nextInt(4)];
+                int tiempo = random.nextInt(10);
+                System.out.println("El CESAR quiere hacer vigilancia en " + queVigilar + " durante " + tiempo + " segundos");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 out.writeUTF("VIGILANCIA");
                 out.writeUTF(queVigilar);
                 out.writeInt(tiempo);
@@ -121,5 +148,55 @@ public class Julio extends Thread{
         }
         return null;
     }
+    public static String encriptar(String mensaje) {
+        StringBuilder mensajeEncriptado = new StringBuilder();
 
+        for (int i = 0; i < mensaje.length(); i++) {
+            char caracter = mensaje.charAt(i);
+
+            if (Character.isLetter(caracter)) {
+                // Encriptar letras
+                char encriptado = (char) (((caracter - 'a' + 3) % 26) + 'a');
+                if (Character.isUpperCase(caracter)) {
+                    encriptado = Character.toUpperCase(encriptado);
+                }
+                mensajeEncriptado.append(encriptado);
+            } else if (Character.isDigit(caracter)) {
+                // Encriptar números
+                char encriptado = (char) (((caracter - '0' + 3) % 10) + '0');
+                mensajeEncriptado.append(encriptado);
+            } else {
+                // Conservar otros caracteres
+                mensajeEncriptado.append(caracter);
+            }
+        }
+
+        return mensajeEncriptado.toString();
+    }
+
+    public static String desencriptar(String mensajeEncriptado) {
+        StringBuilder mensajeDesencriptado = new StringBuilder();
+
+        for (int i = 0; i < mensajeEncriptado.length(); i++) {
+            char caracter = mensajeEncriptado.charAt(i);
+
+            if (Character.isLetter(caracter)) {
+                // Desencriptar letras
+                char desencriptado = (char) (((caracter - 'a' - 3 + 26) % 26) + 'a');
+                if (Character.isUpperCase(caracter)) {
+                    desencriptado = Character.toUpperCase(desencriptado);
+                }
+                mensajeDesencriptado.append(desencriptado);
+            } else if (Character.isDigit(caracter)) {
+                // Desencriptar números
+                char desencriptado = (char) (((caracter - '0' - 3 + 10) % 10) + '0');
+                mensajeDesencriptado.append(desencriptado);
+            } else {
+                // Conservar otros caracteres
+                mensajeDesencriptado.append(caracter);
+            }
+        }
+
+        return mensajeDesencriptado.toString();
+    }
 }

@@ -8,6 +8,8 @@ public class Main {
         Centurion centurion3 = new Centurion(2003,3);
         Centurion centurion4 = new Centurion(2004,4);
 
+
+
         try{
             centurion1.start();
             centurion2.start();

@@ -4,6 +4,7 @@ import java.net.Socket;
 
 public class HiloCenturion extends Thread {
 
+
     ServerSocket skServidor;
     Socket centurion;
     public DataInputStream in;
@@ -23,6 +24,15 @@ public class HiloCenturion extends Thread {
     private String queVigilar;
     private int tiempo;
 
+    public HiloCenturion(int numero){
+        puertoServidor = 2000 + numero;
+        try {
+            skServidor = new ServerSocket(puertoServidor);
+            System.out.println("Escucho en el puerto: " + puertoServidor);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public HiloCenturion(int puerto,int numero, String accion, int parametro){
 
         this.parametro = parametro;
@@ -31,12 +41,6 @@ public class HiloCenturion extends Thread {
         this.accion = accion;
         tipoTarea = "LOGISTICA";
 
-        try {
-            skServidor = new ServerSocket(puertoServidor);
-            System.out.println("Escucho en el puerto: " + puertoServidor);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public HiloCenturion(int puerto,int numero, String accion, String destinatario, String cuerpo){
@@ -47,12 +51,6 @@ public class HiloCenturion extends Thread {
         this.accion = accion;
         tipoTarea = "EXPLORADOR";
 
-        try {
-            skServidor = new ServerSocket(puertoServidor);
-            System.out.println("Escucho en el puerto: " + puertoServidor);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public HiloCenturion(int puerto,int numero, String accion, String queVigilar , int tiempo){
@@ -64,35 +62,28 @@ public class HiloCenturion extends Thread {
         this.accion = accion;
         tipoTarea = "SOLDADO";
 
-        try {
-            skServidor = new ServerSocket(puertoServidor);
-            System.out.println("Escucho en el puerto: " + puertoServidor);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
     @Override
     public void run(){
-        try {
-            conectar();
-            darOrden();
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        while(true){
+            try{
+                sleep(999999);
+            }catch (Exception ex){
+                try {
+                    conectar();
+                    darOrden();
+                    out.close();
+                    in.close();
+                    centurion.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            out.close();
-            in.close();
-            centurion.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
     public void conectar() throws IOException {
-        while(true){
-            try{
+
                 centurion = skServidor.accept();
 
                 InputStream is = centurion.getInputStream();
@@ -102,14 +93,6 @@ public class HiloCenturion extends Thread {
                 OutputStream aux = centurion.getOutputStream();
                 out = new DataOutputStream(aux);
 
-                if(tipoLegionario.equals(tipoTarea)){
-                    out.writeUTF("Hola Legionario, aqui CENTURION " + numero);
-                    break;
-                }
-            }catch (Exception ex){
-                ex.getMessage();
-            }
-        }
     }
 
     public void darOrden() throws IOException {
@@ -154,7 +137,118 @@ public class HiloCenturion extends Thread {
                 }
                 break;
         }
+    }
 
+    public ServerSocket getSkServidor() {
+        return skServidor;
+    }
+
+    public void setSkServidor(ServerSocket skServidor) {
+        this.skServidor = skServidor;
+    }
+
+    public Socket getCenturion() {
+        return centurion;
+    }
+
+    public void setCenturion(Socket centurion) {
+        this.centurion = centurion;
+    }
+
+    public DataInputStream getIn() {
+        return in;
+    }
+
+    public void setIn(DataInputStream in) {
+        this.in = in;
+    }
+
+    public DataOutputStream getOut() {
+        return out;
+    }
+
+    public void setOut(DataOutputStream out) {
+        this.out = out;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getPuertoServidor() {
+        return puertoServidor;
+    }
+
+    public void setPuertoServidor(int puertoServidor) {
+        this.puertoServidor = puertoServidor;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    public String getTipoTarea() {
+        return tipoTarea;
+    }
+
+    public void setTipoTarea(String tipoTarea) {
+        this.tipoTarea = tipoTarea;
+    }
+
+    public int getParametro() {
+        return parametro;
+    }
+
+    public void setParametro(int parametro) {
+        this.parametro = parametro;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    public String getDestinatario() {
+        return destinatario;
+    }
+
+    public void setDestinatario(String destinatario) {
+        this.destinatario = destinatario;
+    }
+
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
+    }
+
+    public String getQueVigilar() {
+        return queVigilar;
+    }
+
+    public void setQueVigilar(String queVigilar) {
+        this.queVigilar = queVigilar;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
     }
 
 }

@@ -12,6 +12,7 @@ public class Centurion extends Thread{
     static final String HOST = "localhost";
     static final int PUERTO = 5000;
     private int puertoServidor;
+    private HiloCenturion hiloCenturion;
     private Socket centurion;
 
 
@@ -25,7 +26,8 @@ public class Centurion extends Thread{
         this.puertoServidor = puerto;
         this.numero = numero;
         sc = new Scanner(System.in);
-
+        this.hiloCenturion = new HiloCenturion(numero);
+        hiloCenturion.start();
     }
     @Override
     public void run(){
@@ -50,60 +52,46 @@ public class Centurion extends Thread{
                     case "CERVEZA":
                         int litros = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado traer " + litros + " de cerveza");
-                        HiloCenturion hiloCenturion = new HiloCenturion(puertoServidor, numero, "CERVEZA", litros);
-                        hiloCenturion.start();
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        hiloCenturion.setAccion("CERVEZA");
+                        hiloCenturion.setParametro(litros);
+                        hiloCenturion.interrupt();
+
                         break;
                     case "PRISIONEROS":
                         int prisioneros = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado traer " + prisioneros + " prisioneros");
-                        HiloCenturion hiloCenturion2 = new HiloCenturion(puertoServidor, numero, "PRISIONEROS", prisioneros);
-                        hiloCenturion2.start();
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        hiloCenturion.setAccion("PRISIONEROS");
+                        hiloCenturion.setParametro(prisioneros);
+                        hiloCenturion.interrupt();
+
                         break;
                     case "PAPEL":
                         int metros = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado traer " + metros + " de papel de pergamino");
-                        HiloCenturion hiloCenturion3 = new HiloCenturion(puertoServidor, numero, "PAPEL", metros);
-                        hiloCenturion3.start();
+                        hiloCenturion.setAccion("PAPEL");
+                        hiloCenturion.setParametro(metros);
+                        hiloCenturion.interrupt();
 
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
                         break;
                     case "MENSAJE":
                         String destinatario = in.readUTF();
                         String cuerpo = in.readUTF();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado llevar un mensaje a " + destinatario);
-                        HiloCenturion hiloCenturion4 = new HiloCenturion(puertoServidor, numero, "MENSAJE", destinatario, cuerpo);
-                        hiloCenturion4.start();
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        hiloCenturion.setAccion("MENSAJE");
+                        hiloCenturion.setDestinatario(destinatario);
+                        hiloCenturion.setCuerpo(cuerpo);
+                        hiloCenturion.interrupt();
+
                         break;
                     case "VIGILANCIA":
                         String queVigilar = in.readUTF();
                         int tiempo = in.readInt();
                         System.out.println("Centurion " + numero + ": " + "El CESAR me ha encomendado vigilar " + queVigilar + " durante " + tiempo + " segundos");
-                        HiloCenturion hiloCenturion5 = new HiloCenturion(puertoServidor, numero, "VIGILANCIA", queVigilar, tiempo);
-                        hiloCenturion5.start();
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        hiloCenturion.setAccion("VIGILANCIA");
+                        hiloCenturion.setQueVigilar(queVigilar);
+                        hiloCenturion.setTiempo(tiempo);
+                        hiloCenturion.interrupt();
+
                         break;
                 }
             }catch (Exception ex) {

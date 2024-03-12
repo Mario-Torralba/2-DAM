@@ -60,7 +60,7 @@ public class Legionario extends Thread{
 
                     InputStream aux = centurion.getInputStream();
                     in = new DataInputStream(aux);
-                    System.out.println(in.readUTF());
+
                     break;
                 } catch (Exception ex) {
                     ex.getMessage();
