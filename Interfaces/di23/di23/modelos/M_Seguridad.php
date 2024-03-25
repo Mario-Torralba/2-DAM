@@ -22,12 +22,11 @@
 
         public function buscarMenus($filtros){
 
-            $nombre_texto = '';
-            $rol_texto = '';
+            $id_usuario = 0;
             
             extract($filtros);
 
-            if($nombre_texto!=''){
+            if($id_usuario!=0){
                 $SQL = 'SELECT
                 U.ID_USUARIO
                 PU.ID_PERMISO_USUARIO,
@@ -48,7 +47,7 @@
                 INNER JOIN ROL_USUARIO RU ON U.ID_USUARIO = RU.ID_USUARIO
                 INNER JOIN ROL R ON RU.ID_ROL = R.ID_ROL
                 INNER JOIN MENU M ON P.ID_MENU = M.ID_MENU
-                WHERE U.ID_USUARIO = '.$nombre_texto.'
+                WHERE U.ID_USUARIO = '.$id_usuario.'
                 ORDER BY M.ID_PADRE ASC, M.ORDEN ASC;';
             }else{
 

@@ -41,7 +41,7 @@
     
         <div id="botonbuscardiv">
 
-            <button id="botonBusquedaMenus" class="botonUsuarios" type="button" onclick="buscarMenus()">BUSCAR</button>
+            <button id="botonBusquedaMenus" class="botonUsuarios" type="button" onclick="buscarMenus(2)">BUSCAR</button>
         </div>
         <!-- <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="paginado(127)">GO!!</button> -->
     
