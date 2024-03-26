@@ -24,6 +24,7 @@
 
             $id_usuario = 0;
             
+            
             extract($filtros);
 
             if($id_usuario!=0){
