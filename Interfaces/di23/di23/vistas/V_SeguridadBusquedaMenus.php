@@ -2,16 +2,128 @@
     $datos = $datos['menus'];
     $listaPadres = array();
     $listaHijos = array();
+    $listaPermisos = array();
+
+    // RELLENAR ARRAY DE PADRES
+    foreach ($datos as $element) {
+        $contador = 0;
+        if($element['ID_PADRE'] == 0){
+            foreach ($listaPadres as $element2) {
+                if($element['NOMBRE_PERMISO']==$element2['NOMBRE_PERMISO']){
+                    $contador += 1;
+                }
+            }
+            if($contador==0){
+                array_push($listaPadres, $element);
+            }
+        }
+    }
+
+    // RELLENAR ARRAY DE HIJOS
 
     foreach ($datos as $element) {
-
-        if($element['ID_PADRE'] == 0){
-            array_push($listaPadres, $element);
+        $contador = 0;
+        if($element['ID_PADRE'] != 0){
+            foreach ($listaHijos as $element2) {
+                if($element['TITULO']==$element2['TITULO']){
+                    $contador += 1;
+                }
+            }
+            if($contador==0){
+                array_push($listaHijos, $element);
+            }
         }
+    }
+
+        // RELLENAR ARRAY DE PERMISOS
+
+        foreach ($datos as $element) {
+            $contador = 0;
+            
+            foreach ($listaPermisos as $element2) {
+                if($element['NOMBRE_PERMISO']==$element2['NOMBRE_PERMISO']){
+                    $contador += 1;
+                }
+            }
+            if($contador==0){
+                array_push($listaPermisos, $element);
+            }
+            
+        }
+
+
+    // PINTAR MENU
+    
+    ?>
+    <div class="contenedorMenus">
+    <?php
+
+    foreach ($listaPadres as $e) {
+        
+        ?>
+        <div class="padre">
+            
+            <div class="contenedorPadre">
+
+                <div class="tituloMenu"><?php echo $e['TITULO']; ?></div>
+    
+                <div class="añadirHijo">Añadir Hijo</div>
+                <div class="permisosMenu">
+                    <?php 
+                    foreach ($listaPermisos as $element) {
+                        if($e['ID_MENU']==$element['ID_PADRE']){
+                            ?> 
+                            <div class="permiso"><?php echo $element['NOMBRE_PERMISO']; ?></div>
+                            <?php 
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="nuevoPermiso">Nuevo Permiso</div>
+                <div class="borrarPadre">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="red"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                </div>
+
+            </div>
+            
+            <div class="espacioHijos">
+            <?php 
+            foreach ($listaHijos as $element) {
+                if($element['ID_PADRE']==$e['ID_MENU']){
+                ?> 
+                <div class="tamañoHijo">
+                <div>
+                    <div class="tituloMenuHijos"><?php echo $element['TITULO']; ?></div>
+                </div>
+                <div class="permisosMenuHijos">
+                <?php 
+                foreach ($listaPermisos as $element2) {
+                    if($element['ID_MENU']==$element2['ID_MENU']){
+                        ?> 
+                        <div class="permiso"><?php echo $element2['NOMBRE_PERMISO']; ?></div>
+                        <?php 
+                    }
+                }
+                ?>
+                </div>
+                <div class="nuevoPermiso">Nuevo Permiso</div>
+                </div>
+                <?php 
+                }
+            }
+            ?>
+
+            </div>
+        </div>
+        <?php 
 
     }
 
-    print_r($listaPadres);
+    ?>
+    </div>
+    <?php
+
+    print_r($listaHijos)
 
 
 ?>
@@ -61,4 +173,4 @@
         </div>
 
 
-    </div> -->
+    </div>  -->

@@ -66,21 +66,25 @@
     align-items: center;
 }
 .contenedor_usuario{
-    height: 50vh;
     width: 90vw;
     border: 2px solid rgb(112, 112, 112);
 }
 
 
 .contenedorMenus{
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     margin: 0;
 }
 .padre{
-    width: 100%;
+    padding: 1vw;
+    margin: 1vw;
+    width: 90%;
     background-color: #fdfdfd;
-    border-bottom: 1px solid grey;
+    border: 2px solid grey;
+    border-radius: 5px;
 }
 .contenedorPadre{
     display: flex;
@@ -95,7 +99,6 @@
 }
 .tituloMenu{
     padding: 1vw;
-    margin-left: 3vw;
     color: white;
     background-color: #000000;
     box-shadow: 1px 1px 10px #9e9e9e;
@@ -140,7 +143,8 @@
     transition: 200ms;
 }
 .añadirHijo{
-    margin-left: 8vw;
+    position: absolute;
+    left: 10vw;
     padding: 1vw;
     display: flex;
     justify-content: center;
@@ -157,8 +161,8 @@
     transition: 200ms;
 }
 .permiso{
-    color: white;
     margin: 1vw;
+    color: white;
     box-shadow: 1px 1px 10px #9e9e9e;
     padding: 1vw;
     border-radius: 5px;
@@ -172,13 +176,14 @@
 
 .espacioHijos{
     width: 100%;
-    margin: 3vw;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
 }
 .tituloMenuHijos{
+    width: fit-content;
     padding: 1vw;
-    margin-left: 15vw;
     color: white;
     background-color: #000000;
     box-shadow: 1px 1px 10px #9e9e9e;
@@ -186,15 +191,14 @@
     white-space: nowrap;
 }
 .permisosMenuHijos{
+    width: fit-content;
     display: flex;
     flex-wrap: wrap;
     margin-left: 5vw;
-    padding: 3vh;
-}
-.iconoNuevoHijo{
-    margin-left: 20vw;
 }
 .nuevoPermiso{
+    height: fit-content;
+    width: fit-content;
     margin-left: 1vw;
     padding: 1vw;
     display: flex;
@@ -205,4 +209,14 @@
     color: white;
     border-radius: 5px;
     box-shadow: 1px 1px 10px #9e9e9e;
+}
+.tamañoHijo{
+    margin: 1vw;
+    height: fit-content;
+    padding: 1vw;
+    border: 2px solid grey;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 90%;
 }
