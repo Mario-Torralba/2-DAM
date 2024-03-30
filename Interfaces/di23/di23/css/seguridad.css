@@ -75,27 +75,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+
+    width: 99%;
     margin: 0;
 }
 .padre{
     padding: 1vw;
     margin: 1vw;
-    width: 90%;
+    width: 100%;
     background-color: #fdfdfd;
     border: 2px solid grey;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .contenedorPadre{
     display: flex;
     align-items: center;
     width: 100%;
-}
-.mas{
-    margin-left: 3vw;
-    height: 3vh;
-    width: 3vw;
-    background-color: red;
 }
 .tituloMenu{
     padding: 1vw;
@@ -111,8 +109,9 @@
 }
 .permisosMenu{
     display: flex;
+    justify-content: center;
+    width: 100%;
     flex-wrap: wrap;
-    margin-left: 5vw;
     padding: 3vh;
 }
 .barraSuperior{
@@ -133,9 +132,11 @@
     transition: 200ms;
 }
 .borrarPadre{
-    margin-right: 1vw;
-    height: 3vh;
-    width: 3vw;
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .borrarPadre:hover{
     scale: 1.2;
@@ -143,8 +144,6 @@
     transition: 200ms;
 }
 .añadirHijo{
-    position: absolute;
-    left: 10vw;
     padding: 1vw;
     display: flex;
     justify-content: center;
@@ -175,9 +174,9 @@
 }
 
 .espacioHijos{
-    width: 100%;
+    width: 98%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -189,17 +188,18 @@
     box-shadow: 1px 1px 10px #9e9e9e;
     border-radius: 5px;
     white-space: nowrap;
+    margin-left: 1vw;
 }
 .permisosMenuHijos{
-    width: fit-content;
+    width: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 5vw;
+    justify-content: center;
 }
 .nuevoPermiso{
     height: fit-content;
     width: fit-content;
-    margin-left: 1vw;
     padding: 1vw;
     display: flex;
     justify-content: center;
@@ -210,13 +210,97 @@
     border-radius: 5px;
     box-shadow: 1px 1px 10px #9e9e9e;
 }
+.nuevoPermiso:hover{
+    cursor: pointer;
+    scale: 1.2;
+    transition: 200ms;
+}
 .tamañoHijo{
+    background-color: #e7e7e7;
     margin: 1vw;
     height: fit-content;
-    padding: 1vw;
     border: 2px solid grey;
     border-radius: 5px;
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 100%;
+}
+.primerBloquePadre{
+    width: 20%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.segundoBloquePadre{
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tercerBloquePadre{
+    width: 20%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.primerBloqueHijo{
+    width: 20%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+.segundoBloqueHijo{
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tercerBloqueHijo{
+    width: 20%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1vw;
+}
+.hijo{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+#capaResultadosBusqueda{
+    margin-right: 2vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.nuevoPadre{
+    fill: green;
+    margin-left: 2vw;
+}
+.nuevoPadre:hover{
+    cursor: pointer;
+    transition: 200ms;
+}
+.nuevoHijo{
+    width: 100%;
+    fill: green;
+    margin-left: 2vw;
+}
+.nuevoHijo:hover{
+    cursor: pointer;
+    transition: 200ms;
+}
+.btn-primary{
+    width: 30%;
+}
+/* 
+*{
+    border: 1px solid black;
+} */
+
+.espacioFinal{
+    height: 10vh;
+    width: 100%;
 }

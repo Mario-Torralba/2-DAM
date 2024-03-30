@@ -18,15 +18,15 @@
 
     <form id="formularioBuscarMenu" name="formularioBuscarMenu">
         <div>
-            <label id="label" for="nombre_texto"> ID de Usuario
-                <input class="inputBusqueda" type="text" id="nombre_texto" name="nombre_texto">
+            <label id="label" for="id_usuario"> ID de Usuario
+                <input class="inputBusqueda" type="text" id="id_usuario" name="id_usuario">
             </label>
         </div>
         <div>
         </div>
         <div id="divSelect">
-            <label id="label" for="rol_texto"> Rol
-                <select class="inputBusqueda" name="rol_texto" id="rol_texto">
+            <label id="label" for="rol_usuario"> Rol
+                <select class="inputBusqueda" name="rol_usuario" id="rol_usuario">
                     <option value=" "></option>
                     <?php
                     print_r($_SESSION['ROLES']);
@@ -41,7 +41,7 @@
     
         <div id="botonbuscardiv">
 
-            <button id="botonBusquedaMenus" class="botonUsuarios" type="button" onclick="buscarMenus(2)">BUSCAR</button>
+            <button id="botonBusquedaMenus" class="botonUsuarios" type="button" onclick="buscarMenus()">BUSCAR</button>
         </div>
         <!-- <button id="botonBusquedaUsuarios" class="botonUsuarios" type="button" onclick="paginado(127)">GO!!</button> -->
     

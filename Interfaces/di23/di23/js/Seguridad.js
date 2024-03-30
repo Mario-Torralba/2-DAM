@@ -54,8 +54,8 @@ function buscarMenus(){
             }
         })
         .then(vista => {
-
             document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+            cargarUnScript('js/SeguridadMantenimiento.js');
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);

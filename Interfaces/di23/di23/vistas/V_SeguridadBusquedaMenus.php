@@ -18,6 +18,7 @@
             }
         }
     }
+    $_SESSION['ID_USUARIO_MANTENIMIENTO'] = $listaPadres[1]['ID_USUARIO'];
 
     // RELLENAR ARRAY DE HIJOS
 
@@ -35,97 +36,148 @@
         }
     }
 
-        // RELLENAR ARRAY DE PERMISOS
+    // RELLENAR ARRAY DE PERMISOS
 
-        foreach ($datos as $element) {
-            $contador = 0;
-            
-            foreach ($listaPermisos as $element2) {
-                if($element['NOMBRE_PERMISO']==$element2['NOMBRE_PERMISO']){
-                    $contador += 1;
-                }
-            }
-            if($contador==0){
-                array_push($listaPermisos, $element);
-            }
-            
-        }
-
-
-    // PINTAR MENU
-    
-    ?>
-    <div class="contenedorMenus">
-    <?php
-
-    foreach ($listaPadres as $e) {
+    foreach ($datos as $element) {
+        $contador = 0;
         
-        ?>
-        <div class="padre">
-            
-            <div class="contenedorPadre">
-
-                <div class="tituloMenu"><?php echo $e['TITULO']; ?></div>
-    
-                <div class="añadirHijo">Añadir Hijo</div>
-                <div class="permisosMenu">
-                    <?php 
-                    foreach ($listaPermisos as $element) {
-                        if($e['ID_MENU']==$element['ID_PADRE']){
-                            ?> 
-                            <div class="permiso"><?php echo $element['NOMBRE_PERMISO']; ?></div>
+        foreach ($listaPermisos as $element2) {
+            if($element['NOMBRE_PERMISO']==$element2['NOMBRE_PERMISO']){
+                $contador += 1;
+            }
+        }
+        if($contador==0){
+            array_push($listaPermisos, $element);
+        }
+        
+    }
+    print_r($listaPermisos);
+    // PINTAR MENU
+    $contadorPadres=1;
+    $contadorHijos=1;
+    ?>
+        <div class="nuevoPadre">
+            <button type="button" class="botonPopoverPadre" data-bs-toggle="popover" title="Nombre del menu" data-bs-content="" data-custom-value1=1 data-custom-value2=<?php echo $contadorPadres ?> data-custom-value3=<?php echo $contadorHijos ?>>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+            </button>
+        </div>
+        <?php
+        foreach ($listaPadres as $e) {
+            $contadorHijos=1;
+            ?>
+            <div class="padre">
+                
+                <div class="contenedorPadre">
+                    <div class="primerBloquePadre">
+                        <div class="tituloMenu"><?php echo $e['TITULO']; ?></div>
+                        <div class="añadirHijo">Añadir Hijo</div>
+                    </div>
+                    <div class="segundoBloquePadre">
+                        <div class="permisosMenu">
                             <?php 
-                        }
-                    }
-                    ?>
+                            $contador=0;
+                            foreach ($listaPermisos as $element) {
+                                if($e['ID_MENU']==$element['ID_MENU']){
+                                    ?> 
+                                    <div class="permiso"><?php echo $element['NOMBRE_PERMISO']; ?></div>
+                                    <?php 
+                                    $contador+=1;
+                                }
+                            }
+                            if($contador==0){
+                                ?> 
+                                Este menu no tiene permisos asociados
+                                <?php     
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="tercerBloquePadre">
+                        <div class="nuevoPermiso">Nuevo Permiso</div>
+                        <div class="borrarPadre">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="red"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                        </div>
+                    </div>
+                
                 </div>
-                <div class="nuevoPermiso">Nuevo Permiso</div>
-                <div class="borrarPadre">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="red"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
-                </div>
+                
+                <div class="espacioHijos">
 
-            </div>
-            
-            <div class="espacioHijos">
-            <?php 
-            foreach ($listaHijos as $element) {
-                if($element['ID_PADRE']==$e['ID_MENU']){
-                ?> 
-                <div class="tamañoHijo">
-                <div>
-                    <div class="tituloMenuHijos"><?php echo $element['TITULO']; ?></div>
-                </div>
-                <div class="permisosMenuHijos">
-                <?php 
-                foreach ($listaPermisos as $element2) {
-                    if($element['ID_MENU']==$element2['ID_MENU']){
+                    <?php 
+                    foreach ($listaHijos as $element) {
+                        if($element['ID_PADRE']==$e['ID_MENU']){
                         ?> 
-                        <div class="permiso"><?php echo $element2['NOMBRE_PERMISO']; ?></div>
+                        <div class="nuevoHijo">
+                            <button type="button" class="botonPopoverHijo" data-bs-toggle="poover" title="Nombre del menu" data-bs-content="" data-custom-value1=2 data-custom-value2=<?php echo $contadorPadres ?> data-custom-value3=<?php echo $contadorHijos ?>>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </button>
+                        </div>
+                        <?php $contadorHijos+=1;?>
+                        <div class="tamañoHijo"> 
+                            <div class="primerBloqueHijo">
+                                <div class="tituloMenuHijos"><?php echo $element['TITULO']; ?></div>
+                            </div>
+
+
+                            <div class="segundoBloqueHijo">
+                                <div class="permisosMenuHijos">
+                                <?php 
+                                $contador=0;
+                                foreach ($listaPermisos as $element2) {
+                                    if($element['ID_MENU']==$element2['ID_MENU']){
+                                        ?> 
+                                        <div class="permiso"><?php echo $element2['NOMBRE_PERMISO']; ?></div>
+                                        <?php 
+                                        $contador+= 1;
+                                    }
+                                }
+                                if($contador== 0){
+                                    ?> 
+                                    Este menu no tiene permisos asociados
+                                    <?php   
+                                }
+                                ?>
+                                </div>
+                            </div>
+                            
+                            <div class="tercerBloqueHijo">
+                                <div class="nuevoPermiso">Nuevo Permiso</div>
+                                <div class="borrarPadre">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="red"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
                         <?php 
                     }
-                }
-                ?>
+                    }
+                    
+                    
+                    ?>
+                    <?php 
+                        if($contadorHijos>1){
+                            
+                            ?><div class="nuevoHijo">
+                            <button type="button" class="botonPopoverHijo" data-bs-toggle="poover" title="Nombre del menu" data-bs-content="" data-custom-value1=2 data-custom-value2=<?php echo $contadorPadres ?> data-custom-value3=<?php echo $contadorHijos ?>>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </button>
+                            </div>
+                            <?php
+                        }
+                        $contadorPadres+=1;
+                        ?>
+                    </div>
                 </div>
-                <div class="nuevoPermiso">Nuevo Permiso</div>
-                </div>
-                <?php 
-                }
-            }
-            ?>
-
             </div>
-        </div>
-        <?php 
-
-    }
-
-    ?>
-    </div>
+            <div class="nuevoPadre">
+            <button type="button" class="botonPopoverPadre" data-bs-toggle="poover" title="Nombre del menu" data-bs-content="" data-custom-value1=1 data-custom-value2=<?php echo $contadorPadres ?> data-custom-value3=<?php echo $contadorHijos ?>>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+            </button>
+            </div>
+            <?php 
+        }
+        ?>
+    <div id="cargaFinal" class="espacioFinal"></div>
     <?php
-
-    print_r($listaHijos)
-
-
 ?>
 
 <!-- <div class="contenedorMenus">
