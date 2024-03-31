@@ -31,14 +31,14 @@
             if($tipo==1){
                 $cambios=$this->modelo->crearPadre($parametros);
             }
-            // if($tipo==2){
-                //     $cambios=$this->modelo->crearHijo($parametros);
+            if($tipo==2){
+                $cambios=$this->modelo->crearHijo($parametros);
+            }
+            // if($tipo==3){
+                //     $cambios=$this->modelo->borrarMenu($parametros);
                 // }
-                // if($tipo==3){
-                    //     $cambios=$this->modelo->borrarMenu($parametros);
-                    // }
-            Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
-            array('menus'=>$cambios));
+            // Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
+            // array('menus'=>$cambios));
 
             
 

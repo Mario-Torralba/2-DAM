@@ -180,6 +180,95 @@
 
         }
 
+
+        public function crearHijo($parametros){
+
+            $padre=0;
+            $hijo=0;
+            $nombreMenu='';
+
+            extract($parametros);
+
+            $usuario = $_SESSION['ID_USUARIO_MANTENIMIENTO'] ;
+
+            // CAMBIOS EN TABLA MENU
+
+            $SQL = 'ALTER TABLE PERMISO DROP FOREIGN KEY FK_PERMISO_MENU;';
+
+            $this->DAO->actualizar($SQL);
+
+            $SQL = 'ALTER TABLE MENU DROP PRIMARY KEY;';
+
+            $this->DAO->actualizar($SQL);
+
+            $SQL = "UPDATE MENU
+                    SET ORDEN = ORDEN + 1
+                    WHERE ORDEN >=".$hijo." AND ID_PADRE = ".$padre.";
+                    ";
+
+            $this->DAO->actualizar($SQL);
+
+            $SQL = "SELECT MAX(ID_MENU) + 1 AS siguiente_id FROM MENU;";
+
+            $cantidadMenu=$this->DAO->consultar($SQL);
+
+            $SQL = "INSERT INTO MENU (ID_MENU, TITULO, ID_PADRE, ACCION, ORDEN, PRIVADO)
+                    VALUES (".$cantidadMenu[0]['siguiente_id'].", '".$nombreMenu."', ".$padre.", '', ".$hijo.", true);";
+
+            $this->DAO->actualizar($SQL);
+
+            // // TABLA PERMISO, CREAR PERMISO BASICO 
+
+
+            $SQL = "SELECT MAX(ID_PERMISO) + 1 AS siguiente_id FROM PERMISO;";
+
+            $cantidadPermisos=$this->DAO->consultar($SQL);
+
+            $SQL = "INSERT INTO PERMISO (ID_PERMISO, ID_MENU, NOMBRE_PERMISO)
+                    VALUES (".$cantidadPermisos[0]['siguiente_id'].", ".$cantidadMenu[0]['siguiente_id'].", 'ver".$nombreMenu."');";
+
+            $this->DAO->actualizar($SQL);
+
+
+            $SQL = 'ALTER TABLE MENU ADD PRIMARY KEY (`ID_MENU`)';
+            
+            $this->DAO->actualizar($SQL);
+            
+            $SQL = 'ALTER TABLE PERMISO ADD CONSTRAINT `FK_PERMISO_MENU` FOREIGN KEY (`ID_MENU`) REFERENCES `MENU` (`ID_MENU`);';
+            
+            $this->DAO->actualizar($SQL);
+
+            // // CAMBIOS EN TABLA PERMISO_USUARIO
+
+            $SQL = "SELECT MAX(ID_PERMISO_USUARIO) + 1 AS siguiente_id FROM PERMISO_USUARIO;";
+
+            $cantidadPermisoUsuario=$this->DAO->consultar($SQL);
+
+            $SQL = "INSERT INTO PERMISO_USUARIO (ID_PERMISO_USUARIO, ID_PERMISO, ID_USUARIO)
+            VALUES (".$cantidadPermisoUsuario[0]['siguiente_id'].", ".$cantidadPermisos[0]['siguiente_id'].", ".$usuario.");";
+
+            $this->DAO->actualizar($SQL);
+
+            // // CAMBIOS EN TABLA PERMISO_ROL
+
+            $SQL = "SELECT MAX(ID_PERMISO_ROL) + 1 AS siguiente_id FROM PERMISO_ROL;";
+
+            $cantidadPermisorRol=$this->DAO->consultar($SQL);
+
+            $SQL = "SELECT ID_ROL FROM ROL_USUARIO WHERE ID_USUARIO = ".$usuario.";";
+
+            $rol=$this->DAO->consultar($SQL);
+
+            $SQL = "INSERT INTO PERMISO_ROL (ID_PERMISO_ROL, ID_PERMISO, ID_ROL)
+            VALUES (".$cantidadPermisorRol[0]['siguiente_id'].", ".$cantidadPermisos[0]['siguiente_id'].", ".$rol[0]['ID_ROL'].");";
+
+            $this->DAO->actualizar($SQL);
+
+
+            return $roles;
+
+        }
+
     }
 
 ?>

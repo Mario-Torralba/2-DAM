@@ -51,7 +51,7 @@
         }
         
     }
-    print_r($listaPermisos);
+
     // PINTAR MENU
     $contadorPadres=1;
     $contadorHijos=1;

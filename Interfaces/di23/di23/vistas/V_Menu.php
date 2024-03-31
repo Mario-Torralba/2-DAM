@@ -21,6 +21,7 @@
         }
     }
 
+
     foreach ($menus as $dato) {
 
         if($dato['ID_PADRE'] == 0){   //   [0]     [1]
@@ -30,13 +31,24 @@
         $contador++;
     }
 
-    foreach ($menus as $dato) {
 
+    $contador = 1;
+    foreach ($menus as $dato) {
+        $contador = 1;
         if($dato['ID_PADRE'] != 0){
-            array_push($arrayPadres[$dato['ID_PADRE']][1],$dato);
+            foreach ($arrayPadres as $element) {
+                if($dato['ID_PADRE']==$element[0]['ID_MENU']){
+                    array_push($arrayPadres[$contador][1],$dato);
+                }
+                $contador+=1;
+            }
+            // array_push($arrayPadres[$dato['ID_PADRE']][1],$dato);
+
         }
 
     }
+
+
 
 
 
