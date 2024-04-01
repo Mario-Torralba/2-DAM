@@ -34,9 +34,12 @@
             if($tipo==2){
                 $cambios=$this->modelo->crearHijo($parametros);
             }
-            // if($tipo==3){
-                //     $cambios=$this->modelo->borrarMenu($parametros);
-                // }
+            if($tipo==3){
+                $cambios=$this->modelo->crearHijoAlFinal($parametros);
+            }
+            if($tipo==4){
+                $cambios=$this->modelo->borrarPadre($parametros);
+            }
             // Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
             // array('menus'=>$cambios));
 
