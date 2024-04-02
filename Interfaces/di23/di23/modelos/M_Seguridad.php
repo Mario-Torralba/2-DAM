@@ -898,6 +898,156 @@ class M_Seguridad extends Modelo
 
     }
 
+    public function borrarPermisoHijo($parametros)
+    {
+
+        $padre = 0;
+        $hijo = 0;
+        $nombreMenu = '';
+
+        extract($parametros);
+
+        $usuario = $_SESSION['ID_USUARIO_MANTENIMIENTO'];
+
+        // CAMBIOS EN TABLA MENU
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP FOREIGN KEY FK_PERMISO_MENU;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE MENU DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        // TABLA PERMISO
+
+        $SQL = 'SELECT ID_PERMISO FROM PERMISO
+        WHERE NOMBRE_PERMISO = "'.$nombreMenu.'";';
+
+        $permisoBorrado = $this->DAO->consultar($SQL);
+
+        $SQL = 'DELETE FROM PERMISO
+        WHERE NOMBRE_PERMISO = "'.$nombreMenu.'";';
+
+        $this->DAO->actualizar($SQL);
+
+
+        // // // CAMBIOS EN TABLA PERMISO_ROL
+
+        $SQL = 'DELETE FROM PERMISO_ROL
+        WHERE ID_PERMISO = '.$permisoBorrado[0]['ID_PERMISO'].';';
+
+        $this->DAO->actualizar($SQL);
+
+        // // // CAMBIOS EN TABLA PERMISO_USUARIO
+
+        $SQL = 'DELETE FROM PERMISO_USUARIO
+        WHERE ID_PERMISO = '.$permisoBorrado[0]['ID_PERMISO'].';';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE MENU ADD PRIMARY KEY (`ID_MENU`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD PRIMARY KEY (`ID_PERMISO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL ADD PRIMARY KEY (`ID_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD PRIMARY KEY (`ID_PERMISO_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD PRIMARY KEY (`ID_PERMISO_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD PRIMARY KEY (`ID_ROL_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD CONSTRAINT `FK_PERMISO_MENU` FOREIGN KEY (`ID_MENU`) REFERENCES `MENU` (`ID_MENU`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+
+        return $permisoBorrado;
+
+    }
+
+
 }
 
 ?>

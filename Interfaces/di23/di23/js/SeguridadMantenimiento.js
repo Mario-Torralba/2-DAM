@@ -40,8 +40,31 @@ function borrarPermisoPadre(custom1, custom2, custom3, nombrePermiso) {
   var permisosMenu = padres[custom2-1].querySelector(".permisosMenu")
 
   for (let index = 0; index < permisos.length; index++) {
-    if(permisos[0].textContent.trim() == nombrePermiso){
+    if(permisos[index].textContent.trim() == nombrePermiso){
       permisosMenu.removeChild(permisos[index])
+    }
+  }
+
+  //REALIZAR CONSULTA/S
+  alterarMenusMantenimiento(custom1, custom2, custom3, nombrePermiso);
+
+  //RECARGAR JS
+  init();
+
+}
+
+function borrarPermisoHijo(custom1, custom2, custom3, nombrePermiso) {
+
+  var padres = document.querySelectorAll(".padre")
+  var hijos = padres[custom2-1].querySelectorAll(".tamañoHijo")
+  console.log(hijos)
+  var permisosMenu = hijos[custom3-1].querySelector(".permisosMenuHijos")
+  console.log(permisosMenu)
+  var permisosHijos = hijos[custom3-1].querySelectorAll(".permiso")
+
+  for (let index = 0; index < permisosHijos.length; index++) {
+    if(permisosHijos[index].textContent.trim() == nombrePermiso){
+      permisosMenu.removeChild(permisosHijos[index])
     }
   }
 

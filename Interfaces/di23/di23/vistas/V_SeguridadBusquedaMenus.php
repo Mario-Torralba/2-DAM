@@ -53,13 +53,6 @@ foreach ($datos as $element) {
 
 }
 
-print_r($listaPadres);
-?><br><br><?php
-print_r($listaHijos);
-?><br><br><?php
-print_r($listaPermisos);
-?><br><br><?php
-
 // PINTAR MENU
 $contadorPadres = 1;
 $contadorHijos = 1;
@@ -173,7 +166,7 @@ foreach ($listaPadres as $e) {
                                         ?>
                                         <div class="permiso">
                                             <?php echo $element2['NOMBRE_PERMISO']; ?>
-                                            <div class="borrarPermisoHijo" onclick="borrarPermisoHijo(7,<?php echo $contadorPadres ?>,<?php echo $contadorHijos ?>,<?php echo $element['NOMBRE_PERMISO']; ?>)">
+                                            <div class="borrarPermisoHijo" onclick="borrarPermisoHijo(7,<?php echo $contadorPadres ?>,<?php echo $contadorHijos ?>,'<?php echo $element2['NOMBRE_PERMISO']; ?>')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
                                                     fill="red">
                                                     <path
