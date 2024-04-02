@@ -40,11 +40,17 @@
             if($tipo==4){
                 $cambios=$this->modelo->borrarPadre($parametros);
             }
-            // Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
-            // array('menus'=>$cambios));
-
-            
-
+            if($tipo==5){
+                $cambios=$this->modelo->borrarHijo($parametros);
+            }
+            if($tipo==6){
+                $cambios=$this->modelo->borrarPermisoPadre($parametros);
+            }
+            if($tipo==7){
+                $cambios=$this->modelo->borrarPermisoHijo($parametros);
+            }
+            Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
+            array('menus'=>$cambios));
 
         }
 

@@ -25,61 +25,31 @@ function alterarMenusMantenimiento(tipo, padre, hijo, nombreMenu) {
         return res.text();
       }
     })
-      // .then((vista) => {
-      //   document.getElementById("capaResultadosBusqueda").innerHTML = vista;
-      // })
+      .then((vista) => {
+        document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+      })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-function borrarPadre(custom1, custom2, custom3) {
 
-  let elementosPadre = document.querySelectorAll(".padre") 
-  let elementosPadreCrear = document.querySelectorAll(".nuevoPadre") 
-  let elementosPadreArray = Array.from(elementosPadre)
-  let capaResultadosBusqueda = document.getElementById("capaResultadosBusqueda")
- 
-  capaResultadosBusqueda.removeChild(elementosPadre[custom2-1])
-  capaResultadosBusqueda.removeChild(elementosPadreCrear[custom2-1])
-    
-  let botonesBorrarPadre = document.querySelectorAll(".borrarPadre")
+function borrarPermisoPadre(custom1, custom2, custom3, nombrePermiso) {
 
-  for (let index = 0; index < botonesBorrarPadre.length; index++) {
-    botonesBorrarPadre[index].setAttribute("onclick","borrarPadre(4,"+(index+1)+",1)");
-  }
+  var padres = document.querySelectorAll(".padre")
+  var permisos = padres[custom2-1].querySelectorAll(".permiso")
+  var permisosMenu = padres[custom2-1].querySelector(".permisosMenu")
 
-  let botonesPopoverPadre = document.querySelectorAll(".botonPopoverPadre")
-
-  for (let index = 0; index < botonesPopoverPadre.length; index++) {
-    botonesPopoverPadre[index].setAttribute("data-custom-value2",(index+1))
-  }
-
-  elementosPadre = document.querySelectorAll(".padre") 
-
-  for (let index = 0; index < elementosPadre.length; index++) {
-    var customValuesHijoss = elementosPadre[index].querySelectorAll(".botonPopoverHijo");
-    for (let index2 = 0;index2 < customValuesHijoss.length;index2++) {
-      customValuesHijoss[index2].setAttribute("data-custom-value2",(index+1))
+  for (let index = 0; index < permisos.length; index++) {
+    if(permisos[0].textContent.trim() == nombrePermiso){
+      permisosMenu.removeChild(permisos[index])
     }
   }
 
-  let aceptarAñadirHijo = document.querySelectorAll(".aceptarAñadirHijo")
+  //REALIZAR CONSULTA/S
+  alterarMenusMantenimiento(custom1, custom2, custom3, nombrePermiso);
 
-  for (let index = 0; index < aceptarAñadirHijo.length; index++) {
-    aceptarAñadirHijo[index].setAttribute("onclick","añadirHijo(3,"+ (index+1) +",1)")
-  }
-
-  let espacioHijos = document.querySelectorAll(".espacioHijos")
-  for (let index = 0; index < espacioHijos.length; index++) {
-    let botonesBorrarHijo = array[index].querySelectorAll(".borrarHijo")
-    for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
-      botonesBorrarHijo[index2].setAttribute("data-custom-value2",(index+1))
-    }
-  }
-
-
-
-  alterarMenusMantenimiento(custom1,custom2,custom3," ")
+  //RECARGAR JS
+  init();
 
 }
 
@@ -183,7 +153,7 @@ function añadirHijo(custom1, custom2, custom3) {
   nuevoPermiso.textContent = "Nuevo Permiso";
 
   let borrarPadre = document.createElement("div");
-  borrarPadre.classList.add("borrarPadre");
+  borrarPadre.classList.add("borrarHijo");
 
   let svgBorrar = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svgBorrar.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -255,12 +225,120 @@ function añadirHijo(custom1, custom2, custom3) {
     }
   }
 
+  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  for (let index = 0; index < espacioHijos.length; index++) {
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
+      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +", "+(index2+1) +")")
+    }
+  }
+
   //REALIZAR CONSULTA/S
   alterarMenusMantenimiento(custom1, custom2, custom3, inputAñadirHijo[0].value);
 
   //RECARGAR JS
   init();
 }
+function borrarHijo(custom1, custom2, custom3) {
+
+  console.log(custom1)
+  console.log(custom2)
+  console.log(custom3)
+
+  let elementosPadre = document.querySelectorAll(".padre") 
+  let elementosHijo = elementosPadre[custom2-1].querySelectorAll(".tamañoHijo")
+  let elementosHijoBoton = elementosPadre[custom2-1].querySelectorAll(".nuevoHijo")
+
+  let espacioHijos2 = document.querySelectorAll(".espacioHijos")
+  let espacioHijosEspecifico = espacioHijos2[custom2-1]
+
+  console.log(elementosHijo)
+  console.log(elementosHijoBoton)
+  console.log(espacioHijosEspecifico)
+
+  espacioHijosEspecifico.removeChild(elementosHijo[(custom3-1)])
+  espacioHijosEspecifico.removeChild(elementosHijoBoton[(custom3-1)])
+
+
+  elementosPadre = document.querySelectorAll(".padre") 
+
+  for (let index = 0; index < elementosPadre.length; index++) {
+    var customValuesHijoss = elementosPadre[index].querySelectorAll(".botonPopoverHijo");
+    for (let index2 = 0;index2 < customValuesHijoss.length;index2++) {
+      customValuesHijoss[index2].setAttribute("data-custom-value3",(index2+1))
+    }
+  }
+
+
+  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  for (let index = 0; index < espacioHijos.length; index++) {
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
+      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +", "+(index2+1) +")")
+    }
+  }
+
+
+
+  alterarMenusMantenimiento(custom1,custom2,custom3," ")
+
+  init();
+
+}
+
+function borrarPadre(custom1, custom2, custom3) {
+
+  let elementosPadre = document.querySelectorAll(".padre") 
+  let elementosPadreCrear = document.querySelectorAll(".nuevoPadre") 
+  let elementosPadreArray = Array.from(elementosPadre)
+  let capaResultadosBusqueda = document.getElementById("capaResultadosBusqueda")
+ 
+  capaResultadosBusqueda.removeChild(elementosPadre[custom2-1])
+  capaResultadosBusqueda.removeChild(elementosPadreCrear[custom2-1])
+    
+  let botonesBorrarPadre = document.querySelectorAll(".borrarPadre")
+
+  for (let index = 0; index < botonesBorrarPadre.length; index++) {
+    botonesBorrarPadre[index].setAttribute("onclick","borrarPadre(4,"+(index+1)+",1)");
+  }
+
+  let botonesPopoverPadre = document.querySelectorAll(".botonPopoverPadre")
+
+  for (let index = 0; index < botonesPopoverPadre.length; index++) {
+    botonesPopoverPadre[index].setAttribute("data-custom-value2",(index+1))
+  }
+
+  elementosPadre = document.querySelectorAll(".padre") 
+
+  for (let index = 0; index < elementosPadre.length; index++) {
+    var customValuesHijoss = elementosPadre[index].querySelectorAll(".botonPopoverHijo");
+    for (let index2 = 0;index2 < customValuesHijoss.length;index2++) {
+      customValuesHijoss[index2].setAttribute("data-custom-value2",(index+1))
+    }
+  }
+
+  let aceptarAñadirHijo = document.querySelectorAll(".aceptarAñadirHijo")
+
+  for (let index = 0; index < aceptarAñadirHijo.length; index++) {
+    aceptarAñadirHijo[index].setAttribute("onclick","añadirHijo(3,"+ (index+1) +",1)")
+  }
+
+  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  for (let index = 0; index < espacioHijos.length; index++) {
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
+      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+(index2+1)+")")
+    }
+  }
+
+
+
+  alterarMenusMantenimiento(custom1,custom2,custom3," ")
+  init();
+
+}
+
+
 
 
 
@@ -268,6 +346,8 @@ function init() {
   $(document).ready(function () {
     $('[data-bs-toggle="popover"]').popover();
   });
+
+  
 
   // AÑADIR HIJO AL FINAL (BOTON AÑADIR HIJO)
 
@@ -526,6 +606,16 @@ function init() {
               );
             }
 
+            var borrarPadres = document.querySelectorAll(".borrarPadre");
+            
+            for (let index = 0; index < padres.length; index++) {
+              borrarPadres[index].setAttribute("onclick","borrarPadre(4,"+ (index+1) +",1)");
+              var borrarHijos = padres[index].querySelectorAll(".borrarHijo");
+              for (let index2 = 0; index2 < borrarHijos.length; index2++) {
+                borrarHijos[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+ (index2+1) +")");
+              }
+            }
+            
             //REALIZAR CONSULTA/S
             alterarMenusMantenimiento(tipo, padre, hijo, input.value);
 
@@ -637,7 +727,7 @@ function init() {
             nuevoPermiso.textContent = "Nuevo Permiso";
 
             let borrarPadre = document.createElement("div");
-            borrarPadre.classList.add("borrarPadre");
+            borrarPadre.classList.add("borrarHijo");
 
             let svgBorrar = document.createElementNS(
               "http://www.w3.org/2000/svg",
@@ -735,6 +825,16 @@ function init() {
                 );
               }
             }
+
+            var padres = document.querySelectorAll(".padre");
+
+            for (let index = 0; index < padres.length; index++) {
+              var borrarHijos = padres[index].querySelectorAll(".borrarHijo");
+              for (let index2 = 0; index2 < borrarHijos.length; index2++) {
+                borrarHijos[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+ (index2+1) +")");
+              }
+            }
+
 
             //REALIZAR CONSULTA/S
             alterarMenusMantenimiento(tipo, padre, hijo, input.value);

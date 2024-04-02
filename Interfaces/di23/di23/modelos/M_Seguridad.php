@@ -207,10 +207,13 @@ class M_Seguridad extends Modelo
 
         $this->DAO->actualizar($SQL);
 
+        $SQL = "SELECT * FROM MENU ORDER BY id_menu LIMIT " . ($padre - 1) . ", 1;";
+
+        $posicionMenu = $this->DAO->consultar($SQL);
+
         $SQL = "UPDATE MENU
-                    SET ORDEN = ORDEN + 1
-                    WHERE ORDEN >=" . $hijo . " AND ID_PADRE = " . $padre . ";
-                    ";
+                SET ORDEN = ORDEN + 1
+                WHERE ORDEN >=" . $hijo . " AND ID_PADRE = " . $posicionMenu[0]['ID_MENU'] . ";";
 
         $this->DAO->actualizar($SQL);
 
@@ -219,7 +222,8 @@ class M_Seguridad extends Modelo
         $cantidadMenu = $this->DAO->consultar($SQL);
 
         $SQL = "INSERT INTO MENU (ID_MENU, TITULO, ID_PADRE, ACCION, ORDEN, PRIVADO)
-                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $padre . ", '', " . $hijo . ", true);";
+                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $posicionMenu[0]['ID_MENU'] . ", '', " . $hijo . ", true);";
+        echo $SQL;
 
         $this->DAO->actualizar($SQL);
 
@@ -287,21 +291,25 @@ class M_Seguridad extends Modelo
 
         // CAMBIOS EN TABLA MENU
 
+        $SQL = "SELECT * FROM MENU ORDER BY id_menu LIMIT " . ($padre - 1) . ", 1;";
+
+        $posicionMenu = $this->DAO->consultar($SQL);
 
         $SQL = "SELECT MAX(ID_MENU) + 1 AS siguiente_id FROM MENU;";
 
         $cantidadMenu = $this->DAO->consultar($SQL);
 
-        $SQL = "SELECT MAX(ORDEN) + 1 AS siguiente_id FROM MENU WHERE ID_PADRE = " . $padre . ";";
+        $SQL = "SELECT MAX(ORDEN) + 1 AS siguiente_id FROM MENU WHERE ID_PADRE = " . $posicionMenu[0]['ID_MENU'] . ";";
 
         $cantidadOrden = $this->DAO->consultar($SQL);
 
+
         if ($cantidadOrden[0]['siguiente_id'] == null) {
             $SQL = "INSERT INTO MENU (ID_MENU, TITULO, ID_PADRE, ACCION, ORDEN, PRIVADO)
-                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $padre . ", '', 0, true);";
+                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $posicionMenu[0]['ID_MENU'] . ", '', 0, true);";
         } else {
             $SQL = "INSERT INTO MENU (ID_MENU, TITULO, ID_PADRE, ACCION, ORDEN, PRIVADO)
-                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $padre . ", '', " . $cantidadOrden[0]['siguiente_id'] . ", true);";
+                    VALUES (" . $cantidadMenu[0]['siguiente_id'] . ", '" . $nombreMenu . "', " . $posicionMenu[0]['ID_MENU'] . ", '', " . $cantidadOrden[0]['siguiente_id'] . ", true);";
         }
 
         echo $SQL;
@@ -364,6 +372,30 @@ class M_Seguridad extends Modelo
 
         // CAMBIOS EN TABLA MENU
 
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
         $SQL = 'ALTER TABLE PERMISO DROP FOREIGN KEY FK_PERMISO_MENU;';
 
         $this->DAO->actualizar($SQL);
@@ -372,48 +404,127 @@ class M_Seguridad extends Modelo
 
         $this->DAO->actualizar($SQL);
 
-        $SQL = 'UPDATE MENU
-                    SET ID_MENU = ID_MENU + 1
-                    WHERE ID_MENU >= ' . $padre . ';';
+        $SQL = 'ALTER TABLE PERMISO DROP PRIMARY KEY;';
 
         $this->DAO->actualizar($SQL);
 
-        $SQL = 'UPDATE MENU
-                    SET ID_PADRE = ID_PADRE + 1
-                    WHERE ID_PADRE >= ' . $padre . ';';
+        $SQL = 'ALTER TABLE ROL DROP PRIMARY KEY;';
 
         $this->DAO->actualizar($SQL);
 
-        $SQL = 'UPDATE MENU
-                    SET ORDEN = ORDEN + 1
-                    WHERE ID_MENU >= ' . $padre . ' AND ID_PADRE = 0;';
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP PRIMARY KEY;';
 
         $this->DAO->actualizar($SQL);
 
-        $SQL = "INSERT INTO MENU (ID_MENU, TITULO, ID_PADRE, ACCION, ORDEN, PRIVADO)
-                    VALUES (" . $padre . ", '" . $nombreMenu . "', 0, '', " . $padre . ", true);";
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP PRIMARY KEY;';
 
         $this->DAO->actualizar($SQL);
 
-        // TABLA PERMISO, CREAR PERMISO BASICO Y AUMENTAR LOS ID_MENU
-
-        $SQL = 'UPDATE PERMISO
-            SET ID_MENU = ID_MENU + 1
-            WHERE ID_MENU >= ' . $padre . ';';
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP PRIMARY KEY;';
 
         $this->DAO->actualizar($SQL);
 
-        $SQL = "SELECT MAX(ID_PERMISO) + 1 AS siguiente_id FROM PERMISO;";
 
-        $cantidadPermisos = $this->DAO->consultar($SQL);
 
-        $SQL = "INSERT INTO PERMISO (ID_PERMISO, ID_MENU, NOMBRE_PERMISO)
-                    VALUES (" . $cantidadPermisos[0]['siguiente_id'] . ", " . $padre . ", 'ver" . $nombreMenu . "');";
+        $SQL = 'DELETE FROM MENU
+                WHERE ID_MENU = ' . $padre . ';';
 
         $this->DAO->actualizar($SQL);
 
+        $SQL = 'SELECT ID_MENU
+                FROM MENU
+                WHERE ID_PADRE = ' . $padre . ';';
+
+        $datosBorrados = $this->DAO->consultar($SQL);
+
+        $SQL = 'DELETE FROM MENU
+                WHERE ID_PADRE = ' . $padre . ';';
+
+        $this->DAO->actualizar($SQL);
+
+
+        // // TABLA PERMISO, CREAR PERMISO BASICO Y AUMENTAR LOS ID_MENU
+
+        $SQL = 'SELECT ID_PERMISO FROM PERMISO
+                WHERE ID_MENU = ' . $padre . ';';
+
+        $permisosBorrados = $this->DAO->consultar($SQL);
+
+        $SQL = 'DELETE FROM PERMISO
+                WHERE ID_MENU = ' . $padre . ';';
+
+        $this->DAO->actualizar($SQL);
+
+        foreach ($datosBorrados as $element) {
+
+            $SQL = 'SELECT ID_PERMISO FROM PERMISO
+            WHERE ID_MENU = ' . $element['ID_MENU'] . ';';
+
+            array_push($permisosBorrados, $this->DAO->consultar($SQL));
+        }
+
+        foreach ($datosBorrados as $element) {
+
+            $SQL = 'DELETE FROM PERMISO
+            WHERE ID_MENU = ' . $element['ID_MENU'] . ';';
+
+            $this->DAO->actualizar($SQL);
+        }
+
+        // // CAMBIOS EN TABLA PERMISO_ROL
+
+        $contador = 0;
+        foreach ($permisosBorrados as $element) {
+
+            if ($contador == 0) {
+                $SQL = 'DELETE FROM PERMISO_ROL
+                WHERE ID_PERMISO = ' . $element['ID_PERMISO'] . ';';
+            } else {
+                $SQL = 'DELETE FROM PERMISO_ROL
+                WHERE ID_PERMISO = ' . $element[0]['ID_PERMISO'] . ';';
+            }
+
+            $this->DAO->actualizar($SQL);
+            $contador += 1;
+        }
+
+        // // CAMBIOS EN TABLA PERMISO_USUARIO
+        $contador = 0;
+        foreach ($permisosBorrados as $element) {
+
+            if ($contador == 0) {
+                $SQL = 'DELETE FROM PERMISO_USUARIO
+                WHERE ID_PERMISO = ' . $element['ID_PERMISO'] . ';';
+            } else {
+                $SQL = 'DELETE FROM PERMISO_USUARIO
+                WHERE ID_PERMISO = ' . $element[0]['ID_PERMISO'] . ';';
+            }
+
+            $this->DAO->actualizar($SQL);
+            $contador += 1;
+        }
 
         $SQL = 'ALTER TABLE MENU ADD PRIMARY KEY (`ID_MENU`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD PRIMARY KEY (`ID_PERMISO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL ADD PRIMARY KEY (`ID_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD PRIMARY KEY (`ID_PERMISO_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD PRIMARY KEY (`ID_PERMISO_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD PRIMARY KEY (`ID_ROL_USUARIO`)';
 
         $this->DAO->actualizar($SQL);
 
@@ -421,34 +532,369 @@ class M_Seguridad extends Modelo
 
         $this->DAO->actualizar($SQL);
 
-        // CAMBIOS EN TABLA PERMISO_USUARIO
-
-        $SQL = "SELECT MAX(ID_PERMISO_USUARIO) + 1 AS siguiente_id FROM PERMISO_USUARIO;";
-
-        $cantidadPermisoUsuario = $this->DAO->consultar($SQL);
-
-        $SQL = "INSERT INTO PERMISO_USUARIO (ID_PERMISO_USUARIO, ID_PERMISO, ID_USUARIO)
-            VALUES (" . $cantidadPermisoUsuario[0]['siguiente_id'] . ", " . $cantidadPermisos[0]['siguiente_id'] . ", " . $usuario . ");";
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
 
         $this->DAO->actualizar($SQL);
 
-        // CAMBIOS EN TABLA PERMISO_ROL
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
 
-        $SQL = "SELECT MAX(ID_PERMISO_ROL) + 1 AS siguiente_id FROM PERMISO_ROL;";
+        $this->DAO->actualizar($SQL);
 
-        $cantidadPermisorRol = $this->DAO->consultar($SQL);
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
 
-        $SQL = "SELECT ID_ROL FROM ROL_USUARIO WHERE ID_USUARIO = " . $usuario . ";";
+        $this->DAO->actualizar($SQL);
 
-        $rol = $this->DAO->consultar($SQL);
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
 
-        $SQL = "INSERT INTO PERMISO_ROL (ID_PERMISO_ROL, ID_PERMISO, ID_ROL)
-            VALUES (" . $cantidadPermisorRol[0]['siguiente_id'] . ", " . $cantidadPermisos[0]['siguiente_id'] . ", " . $rol[0]['ID_ROL'] . ");";
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
 
         $this->DAO->actualizar($SQL);
 
 
         return $roles;
+
+    }
+
+    public function borrarHijo($parametros)
+    {
+
+        $padre = 0;
+        $hijo = 0;
+        $nombreMenu = '';
+
+        extract($parametros);
+
+        $usuario = $_SESSION['ID_USUARIO_MANTENIMIENTO'];
+
+        // CAMBIOS EN TABLA MENU
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP FOREIGN KEY FK_PERMISO_MENU;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE MENU DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'SELECT ID_MENU FROM MENU
+        WHERE ID_PADRE = 0;';
+
+        $ordenMenu = $this->DAO->consultar($SQL);
+
+        $SQL = 'SELECT ORDEN FROM MENU
+        WHERE ID_PADRE = ' . $ordenMenu[$padre - 1]['ID_MENU'] . ';';
+
+        $ordenOrden = $this->DAO->consultar($SQL);
+
+        $SQL = 'SELECT ID_MENU FROM MENU
+                WHERE ID_PADRE = ' . $ordenMenu[$padre - 1]['ID_MENU'] . '
+                AND ORDEN = ' . $ordenOrden[$hijo - 1]['ORDEN'] . ';';
+
+        $datosBorrados = $this->DAO->consultar($SQL);
+
+        $SQL = 'DELETE FROM MENU
+                WHERE ID_PADRE = ' . $ordenMenu[$padre - 1]['ID_MENU'] . '
+                AND ORDEN = ' . $ordenOrden[$hijo - 1]['ORDEN'] . ';';
+
+        $this->DAO->actualizar($SQL);
+
+
+        // // TABLA PERMISO, CREAR PERMISO BASICO Y AUMENTAR LOS ID_MENU
+
+
+        $permisosBorrados = array();
+
+        foreach ($datosBorrados as $element) {
+
+            $SQL = 'SELECT ID_PERMISO FROM PERMISO
+            WHERE ID_MENU = ' . $element['ID_MENU'] . ';';
+
+            array_push($permisosBorrados, $this->DAO->consultar($SQL));
+        }
+
+        foreach ($datosBorrados as $element) {
+
+            $SQL = 'DELETE FROM PERMISO
+            WHERE ID_MENU = ' . $element['ID_MENU'] . ';';
+
+            $this->DAO->actualizar($SQL);
+        }
+
+
+        // // // CAMBIOS EN TABLA PERMISO_ROL
+
+        foreach ($permisosBorrados as $element) {
+
+            $SQL = 'DELETE FROM PERMISO_ROL
+            WHERE ID_PERMISO = ' . $element[0]['ID_PERMISO'] . ';';
+
+            $this->DAO->actualizar($SQL);
+
+        }
+
+        // // // CAMBIOS EN TABLA PERMISO_USUARIO
+
+        foreach ($permisosBorrados as $element) {
+
+            $SQL = 'DELETE FROM PERMISO_USUARIO
+            WHERE ID_PERMISO = ' . $element[0]['ID_PERMISO'] . ';';
+
+            $this->DAO->actualizar($SQL);
+        }
+
+        $SQL = 'ALTER TABLE MENU ADD PRIMARY KEY (`ID_MENU`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD PRIMARY KEY (`ID_PERMISO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL ADD PRIMARY KEY (`ID_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD PRIMARY KEY (`ID_PERMISO_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD PRIMARY KEY (`ID_PERMISO_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD PRIMARY KEY (`ID_ROL_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD CONSTRAINT `FK_PERMISO_MENU` FOREIGN KEY (`ID_MENU`) REFERENCES `MENU` (`ID_MENU`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+
+        return $roles;
+
+    }
+
+    public function borrarPermisoPadre($parametros)
+    {
+
+        $padre = 0;
+        $hijo = 0;
+        $nombreMenu = '';
+
+        extract($parametros);
+
+        $usuario = $_SESSION['ID_USUARIO_MANTENIMIENTO'];
+
+        // CAMBIOS EN TABLA MENU
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP FOREIGN KEY FK_ROL_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_ROL;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP FOREIGN KEY FK_PERMISO_ROL_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_PERMISO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP FOREIGN KEY FK_PERMISO_USUARIO_USUARIO;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP FOREIGN KEY FK_PERMISO_MENU;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE MENU DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO DROP PRIMARY KEY;';
+
+        $this->DAO->actualizar($SQL);
+
+        // TABLA PERMISO
+
+        $SQL = 'SELECT ID_PERMISO FROM PERMISO
+        WHERE NOMBRE_PERMISO = "'.$nombreMenu.'";';
+
+        $permisoBorrado = $this->DAO->consultar($SQL);
+
+        $SQL = 'DELETE FROM PERMISO
+        WHERE NOMBRE_PERMISO = "'.$nombreMenu.'";';
+
+        $this->DAO->actualizar($SQL);
+
+
+        // // // CAMBIOS EN TABLA PERMISO_ROL
+
+        $SQL = 'DELETE FROM PERMISO_ROL
+        WHERE ID_PERMISO = '.$permisoBorrado[0]['ID_PERMISO'].';';
+
+        $this->DAO->actualizar($SQL);
+
+        // // // CAMBIOS EN TABLA PERMISO_USUARIO
+
+        $SQL = 'DELETE FROM PERMISO_USUARIO
+        WHERE ID_PERMISO = '.$permisoBorrado[0]['ID_PERMISO'].';';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE MENU ADD PRIMARY KEY (`ID_MENU`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD PRIMARY KEY (`ID_PERMISO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL ADD PRIMARY KEY (`ID_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD PRIMARY KEY (`ID_PERMISO_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD PRIMARY KEY (`ID_PERMISO_ROL`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD PRIMARY KEY (`ID_ROL_USUARIO`)';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO ADD CONSTRAINT `FK_PERMISO_MENU` FOREIGN KEY (`ID_MENU`) REFERENCES `MENU` (`ID_MENU`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_USUARIO ADD CONSTRAINT `FK_PERMISO_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_PERMISO` FOREIGN KEY (`ID_PERMISO`) REFERENCES `PERMISO` (`ID_PERMISO`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE PERMISO_ROL ADD CONSTRAINT `FK_PERMISO_ROL_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_ROL` FOREIGN KEY (`ID_ROL`) REFERENCES `ROL` (`ID_ROL`);';
+
+        $this->DAO->actualizar($SQL);
+
+        $SQL = 'ALTER TABLE ROL_USUARIO ADD CONSTRAINT `FK_ROL_USUARIO_USUARIO` FOREIGN KEY (`ID_USUARIO`) REFERENCES `USUARIO` (`ID_USUARIO`);';
+
+        $this->DAO->actualizar($SQL);
+
+
+        return $permisoBorrado;
 
     }
 

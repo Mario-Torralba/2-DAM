@@ -18,6 +18,7 @@ foreach ($datos as $element) {
         }
     }
 }
+
 $_SESSION['ID_USUARIO_MANTENIMIENTO'] = $listaPadres[1]['ID_USUARIO'];
 
 // RELLENAR ARRAY DE HIJOS
@@ -51,6 +52,13 @@ foreach ($datos as $element) {
     }
 
 }
+
+print_r($listaPadres);
+?><br><br><?php
+print_r($listaHijos);
+?><br><br><?php
+print_r($listaPermisos);
+?><br><br><?php
 
 // PINTAR MENU
 $contadorPadres = 1;
@@ -87,7 +95,7 @@ foreach ($listaPadres as $e) {
                         </svg>
                     </div>
 
-                    
+
                 </div>
             </div>
             <div class="segundoBloquePadre">
@@ -99,14 +107,21 @@ foreach ($listaPadres as $e) {
                             ?>
                             <div class="permiso">
                                 <?php echo $element['NOMBRE_PERMISO']; ?>
+                                <div class="borrarPermisoPadre" onclick="borrarPermisoPadre(6,<?php echo $contadorPadres ?>,1,'<?php echo $element['NOMBRE_PERMISO']; ?>')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                                        fill="red">
+                                        <path
+                                            d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                    </svg>
+                                </div>
                             </div>
+
                             <?php
-                            $contador += 1;
                         }
+                        $contador += 1;
                     }
                     if ($contador == 0) {
-                        ?>
-                        Este menu no tiene permisos asociados
+                        ?> Este menu no tiene permisos asociados
                         <?php
                     }
                     ?>
@@ -131,7 +146,7 @@ foreach ($listaPadres as $e) {
                 if ($element['ID_PADRE'] == $e['ID_MENU']) {
                     ?>
                     <div class="nuevoHijo">
-                        <button type="button" class="botonPopoverHijo" data-bs-toggle="poover" title="Nombre del menu"
+                        <button type="button" class="botonPopoverHijo" data-bs-toggle="popover" title="Nombre del menu"
                             data-bs-content="" data-custom-value1=2 data-custom-value2=<?php echo $contadorPadres ?>
                             data-custom-value3=<?php echo $contadorHijos ?>>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -140,7 +155,7 @@ foreach ($listaPadres as $e) {
                             </svg>
                         </button>
                     </div>
-                    <?php $contadorHijos += 1; ?>
+
                     <div class="tamañoHijo">
                         <div class="primerBloqueHijo">
                             <div class="tituloMenuHijos">
@@ -158,6 +173,13 @@ foreach ($listaPadres as $e) {
                                         ?>
                                         <div class="permiso">
                                             <?php echo $element2['NOMBRE_PERMISO']; ?>
+                                            <div class="borrarPermisoHijo" onclick="borrarPermisoHijo(7,<?php echo $contadorPadres ?>,<?php echo $contadorHijos ?>,<?php echo $element['NOMBRE_PERMISO']; ?>)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                                                    fill="red">
+                                                    <path
+                                                        d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                                </svg>
+                                            </div>
                                         </div>
                                         <?php
                                         $contador += 1;
@@ -174,13 +196,15 @@ foreach ($listaPadres as $e) {
 
                         <div class="tercerBloqueHijo">
                             <div class="nuevoPermiso">Nuevo Permiso</div>
-                            <div class="borrarHijo">
+                            <div class="borrarHijo"
+                                onclick="borrarHijo(5,<?php echo $contadorPadres ?>,<?php echo $contadorHijos ?>)">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="red">
                                     <path
                                         d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
                                 </svg>
                             </div>
                         </div>
+                        <?php $contadorHijos += 1; ?>
                     </div>
                     <?php
                 }
@@ -193,7 +217,7 @@ foreach ($listaPadres as $e) {
 
                 ?>
                 <div class="nuevoHijo">
-                    <button type="button" class="botonPopoverHijo" data-bs-toggle="poover" title="Nombre del menu"
+                    <button type="button" class="botonPopoverHijo" data-bs-toggle="popover" title="Nombre del menu"
                         data-bs-content="" data-custom-value1=2 data-custom-value2=<?php echo $contadorPadres ?>
                         data-custom-value3=<?php echo $contadorHijos ?>>
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -210,7 +234,7 @@ foreach ($listaPadres as $e) {
     </div>
     </div>
     <div class="nuevoPadre">
-        <button type="button" class="botonPopoverPadre" data-bs-toggle="poover" title="Nombre del menu" data-bs-content=""
+        <button type="button" class="botonPopoverPadre" data-bs-toggle="popover" title="Nombre del menu" data-bs-content=""
             data-custom-value1=1 data-custom-value2=<?php echo $contadorPadres ?> data-custom-value3=<?php echo $contadorHijos ?>>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                 <path
