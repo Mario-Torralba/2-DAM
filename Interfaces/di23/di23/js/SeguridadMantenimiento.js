@@ -93,7 +93,13 @@ function añadirPermisoHijo(custom1, custom2, custom3) {
   divBorrarPermisoHijo.classList.add("borrarPermisoHijo");
   divBorrarPermisoHijo.setAttribute(
     "onclick",
-    "borrarPermisoHijo(9," + custom2 + "," + custom3 + ",'" + input.value + "')"
+    "borrarPermisoHijo(7," +
+      custom2 +
+      "," +
+      custom3 +
+      ",'Ver" +
+      input.value +
+      "')"
   );
 
   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -772,7 +778,7 @@ function init() {
             permiso.appendChild(borrarPermisoHijo);
 
             let permisosMenu = document.createElement("div");
-            permisosMenu.classList.add("permisosMenuHijos");
+            permisosMenu.classList.add("permisosMenu");
             permisosMenu.appendChild(permiso);
 
             segundoBloquePadre.appendChild(permisosMenu);
@@ -791,16 +797,16 @@ function init() {
 
             // Crear el input y añadirlo al div 'nuevoPermiso'
             var inputHijo = document.createElement("input");
-            inputHijo.classList.add("inputAñadirPermisoHijo");
+            inputHijo.classList.add("inputAñadirPermisoPadre");
             inputHijo.setAttribute("type", "text");
             nuevoPermiso.appendChild(inputHijo);
 
             // Crear el div hijo para el SVG
             var divAceptar = document.createElement("div");
-            divAceptar.classList.add("aceptarAñadirPermisoHijo");
+            divAceptar.classList.add("aceptarAñadirPermisoPadre");
             divAceptar.setAttribute(
               "onclick",
-              "añadirPermisoHijo(9," + padre + "," + hijo + ")"
+              "añadirPermisoPadre(8," + padre + "," + hijo + ")"
             );
 
             // Crear el SVG
@@ -986,13 +992,16 @@ function init() {
 
             let borrarPermisosPadres =
               document.querySelectorAll(".permisosMenu");
-
+            console.log(borrarPermisosPadres);
             for (let index = 0; index < borrarPermisosPadres.length; index++) {
               let permisos =
                 borrarPermisosPadres[index].querySelectorAll(".permiso");
+              console.log(permisos);
               let permisosBorrar = borrarPermisosPadres[index].querySelectorAll(
                 ".borrarPermisoPadre"
               );
+              console.log(permisosBorrar);
+
               for (let index2 = 0; index2 < permisosBorrar.length; index2++) {
                 permisosBorrar[index2].setAttribute(
                   "onclick",
@@ -1015,7 +1024,7 @@ function init() {
                 "borrarPermisoPadre(8," + (index + 1) + ",1)"
               );
             }
-
+            elementosPadre = document.querySelectorAll(".padre");
             for (let index = 0; index < elementosPadre.length; index++) {
               let menuPermisosHijos =
                 elementosPadre[index].querySelectorAll(".permisosMenuHijos");
@@ -1070,10 +1079,10 @@ function init() {
             }
 
             //REALIZAR CONSULTA/S
-            // alterarMenusMantenimiento(tipo, padre, hijo, input.value);
+            alterarMenusMantenimiento(tipo, padre, hijo, input.value);
 
             //RECARGAR JS
-            // init();
+            init();
           });
           return container;
         },
@@ -1166,18 +1175,95 @@ function init() {
             let permiso = document.createElement("div");
             permiso.classList.add("permiso");
             permiso.textContent = "Ver" + input.value;
-
+          
+            let borrarPermisoHijo = document.createElement("div");
+            borrarPermisoHijo.classList.add("borrarPermisoHijo");
+            borrarPermisoHijo.setAttribute(
+              "onclick",
+              "borrarPermisoHijo(7," +
+                padre +
+                "," +
+                hijo +
+                ",'Ver" +
+                input.value +
+                "')"
+            );
+          
+            // Crear el elemento SVG
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("height", "24");
+            svg.setAttribute("viewBox", "0 -960 960 960");
+            svg.setAttribute("width", "24");
+            svg.setAttribute("fill", "red");
+          
+            // Crear el elemento path
+            var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute(
+              "d",
+              "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            );
+          
+            // Añadir el path al SVG
+            svg.appendChild(path);
+            borrarPermisoHijo.appendChild(svg);
+            permiso.appendChild(borrarPermisoHijo);
+          
             let permisosMenu = document.createElement("div");
             permisosMenu.classList.add("permisosMenuHijos");
             permisosMenu.appendChild(permiso);
-
+          
             let segundoBloque = document.createElement("div");
             segundoBloque.classList.add("segundoBloqueHijo");
             segundoBloque.appendChild(permisosMenu);
 
-            let nuevoPermiso = document.createElement("div");
+            // Crear el div principal 'nuevoPermiso'
+            var nuevoPermiso = document.createElement("div");
             nuevoPermiso.classList.add("nuevoPermiso");
-            nuevoPermiso.textContent = "Nuevo Permiso";
+
+            // Añadir texto al div 'nuevoPermiso'
+            var texto = document.createTextNode("Nuevo Permiso");
+            nuevoPermiso.appendChild(texto);
+
+            // Crear el input y añadirlo al div 'nuevoPermiso'
+            var input2 = document.createElement("input");
+            input2.classList.add("inputAñadirPermisoHijo");
+            input2.setAttribute("type", "text");
+            nuevoPermiso.appendChild(input2);
+
+            // Crear el div hijo para el SVG
+            var divAceptar = document.createElement("div");
+            divAceptar.classList.add("aceptarAñadirPermisoHijo");
+            divAceptar.setAttribute(
+              "onclick",
+              "añadirPermisoHijo(9," + padre + "," + hijo + ")"
+            );
+
+            // Crear el SVG
+            var svg = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "svg"
+            );
+            svg.setAttribute("fill", "white");
+            svg.setAttribute("height", "24");
+            svg.setAttribute("viewBox", "0 -960 960 960");
+            svg.setAttribute("width", "24");
+
+            // Crear el path y añadirlo al SVG
+            var path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path"
+            );
+            path.setAttribute(
+              "d",
+              "m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            );
+            svg.appendChild(path);
+
+            // Añadir el SVG al div 'aceptarAñadirPermisoHijo'
+            divAceptar.appendChild(svg);
+
+            // Añadir el div 'aceptarAñadirPermisoHijo' al div 'nuevoPermiso'
+            nuevoPermiso.appendChild(divAceptar);
 
             let borrarPadre = document.createElement("div");
             borrarPadre.classList.add("borrarHijo");
@@ -1287,6 +1373,94 @@ function init() {
                 borrarHijos[index2].setAttribute(
                   "onclick",
                   "borrarHijo(5," + (index + 1) + "," + (index2 + 1) + ")"
+                );
+              }
+            }
+
+            let borrarPermisosPadres =
+              document.querySelectorAll(".permisosMenu");
+            console.log(borrarPermisosPadres);
+            for (let index = 0; index < borrarPermisosPadres.length; index++) {
+              let permisos =
+                borrarPermisosPadres[index].querySelectorAll(".permiso");
+              console.log(permisos);
+              let permisosBorrar = borrarPermisosPadres[index].querySelectorAll(
+                ".borrarPermisoPadre"
+              );
+              console.log(permisosBorrar);
+
+              for (let index2 = 0; index2 < permisosBorrar.length; index2++) {
+                permisosBorrar[index2].setAttribute(
+                  "onclick",
+                  "borrarPermisoPadre(6," +
+                    (index + 1) +
+                    ",1," +
+                    permisos[index2].textContent.trim() +
+                    ")"
+                );
+              }
+            }
+
+            let añadirPermisoPadre = document.querySelectorAll(
+              ".aceptarAñadirPermisoPadre"
+            );
+
+            for (let index = 0; index < añadirPermisoPadre.length; index++) {
+              añadirPermisoPadre[index].setAttribute(
+                "onclick",
+                "borrarPermisoPadre(8," + (index + 1) + ",1)"
+              );
+            }
+            elementosPadre = document.querySelectorAll(".padre");
+            for (let index = 0; index < elementosPadre.length; index++) {
+              let menuPermisosHijos =
+                elementosPadre[index].querySelectorAll(".permisosMenuHijos");
+              for (
+                let index2 = 0;
+                index2 < menuPermisosHijos.length;
+                index2++
+              ) {
+                let permisosHijos =
+                  menuPermisosHijos[index2].querySelectorAll(".permiso");
+                let permisosHijosBorrar =
+                  menuPermisosHijos[index2].querySelectorAll(
+                    ".borrarPermisoHijo"
+                  );
+                for (
+                  let index3 = 0;
+                  index3 < permisosHijosBorrar.length;
+                  index3++
+                ) {
+                  permisosHijosBorrar[index3].setAttribute(
+                    "onclick",
+                    "borrarPermisoHijo(7," +
+                      (index + 1) +
+                      "," +
+                      (index2 + 1) +
+                      "," +
+                      permisosHijos[index3].textContent.trim() +
+                      ")"
+                  );
+                }
+              }
+            }
+
+            for (let index = 0; index < elementosPadre.length; index++) {
+              let nuevoPermisoHijos = elementosPadre[index].querySelectorAll(
+                ".aceptarAñadirPermisoHijo"
+              );
+              for (
+                let index2 = 0;
+                index2 < nuevoPermisoHijos.length;
+                index2++
+              ) {
+                nuevoPermisoHijos[index2].setAttribute(
+                  "onclick",
+                  "borrarPermisoHijo(9," +
+                    (index + 1) +
+                    "," +
+                    (index2 + 1) +
+                    ")"
                 );
               }
             }
