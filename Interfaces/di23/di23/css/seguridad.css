@@ -212,11 +212,7 @@
     border-radius: 5px;
     box-shadow: 1px 1px 10px #9e9e9e;
 }
-.nuevoPermiso:hover{
-    cursor: pointer;
-    scale: 1.2;
-    transition: 200ms;
-}
+
 .tamañoHijo{
     background-color: #e7e7e7;
     margin: 1vw;
@@ -234,14 +230,14 @@
     justify-content: space-between;
 }
 .segundoBloquePadre{
-    width: 50%;
+    width: 45%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .tercerBloquePadre{
-    width: 20%;
+    width: 25%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -253,14 +249,14 @@
     justify-content: flex-start;
 }
 .segundoBloqueHijo{
-    width: 60%;
+    width: 50%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .tercerBloqueHijo{
-    width: 20%;
+    width: 30%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -307,6 +303,24 @@
     cursor: pointer;
     transition: 200ms;
 }
+.aceptarAñadirPermisoPadre{
+    height: auto;
+    width: auto;
+}
+.aceptarAñadirPermisoPadre:hover{
+    scale: 1.5;
+    cursor: pointer;
+    transition: 200ms;
+}
+.aceptarAñadirPermisoHijo{
+    height: auto;
+    width: auto;
+}
+.aceptarAñadirPermisoHijo:hover{
+    scale: 1.5;
+    cursor: pointer;
+    transition: 200ms;
+}
 
 /* 
 *{
@@ -318,6 +332,19 @@
     width: 100%;
 }
 .inputAñadirHijo{
+    width: 10vw;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.inputAñadirPermisoPadre{
+    width: 10vw;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.inputAñadirPermisoHijo{
+    width: 10vw;
     margin-left: 5px;
     margin-right: 10px;
     border-radius: 5px;

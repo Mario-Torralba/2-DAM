@@ -25,23 +25,111 @@ function alterarMenusMantenimiento(tipo, padre, hijo, nombreMenu) {
         return res.text();
       }
     })
-      .then((vista) => {
-        document.getElementById("capaResultadosBusqueda").innerHTML = vista;
-      })
+    // .then((vista) => {
+    //   document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+    // })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
+function añadirPermisoPadre(custom1, custom2, custom3) {
+  let padre = document.querySelectorAll(".padre");
+  let permisosMenu = padre[custom2 - 1].querySelector(".permisosMenu");
+  let input = padre[custom2 - 1].querySelector(".inputAñadirPermisoPadre");
 
+  var divPermiso = document.createElement("div");
+  divPermiso.classList.add("permiso");
+
+  var texto = document.createTextNode(input.value);
+  divPermiso.appendChild(texto);
+
+  var divBorrarPermisoPadre = document.createElement("div");
+  divBorrarPermisoPadre.classList.add("borrarPermisoPadre");
+  divBorrarPermisoPadre.setAttribute(
+    "onclick",
+    "borrarPermisoPadre(8," + custom2 + ",1,'" + input.value + "')"
+  );
+
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 -960 960 960");
+  svg.setAttribute("width", "24");
+  svg.setAttribute("fill", "red");
+
+  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+  );
+
+  svg.appendChild(path);
+
+  divBorrarPermisoPadre.appendChild(svg);
+
+  divPermiso.appendChild(divBorrarPermisoPadre);
+
+  permisosMenu.appendChild(divPermiso);
+
+  //REALIZAR CONSULTA/S
+  alterarMenusMantenimiento(custom1, custom2, custom3, input.value);
+
+  //RECARGAR JS
+  init();
+}
+
+function añadirPermisoHijo(custom1, custom2, custom3) {
+  let padre = document.querySelectorAll(".padre");
+  let hijos = padre[custom2 - 1].querySelectorAll(".tamañoHijo");
+  let hijo = hijos[custom3 - 1].querySelector(".permisosMenuHijos");
+  let input = hijos[custom3 - 1].querySelector(".inputAñadirPermisoHijo");
+
+  var divPermiso = document.createElement("div");
+  divPermiso.classList.add("permiso");
+
+  var texto = document.createTextNode(input.value);
+  divPermiso.appendChild(texto);
+
+  var divBorrarPermisoHijo = document.createElement("div");
+  divBorrarPermisoHijo.classList.add("borrarPermisoHijo");
+  divBorrarPermisoHijo.setAttribute(
+    "onclick",
+    "borrarPermisoHijo(9," + custom2 + "," + custom3 + ",'" + input.value + "')"
+  );
+
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 -960 960 960");
+  svg.setAttribute("width", "24");
+  svg.setAttribute("fill", "red");
+
+  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+  );
+
+  svg.appendChild(path);
+
+  divBorrarPermisoHijo.appendChild(svg);
+
+  divPermiso.appendChild(divBorrarPermisoHijo);
+
+  hijo.appendChild(divPermiso);
+
+  //REALIZAR CONSULTA/S
+  alterarMenusMantenimiento(custom1, custom2, custom3, input.value);
+
+  //RECARGAR JS
+  init();
+}
 function borrarPermisoPadre(custom1, custom2, custom3, nombrePermiso) {
-
-  var padres = document.querySelectorAll(".padre")
-  var permisos = padres[custom2-1].querySelectorAll(".permiso")
-  var permisosMenu = padres[custom2-1].querySelector(".permisosMenu")
+  var padres = document.querySelectorAll(".padre");
+  var permisos = padres[custom2 - 1].querySelectorAll(".permiso");
+  var permisosMenu = padres[custom2 - 1].querySelector(".permisosMenu");
 
   for (let index = 0; index < permisos.length; index++) {
-    if(permisos[index].textContent.trim() == nombrePermiso){
-      permisosMenu.removeChild(permisos[index])
+    if (permisos[index].textContent.trim() == nombrePermiso) {
+      permisosMenu.removeChild(permisos[index]);
     }
   }
 
@@ -50,21 +138,19 @@ function borrarPermisoPadre(custom1, custom2, custom3, nombrePermiso) {
 
   //RECARGAR JS
   init();
-
 }
 
 function borrarPermisoHijo(custom1, custom2, custom3, nombrePermiso) {
-
-  var padres = document.querySelectorAll(".padre")
-  var hijos = padres[custom2-1].querySelectorAll(".tamañoHijo")
-  console.log(hijos)
-  var permisosMenu = hijos[custom3-1].querySelector(".permisosMenuHijos")
-  console.log(permisosMenu)
-  var permisosHijos = hijos[custom3-1].querySelectorAll(".permiso")
+  var padres = document.querySelectorAll(".padre");
+  var hijos = padres[custom2 - 1].querySelectorAll(".tamañoHijo");
+  console.log(hijos);
+  var permisosMenu = hijos[custom3 - 1].querySelector(".permisosMenuHijos");
+  console.log(permisosMenu);
+  var permisosHijos = hijos[custom3 - 1].querySelectorAll(".permiso");
 
   for (let index = 0; index < permisosHijos.length; index++) {
-    if(permisosHijos[index].textContent.trim() == nombrePermiso){
-      permisosMenu.removeChild(permisosHijos[index])
+    if (permisosHijos[index].textContent.trim() == nombrePermiso) {
+      permisosMenu.removeChild(permisosHijos[index]);
     }
   }
 
@@ -73,14 +159,13 @@ function borrarPermisoHijo(custom1, custom2, custom3, nombrePermiso) {
 
   //RECARGAR JS
   init();
-
 }
 
 function añadirHijo(custom1, custom2, custom3) {
   let padres = document.querySelectorAll(".padre");
   let padre = padres[custom2 - 1];
+  let hijos = padres[custom2 - 1].querySelectorAll(".tamañoHijo");
   let inputAñadirHijo = padre.querySelectorAll(".inputAñadirHijo");
-
 
   let boton = document.createElement("button");
   boton.setAttribute("type", "button");
@@ -163,6 +248,38 @@ function añadirHijo(custom1, custom2, custom3) {
   permiso.classList.add("permiso");
   permiso.textContent = "Ver" + inputAñadirHijo[0].value;
 
+  let borrarPermisoHijo = document.createElement("div");
+  borrarPermisoHijo.classList.add("borrarPermisoHijo");
+  borrarPermisoHijo.setAttribute(
+    "onclick",
+    "borrarPermisoHijo(7," +
+      custom2 +
+      "," +
+      (hijos.length + 1) +
+      ",'Ver" +
+      inputAñadirHijo[0].value +
+      "')"
+  );
+
+  // Crear el elemento SVG
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 -960 960 960");
+  svg.setAttribute("width", "24");
+  svg.setAttribute("fill", "red");
+
+  // Crear el elemento path
+  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+  );
+
+  // Añadir el path al SVG
+  svg.appendChild(path);
+  borrarPermisoHijo.appendChild(svg);
+  permiso.appendChild(borrarPermisoHijo);
+
   let permisosMenu = document.createElement("div");
   permisosMenu.classList.add("permisosMenuHijos");
   permisosMenu.appendChild(permiso);
@@ -171,9 +288,48 @@ function añadirHijo(custom1, custom2, custom3) {
   segundoBloque.classList.add("segundoBloqueHijo");
   segundoBloque.appendChild(permisosMenu);
 
-  let nuevoPermiso = document.createElement("div");
+  // Crear el div principal 'nuevoPermiso'
+  var nuevoPermiso = document.createElement("div");
   nuevoPermiso.classList.add("nuevoPermiso");
-  nuevoPermiso.textContent = "Nuevo Permiso";
+
+  // Añadir texto al div 'nuevoPermiso'
+  var texto = document.createTextNode("Nuevo Permiso");
+  nuevoPermiso.appendChild(texto);
+
+  // Crear el input y añadirlo al div 'nuevoPermiso'
+  var input = document.createElement("input");
+  input.classList.add("inputAñadirPermisoHijo");
+  input.setAttribute("type", "text");
+  nuevoPermiso.appendChild(input);
+
+  // Crear el div hijo para el SVG
+  var divAceptar = document.createElement("div");
+  divAceptar.classList.add("aceptarAñadirPermisoHijo");
+  divAceptar.setAttribute(
+    "onclick",
+    "añadirPermisoHijo(9," + custom2 + "," + (hijos.length + 1) + ")"
+  );
+
+  // Crear el SVG
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("fill", "white");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 -960 960 960");
+  svg.setAttribute("width", "24");
+
+  // Crear el path y añadirlo al SVG
+  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+  );
+  svg.appendChild(path);
+
+  // Añadir el SVG al div 'aceptarAñadirPermisoHijo'
+  divAceptar.appendChild(svg);
+
+  // Añadir el div 'aceptarAñadirPermisoHijo' al div 'nuevoPermiso'
+  nuevoPermiso.appendChild(divAceptar);
 
   let borrarPadre = document.createElement("div");
   borrarPadre.classList.add("borrarHijo");
@@ -212,7 +368,7 @@ function añadirHijo(custom1, custom2, custom3) {
   var espaciosHijos = document.querySelectorAll(".espacioHijos");
   var espacioEspecifico = espaciosHijos[custom2 - 1];
   var elementosPadre = document.querySelectorAll(".padre");
-  var espacios = espacioEspecifico.querySelectorAll(".tamañoHijo")
+  var espacios = espacioEspecifico.querySelectorAll(".tamañoHijo");
   if (espacios.length > 0) {
     var padreEspecifico = elementosPadre[custom2 - 1];
 
@@ -231,11 +387,10 @@ function añadirHijo(custom1, custom2, custom3) {
       ultimoElemento.parentNode.appendChild(contenedorBoton2);
     }
   } else {
-    espacioEspecifico.appendChild(contenedorBoton)
+    espacioEspecifico.appendChild(contenedorBoton);
     espacioEspecifico.appendChild(tamañoHijo);
     espacioEspecifico.appendChild(contenedorBoton2);
   }
-
 
   //RESETEAR LOS CUSTOM-VALUES
 
@@ -248,129 +403,232 @@ function añadirHijo(custom1, custom2, custom3) {
     }
   }
 
-  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  let espacioHijos = document.querySelectorAll(".espacioHijos");
   for (let index = 0; index < espacioHijos.length; index++) {
-    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo");
     for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
-      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +", "+(index2+1) +")")
+      botonesBorrarHijo[index2].setAttribute(
+        "onclick",
+        "borrarHijo(5," + (index + 1) + ", " + (index2 + 1) + ")"
+      );
     }
   }
 
   //REALIZAR CONSULTA/S
-  alterarMenusMantenimiento(custom1, custom2, custom3, inputAñadirHijo[0].value);
+  alterarMenusMantenimiento(
+    custom1,
+    custom2,
+    custom3,
+    inputAñadirHijo[0].value
+  );
 
   //RECARGAR JS
   init();
 }
 function borrarHijo(custom1, custom2, custom3) {
+  let elementosPadre = document.querySelectorAll(".padre");
+  let elementosHijo =
+    elementosPadre[custom2 - 1].querySelectorAll(".tamañoHijo");
+  let elementosHijoBoton =
+    elementosPadre[custom2 - 1].querySelectorAll(".nuevoHijo");
 
-  console.log(custom1)
-  console.log(custom2)
-  console.log(custom3)
+  let espacioHijos2 = document.querySelectorAll(".espacioHijos");
+  let espacioHijosEspecifico = espacioHijos2[custom2 - 1];
 
-  let elementosPadre = document.querySelectorAll(".padre") 
-  let elementosHijo = elementosPadre[custom2-1].querySelectorAll(".tamañoHijo")
-  let elementosHijoBoton = elementosPadre[custom2-1].querySelectorAll(".nuevoHijo")
+  console.log(elementosHijo);
+  console.log(elementosHijoBoton);
+  console.log(espacioHijosEspecifico);
 
-  let espacioHijos2 = document.querySelectorAll(".espacioHijos")
-  let espacioHijosEspecifico = espacioHijos2[custom2-1]
+  espacioHijosEspecifico.removeChild(elementosHijo[custom3 - 1]);
+  espacioHijosEspecifico.removeChild(elementosHijoBoton[custom3 - 1]);
 
-  console.log(elementosHijo)
-  console.log(elementosHijoBoton)
-  console.log(espacioHijosEspecifico)
-
-  espacioHijosEspecifico.removeChild(elementosHijo[(custom3-1)])
-  espacioHijosEspecifico.removeChild(elementosHijoBoton[(custom3-1)])
-
-
-  elementosPadre = document.querySelectorAll(".padre") 
+  elementosPadre = document.querySelectorAll(".padre");
 
   for (let index = 0; index < elementosPadre.length; index++) {
-    var customValuesHijoss = elementosPadre[index].querySelectorAll(".botonPopoverHijo");
-    for (let index2 = 0;index2 < customValuesHijoss.length;index2++) {
-      customValuesHijoss[index2].setAttribute("data-custom-value3",(index2+1))
+    var customValuesHijoss =
+      elementosPadre[index].querySelectorAll(".botonPopoverHijo");
+    for (let index2 = 0; index2 < customValuesHijoss.length; index2++) {
+      customValuesHijoss[index2].setAttribute("data-custom-value3", index2 + 1);
     }
   }
 
-
-  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  let espacioHijos = document.querySelectorAll(".espacioHijos");
   for (let index = 0; index < espacioHijos.length; index++) {
-    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo");
     for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
-      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +", "+(index2+1) +")")
+      botonesBorrarHijo[index2].setAttribute(
+        "onclick",
+        "borrarHijo(5," + (index + 1) + ", " + (index2 + 1) + ")"
+      );
     }
   }
+  elementosPadre = document.querySelectorAll(".padre");
+  let permisosMenuHijos =
+    elementosPadre[custom2 - 1].querySelectorAll(".permisosMenuHijos");
 
+  for (let index = 0; index < permisosMenuHijos.length; index++) {
+    let permisoHijo = permisosMenuHijos[index].querySelectorAll(".permiso");
+    let borrarPermisoHijo =
+      permisosMenuHijos[index].querySelectorAll(".borrarPermisoHijo");
+    for (let index2 = 0; index2 < borrarPermisoHijo.length; index2++) {
+      borrarPermisoHijo[index2].setAttribute(
+        "onclick",
+        "borrarPermisoHijo(7," +
+          custom2 +
+          "," +
+          (index + 1) +
+          ",'" +
+          permisoHijo[index2].textContent.trim() +
+          "')"
+      );
+    }
+  }
+  let padres = document.querySelectorAll(".padre");
 
+  let nuevoPermisoHijo = padres[custom2 - 1].querySelectorAll(
+    ".aceptarAñadirPermisoHijo"
+  );
+  for (let index = 0; index < nuevoPermisoHijo.length; index++) {
+    nuevoPermisoHijo[index].setAttribute(
+      "onclick",
+      "añadirPermisoHijo(9," + custom2 + "," + (index + 1) + ")"
+    );
+  }
 
-  alterarMenusMantenimiento(custom1,custom2,custom3," ")
+  alterarMenusMantenimiento(custom1, custom2, custom3, " ");
 
   init();
-
 }
 
 function borrarPadre(custom1, custom2, custom3) {
+  let elementosPadre = document.querySelectorAll(".padre");
+  let elementosPadreCrear = document.querySelectorAll(".nuevoPadre");
+  let elementosPadreArray = Array.from(elementosPadre);
+  let capaResultadosBusqueda = document.getElementById(
+    "capaResultadosBusqueda"
+  );
 
-  let elementosPadre = document.querySelectorAll(".padre") 
-  let elementosPadreCrear = document.querySelectorAll(".nuevoPadre") 
-  let elementosPadreArray = Array.from(elementosPadre)
-  let capaResultadosBusqueda = document.getElementById("capaResultadosBusqueda")
- 
-  capaResultadosBusqueda.removeChild(elementosPadre[custom2-1])
-  capaResultadosBusqueda.removeChild(elementosPadreCrear[custom2-1])
-    
-  let botonesBorrarPadre = document.querySelectorAll(".borrarPadre")
+  capaResultadosBusqueda.removeChild(elementosPadre[custom2 - 1]);
+  capaResultadosBusqueda.removeChild(elementosPadreCrear[custom2 - 1]);
+
+  let botonesBorrarPadre = document.querySelectorAll(".borrarPadre");
 
   for (let index = 0; index < botonesBorrarPadre.length; index++) {
-    botonesBorrarPadre[index].setAttribute("onclick","borrarPadre(4,"+(index+1)+",1)");
+    botonesBorrarPadre[index].setAttribute(
+      "onclick",
+      "borrarPadre(4," + (index + 1) + ",1)"
+    );
   }
 
-  let botonesPopoverPadre = document.querySelectorAll(".botonPopoverPadre")
+  let botonesPopoverPadre = document.querySelectorAll(".botonPopoverPadre");
 
   for (let index = 0; index < botonesPopoverPadre.length; index++) {
-    botonesPopoverPadre[index].setAttribute("data-custom-value2",(index+1))
+    botonesPopoverPadre[index].setAttribute("data-custom-value2", index + 1);
   }
 
-  elementosPadre = document.querySelectorAll(".padre") 
+  elementosPadre = document.querySelectorAll(".padre");
 
   for (let index = 0; index < elementosPadre.length; index++) {
-    var customValuesHijoss = elementosPadre[index].querySelectorAll(".botonPopoverHijo");
-    for (let index2 = 0;index2 < customValuesHijoss.length;index2++) {
-      customValuesHijoss[index2].setAttribute("data-custom-value2",(index+1))
+    var customValuesHijoss =
+      elementosPadre[index].querySelectorAll(".botonPopoverHijo");
+    for (let index2 = 0; index2 < customValuesHijoss.length; index2++) {
+      customValuesHijoss[index2].setAttribute("data-custom-value2", index + 1);
     }
   }
 
-  let aceptarAñadirHijo = document.querySelectorAll(".aceptarAñadirHijo")
+  let aceptarAñadirHijo = document.querySelectorAll(".aceptarAñadirHijo");
 
   for (let index = 0; index < aceptarAñadirHijo.length; index++) {
-    aceptarAñadirHijo[index].setAttribute("onclick","añadirHijo(3,"+ (index+1) +",1)")
+    aceptarAñadirHijo[index].setAttribute(
+      "onclick",
+      "añadirHijo(3," + (index + 1) + ",1)"
+    );
   }
 
-  let espacioHijos = document.querySelectorAll(".espacioHijos")
+  let espacioHijos = document.querySelectorAll(".espacioHijos");
   for (let index = 0; index < espacioHijos.length; index++) {
-    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo")
+    let botonesBorrarHijo = espacioHijos[index].querySelectorAll(".borrarHijo");
     for (let index2 = 0; index2 < botonesBorrarHijo.length; index2++) {
-      botonesBorrarHijo[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+(index2+1)+")")
+      botonesBorrarHijo[index2].setAttribute(
+        "onclick",
+        "borrarHijo(5," + (index + 1) + "," + (index2 + 1) + ")"
+      );
     }
   }
 
+  let borrarPermisosPadres = document.querySelectorAll(".permisosMenu");
 
+  for (let index = 0; index < borrarPermisosPadres.length; index++) {
+    let permisos = borrarPermisosPadres[index].querySelectorAll(".permiso");
+    let permisosBorrar = borrarPermisosPadres[index].querySelectorAll(
+      ".borrarPermisoPadre"
+    );
+    for (let index2 = 0; index2 < permisosBorrar.length; index2++) {
+      permisosBorrar[index2].setAttribute(
+        "onclick",
+        "borrarPermisoPadre(6," +
+          (index + 1) +
+          ",1," +
+          permisos[index2].textContent.trim() +
+          ")"
+      );
+    }
+  }
 
-  alterarMenusMantenimiento(custom1,custom2,custom3," ")
+  let añadirPermisoPadre = document.querySelectorAll(
+    ".aceptarAñadirPermisoPadre"
+  );
+
+  for (let index = 0; index < añadirPermisoPadre.length; index++) {
+    añadirPermisoPadre[index].setAttribute(
+      "onclick",
+      "borrarPermisoPadre(8," + (index + 1) + ",1)"
+    );
+  }
+
+  for (let index = 0; index < elementosPadre.length; index++) {
+    let menuPermisosHijos =
+      elementosPadre[index].querySelectorAll(".permisosMenuHijos");
+    for (let index2 = 0; index2 < menuPermisosHijos.length; index2++) {
+      let permisosHijos =
+        menuPermisosHijos[index2].querySelectorAll(".permiso");
+      let permisosHijosBorrar =
+        menuPermisosHijos[index2].querySelectorAll(".borrarPermisoHijo");
+      for (let index3 = 0; index3 < permisosHijosBorrar.length; index3++) {
+        permisosHijosBorrar[index3].setAttribute(
+          "onclick",
+          "borrarPermisoHijo(7," +
+            (index + 1) +
+            "," +
+            (index2 + 1) +
+            "," +
+            permisosHijos[index3].textContent.trim() +
+            ")"
+        );
+      }
+    }
+  }
+
+  for (let index = 0; index < elementosPadre.length; index++) {
+    let nuevoPermisoHijos = elementosPadre[index].querySelectorAll(
+      ".aceptarAñadirPermisoHijo"
+    );
+    for (let index2 = 0; index2 < nuevoPermisoHijos.length; index2++) {
+      nuevoPermisoHijos[index2].setAttribute(
+        "onclick",
+        "borrarPermisoHijo(9," + (index + 1) + "," + (index2 + 1) + ")"
+      );
+    }
+  }
+
+  alterarMenusMantenimiento(custom1, custom2, custom3, " ");
   init();
-
 }
-
-
-
-
 
 function init() {
   $(document).ready(function () {
     $('[data-bs-toggle="popover"]').popover();
   });
-
-  
 
   // AÑADIR HIJO AL FINAL (BOTON AÑADIR HIJO)
 
@@ -471,25 +729,106 @@ function init() {
             segundoBloquePadre.className = "segundoBloquePadre";
 
             // Dentro de 'segundoBloquePadre', añadir 'permisosMenu'
-            var permisosMenu = document.createElement("div");
-            permisosMenu.className = "permisosMenu";
+            let permiso = document.createElement("div");
+            permiso.classList.add("permiso");
+            permiso.textContent = "Ver" + input.value;
 
-            var permisoInicial = document.createElement("div");
-            permisoInicial.className = "permiso";
-            permisoInicial.textContent = "ver" + input.value;
+            let borrarPermisoHijo = document.createElement("div");
+            borrarPermisoHijo.classList.add("borrarPermisoHijo");
+            borrarPermisoHijo.setAttribute(
+              "onclick",
+              "borrarPermisoHijo(6," +
+                padre +
+                "," +
+                hijo +
+                ",'Ver" +
+                input.value +
+                "')"
+            );
 
-            // Añadir 'permisosMenu' al 'segundoBloquePadre'
-            permisosMenu.appendChild(permisoInicial);
+            // Crear el elemento SVG
+            var svg = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "svg"
+            );
+            svg.setAttribute("height", "24");
+            svg.setAttribute("viewBox", "0 -960 960 960");
+            svg.setAttribute("width", "24");
+            svg.setAttribute("fill", "red");
+
+            // Crear el elemento path
+            var path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path"
+            );
+            path.setAttribute(
+              "d",
+              "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            );
+
+            // Añadir el path al SVG
+            svg.appendChild(path);
+            borrarPermisoHijo.appendChild(svg);
+            permiso.appendChild(borrarPermisoHijo);
+
+            let permisosMenu = document.createElement("div");
+            permisosMenu.classList.add("permisosMenuHijos");
+            permisosMenu.appendChild(permiso);
+
             segundoBloquePadre.appendChild(permisosMenu);
 
             // Crear el tercer bloque 'tercerBloquePadre'
             var tercerBloquePadre = document.createElement("div");
             tercerBloquePadre.className = "tercerBloquePadre";
 
-            // Dentro de 'tercerBloquePadre', añadir 'nuevoPermiso'
+            // Crear el div principal 'nuevoPermiso'
             var nuevoPermiso = document.createElement("div");
-            nuevoPermiso.className = "nuevoPermiso";
-            nuevoPermiso.textContent = "Nuevo Permiso";
+            nuevoPermiso.classList.add("nuevoPermiso");
+
+            // Añadir texto al div 'nuevoPermiso'
+            var texto = document.createTextNode("Nuevo Permiso");
+            nuevoPermiso.appendChild(texto);
+
+            // Crear el input y añadirlo al div 'nuevoPermiso'
+            var inputHijo = document.createElement("input");
+            inputHijo.classList.add("inputAñadirPermisoHijo");
+            inputHijo.setAttribute("type", "text");
+            nuevoPermiso.appendChild(inputHijo);
+
+            // Crear el div hijo para el SVG
+            var divAceptar = document.createElement("div");
+            divAceptar.classList.add("aceptarAñadirPermisoHijo");
+            divAceptar.setAttribute(
+              "onclick",
+              "añadirPermisoHijo(9," + padre + "," + hijo + ")"
+            );
+
+            // Crear el SVG
+            var svg = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "svg"
+            );
+            svg.setAttribute("fill", "white");
+            svg.setAttribute("height", "24");
+            svg.setAttribute("viewBox", "0 -960 960 960");
+            svg.setAttribute("width", "24");
+
+            // Crear el path y añadirlo al SVG
+            var path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path"
+            );
+            path.setAttribute(
+              "d",
+              "m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            );
+            svg.appendChild(path);
+
+            // Añadir el SVG al div 'aceptarAñadirPermisoHijo'
+            divAceptar.appendChild(svg);
+
+            // Añadir el div 'aceptarAñadirPermisoHijo' al div 'nuevoPermiso'
+            nuevoPermiso.appendChild(divAceptar);
 
             // Añadir 'borrarPadre'
             var borrarPadre = document.createElement("div");
@@ -630,20 +969,111 @@ function init() {
             }
 
             var borrarPadres = document.querySelectorAll(".borrarPadre");
-            
+
             for (let index = 0; index < padres.length; index++) {
-              borrarPadres[index].setAttribute("onclick","borrarPadre(4,"+ (index+1) +",1)");
+              borrarPadres[index].setAttribute(
+                "onclick",
+                "borrarPadre(4," + (index + 1) + ",1)"
+              );
               var borrarHijos = padres[index].querySelectorAll(".borrarHijo");
               for (let index2 = 0; index2 < borrarHijos.length; index2++) {
-                borrarHijos[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+ (index2+1) +")");
+                borrarHijos[index2].setAttribute(
+                  "onclick",
+                  "borrarHijo(5," + (index + 1) + "," + (index2 + 1) + ")"
+                );
               }
             }
-            
+
+            let borrarPermisosPadres =
+              document.querySelectorAll(".permisosMenu");
+
+            for (let index = 0; index < borrarPermisosPadres.length; index++) {
+              let permisos =
+                borrarPermisosPadres[index].querySelectorAll(".permiso");
+              let permisosBorrar = borrarPermisosPadres[index].querySelectorAll(
+                ".borrarPermisoPadre"
+              );
+              for (let index2 = 0; index2 < permisosBorrar.length; index2++) {
+                permisosBorrar[index2].setAttribute(
+                  "onclick",
+                  "borrarPermisoPadre(6," +
+                    (index + 1) +
+                    ",1," +
+                    permisos[index2].textContent.trim() +
+                    ")"
+                );
+              }
+            }
+
+            let añadirPermisoPadre = document.querySelectorAll(
+              ".aceptarAñadirPermisoPadre"
+            );
+
+            for (let index = 0; index < añadirPermisoPadre.length; index++) {
+              añadirPermisoPadre[index].setAttribute(
+                "onclick",
+                "borrarPermisoPadre(8," + (index + 1) + ",1)"
+              );
+            }
+
+            for (let index = 0; index < elementosPadre.length; index++) {
+              let menuPermisosHijos =
+                elementosPadre[index].querySelectorAll(".permisosMenuHijos");
+              for (
+                let index2 = 0;
+                index2 < menuPermisosHijos.length;
+                index2++
+              ) {
+                let permisosHijos =
+                  menuPermisosHijos[index2].querySelectorAll(".permiso");
+                let permisosHijosBorrar =
+                  menuPermisosHijos[index2].querySelectorAll(
+                    ".borrarPermisoHijo"
+                  );
+                for (
+                  let index3 = 0;
+                  index3 < permisosHijosBorrar.length;
+                  index3++
+                ) {
+                  permisosHijosBorrar[index3].setAttribute(
+                    "onclick",
+                    "borrarPermisoHijo(7," +
+                      (index + 1) +
+                      "," +
+                      (index2 + 1) +
+                      "," +
+                      permisosHijos[index3].textContent.trim() +
+                      ")"
+                  );
+                }
+              }
+            }
+
+            for (let index = 0; index < elementosPadre.length; index++) {
+              let nuevoPermisoHijos = elementosPadre[index].querySelectorAll(
+                ".aceptarAñadirPermisoHijo"
+              );
+              for (
+                let index2 = 0;
+                index2 < nuevoPermisoHijos.length;
+                index2++
+              ) {
+                nuevoPermisoHijos[index2].setAttribute(
+                  "onclick",
+                  "borrarPermisoHijo(9," +
+                    (index + 1) +
+                    "," +
+                    (index2 + 1) +
+                    ")"
+                );
+              }
+            }
+
             //REALIZAR CONSULTA/S
-            alterarMenusMantenimiento(tipo, padre, hijo, input.value);
+            // alterarMenusMantenimiento(tipo, padre, hijo, input.value);
 
             //RECARGAR JS
-            init();
+            // init();
           });
           return container;
         },
@@ -854,10 +1284,12 @@ function init() {
             for (let index = 0; index < padres.length; index++) {
               var borrarHijos = padres[index].querySelectorAll(".borrarHijo");
               for (let index2 = 0; index2 < borrarHijos.length; index2++) {
-                borrarHijos[index2].setAttribute("onclick","borrarHijo(5,"+ (index+1) +","+ (index2+1) +")");
+                borrarHijos[index2].setAttribute(
+                  "onclick",
+                  "borrarHijo(5," + (index + 1) + "," + (index2 + 1) + ")"
+                );
               }
             }
-
 
             //REALIZAR CONSULTA/S
             alterarMenusMantenimiento(tipo, padre, hijo, input.value);

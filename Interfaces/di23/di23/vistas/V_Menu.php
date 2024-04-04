@@ -6,17 +6,22 @@
     $arrayPadres = array();
     $contador = 1;
     $menus = array();
-    $contador2 = -1;
+    $contador2 = 0;
 
 
     foreach ($menu as $elemento) {
-        if($contador2 == -1){
+        if($contador == 0){
             array_push($menus, $elemento);
             $contador2++;
         }else{
-            if($menu[$contador2]['ID_MENU'] != $elemento['ID_MENU']){
+            $booleano = true;
+            foreach ($menus as $elemento2) {
+                if($elemento2['ID_MENU'] == $elemento['ID_MENU']){
+                    $booleano= false;
+                }
+            }
+            if($booleano){
                 array_push($menus, $elemento);
-                $contador2++;
             }
         }
     }
@@ -48,6 +53,7 @@
 
     }
 
+    // print_r($arrayPadres);
 
 
 

@@ -49,8 +49,15 @@
             if($tipo==7){
                 $cambios=$this->modelo->borrarPermisoHijo($parametros);
             }
-            Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
-            array('menus'=>$cambios));
+            if($tipo==8){
+                $cambios=$this->modelo->añadirPermisoPadre($parametros);
+            }
+            if($tipo==9){
+                $cambios=$this->modelo->añadirPermisoHijo($parametros);
+            }
+            
+            // Vista::render('vistas/V_SeguridadBusquedaMenus.php', 
+            // array('menus'=>$cambios));
 
         }
 
